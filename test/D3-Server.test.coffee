@@ -19,10 +19,11 @@ describe 'D3-Server', ->
 
 
   it 'constructor', ->
+    expected_Port = process.env.PORT || 3000
     D3_Server.assert_Is_Function()
     using new D3_Server(), ->
       assert_Is_Null @.server
-      @.port.assert_Is 3000
+      @.port.assert_Is expected_Port
 
   it 'start_Server', ->
     using new D3_Server(), ->
@@ -65,7 +66,8 @@ describe 'D3-Server', ->
 
   it 'server_Url', ->
     using d3_Server, ->
-      @.server_Url().assert_Is 'http://localhost:3000'
+      expected_Port = process.env.PORT || 3000
+      @.server_Url().assert_Is "http://localhost:#{expected_Port}"
       @.port = 12345
       @.server_Url().assert_Is 'http://localhost:12345'
 
