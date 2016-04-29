@@ -1,7 +1,7 @@
 # BSIMM-Graphs
 Tools and scripts to create BSIMM-Graphs
 
-
+Build status: [![Build Status](https://travis-ci.org/DinisCruz/BSIMM-Graphs.svg?branch=master)](https://travis-ci.org/DinisCruz/BSIMM-Graphs)
 
 # Research
 
