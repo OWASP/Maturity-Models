@@ -17,6 +17,7 @@
     "url": "https://github.com/DinisCruz/BSIMM-Graphs/issues"
   },
   "homepage": "https://github.com/DinisCruz/BSIMM-Graphs#readme",
+  "engines" : { "node" : "5.3.0" },
   "dependencies": {
     "async": "^1.5.2",
     "cheerio": "^0.20.0",
