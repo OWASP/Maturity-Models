@@ -9,7 +9,7 @@ require 'fluentnode'
 class D3_Server
   constructor: ->
     @.server = null
-    @.port   = 3000
+    @.port   = process.env.port || 3000
 
   setup_Server: =>
     
