@@ -20,20 +20,16 @@ class D3_Server
 
 
     #routes
-    @.app.get '/', @.route_Main
-    @.app.get '/ping', (req, res) => res.end 'pong'
-    @.app.get '/d3-radar', (req, res) => res.render 'd3-radar'
+    #@.app.get '/', @.route_Main
+    @.app.get '/'         , (req, res) => res.redirect 'd3-radar'
+    @.app.get '/ping'     , (req, res) => res.end 'pong'
+    @.app.get '/d3-radar' , (req, res) => res.render 'd3-radar'
 
   add_Bower_Support: ()=>
     console.log __dirname
-    @.app.use('/lib',  express.static(__dirname + '../bower_components'));
+    #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
+    @.app.use '/lib',  express.static __dirname.path_Combine('../bower_components')
 
-    path = __dirname.path_Combine('../bower_components')
-    #file = path.path_Combine('jQuery/dist/jquery.js')
-    #console.log file.file_Exists()
-    #@.app.use '/lib', serveIndex(path)
-    @.app.use '/lib',  express.static path
-    #@.app.get('/lib/*', (req,res)->res.send('asd'))
 
   route_Main: (req, res) ->
     d3 = req.app.d3

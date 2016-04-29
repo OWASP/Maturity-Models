@@ -4,7 +4,8 @@
   "description": "BSIMM Graphs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_modules/.bin/coffee start-server.coffee "
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "cheerio": "^0.20.0",
     "coffee-script": "^1.10.0",
     "d3": "^3.5.16",
+    "express": "^4.13.4",
     "express-load": "^1.1.15",
     "fluentnode": "^0.5.5",
     "jade": "^1.11.0",
