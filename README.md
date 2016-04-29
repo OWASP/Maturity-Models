@@ -13,3 +13,7 @@ Tools and scripts to create BSIMM-Graphs
   - https://anmolkoul.wordpress.com/2015/06/05/interactive-data-visualization-using-d3-js-dc-js-nodejs-and-mongodb/
   - https://dc-js.github.io/dc.js/
   - http://linuxsimba.com/running-d3-in-node/
+  - http://blog.stapps.io/using-d3-both-on-the-front-end-and-server/
+  - https://graves.cl/radar-chart-d3/ "Example of radar chart"
+  - http://bl.ocks.org/chrisrzhou/2421ac6541b68c1680f8 : "D3 Radar Chart - AngularJS application showcasing an interactive D3 radar chart (with facetting)."
+  - https://gist.github.com/chrisrzhou/2421ac6541b68c1680f8 : "D3 Radar Chart"

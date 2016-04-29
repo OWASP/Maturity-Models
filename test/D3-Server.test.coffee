@@ -11,7 +11,10 @@ describe 'D3-Server', ->
     d3_Server = new D3_Server()
 
   afterEach (done)->
-    d3_Server.stop ->
+    if d3_Server.server
+      d3_Server.stop ->
+        done()
+    else
       done()
 
 
