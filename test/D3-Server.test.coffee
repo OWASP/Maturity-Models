@@ -39,9 +39,7 @@ describe 'D3-Server', ->
       @.server.assert_Is_Object()
       @.server_Url().add('/ping').GET (data)=>
         data.assert_Is 'pong'
-        @.server_Url().GET (data)->
-          data.assert_Contains '<g><circle cx="50"'
-          done()
+        done()
 
   it 'add_Bower_Support', (done)->
     using d3_Server, ->
@@ -76,7 +74,7 @@ describe 'D3-Server', ->
       @.run(true)
       @.port.assert_Is_Not 3000
       @.server_Url().GET (data)=>
-        data.assert_Contains '<!DOCTYPE '
+        data.assert_Is 'Found. Redirecting to d3-radar'
         done()
 
   it 'stop', (done)->

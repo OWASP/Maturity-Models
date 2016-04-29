@@ -26,7 +26,6 @@ class D3_Server
     @.app.get '/d3-radar' , (req, res) => res.render 'd3-radar'
 
   add_Bower_Support: ()=>
-    console.log __dirname
     #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
     @.app.use '/lib',  express.static __dirname.path_Combine('../bower_components')
 
