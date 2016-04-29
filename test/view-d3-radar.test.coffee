@@ -22,7 +22,7 @@ describe 'view - d3-radar', ->
     d3_Server.stop
 
   it 'html components', ->
-    $('script').length.assert_Is 2
+    $('script').length.assert_Is 6
     #$('script').attr().assert_Is { src: '/lib/jquery/dist/jquery.min.js' } # this only checks the first file
     $('h3'    ).html().assert_Is 'BSIMM Radar Graphs'
 
@@ -38,4 +38,4 @@ describe 'view - d3-radar', ->
         next()
 
     async.eachSeries $('script'), check_Script, ->
-      async.eachSeries $('link'), check_Style, done 
+      async.eachSeries $('link'), check_Style, done

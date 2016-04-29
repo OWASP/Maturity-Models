@@ -9,6 +9,7 @@
   "homepage": "https://github.com/DinisCruz/BSIMM-Graphs",
   "moduleType": [],
   "dependencies": {
-    "d3": "~3.5.16"
+    "d3": "~3.5.16",
+    "radar-chart-d3": "~1.2.1"
   }
 }
