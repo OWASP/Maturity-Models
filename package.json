@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/DinisCruz/BSIMM-Graphs/issues"
   },
-  "homepage": "https://github.com/DinisCruz/BSIMM-Graphs#readme"
+  "homepage": "https://github.com/DinisCruz/BSIMM-Graphs#readme",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "d3": "^3.5.16",
+    "express-load": "^1.1.15",
+    "fluentnode": "^0.5.5",
+    "jade": "^1.11.0",
+    "jsdom": "^8.4.1"
+  }
 }
