@@ -2,10 +2,10 @@
   "name": "bsimm-graphs",
   "version": "0.0.1",
   "description": "BSIMM Graphs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --recursive -R list",
-    "start": "node_modules/.bin/coffee start-server.coffee "
+    "start": "GCLOUD_PROJECT=bsimm-graph node server.js "
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "node": "5.3.0"
   },
   "dependencies": {
+    "@google/cloud-trace": "^0.5.1",
     "async": "^1.5.2",
     "cheerio": "^0.20.0",
     "coffee-script": "^1.10.0",
