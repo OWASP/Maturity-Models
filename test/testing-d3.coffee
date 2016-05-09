@@ -5,7 +5,7 @@ express = require 'express'
 
 describe 'testing d3', ->
   it 'checking dependencies', ->
-    d3.version.assert_Is '3.5.16'
+    d3.version.assert_Is '3.5.17'
     jsdom.debugMode.assert_Is_False()
     express.Router.assert_Is_Function()
 
