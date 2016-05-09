@@ -1,4 +1,4 @@
-require('coffee-script/register');
+require('coffee-script/register')
 json5 = require 'json5'
 
 class Bsimm_Data
@@ -16,7 +16,7 @@ class Bsimm_Data
         when '.json'
           values.add file.load_Json()
         when '.json5'
-           values.add json5.parse file.file_Contents()
+          values.add json5.parse file.file_Contents()
         when '.coffee'
           values.add require file
           
