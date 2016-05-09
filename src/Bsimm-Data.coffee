@@ -1,3 +1,6 @@
+require('coffee-script/register');
+json5 = require 'json5'
+
 class Bsimm_Data
   constructor: ->
     @.data_Path = __dirname.path_Combine('../data')
@@ -9,12 +12,15 @@ class Bsimm_Data
     values = []
 
     for file in @.data_Files()
+      console.log file.file_Extension()
       switch file.file_Extension()
         when '.json'
-          values.push file.load_Json()            
+          values.add file.load_Json()
         when '.json5'
-           console.log 'json5'
-
+           values.add json5.parse file.file_Contents()
+        when '.coffee'
+          values.add require file
+          
     return values
       
 module.exports = Bsimm_Data

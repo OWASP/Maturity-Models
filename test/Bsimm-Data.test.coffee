@@ -14,4 +14,9 @@ describe 'Bsimm-Data',->
   it 'data', ->
     using new Bsimm_Data(), ->
       data  = @.data().assert_Not_Empty()
-      data.first().user.name.assert_Is 'Joe'
+      using data, ->
+        console.log data.size()
+        @.first().user.assert_Is 'test'
+        @.second().user.assert_Is 'in coffee'
+        @.third().user.name.assert_Is 'Joe'
+        #console.log @.second()

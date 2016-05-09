@@ -3,7 +3,7 @@ module.exports = function () {
         files: [
             'src/**/*.coffee',
             'views/**/*.jade',
-            'data/**/*.json',
+            { pattern: 'data/**/*'              , instrument: false, load: false, ignore: false },
             { pattern: 'bower_components/**/*.*', instrument: false, load: false, ignore: false }
         ],
 
