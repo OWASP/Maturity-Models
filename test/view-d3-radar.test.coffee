@@ -1,5 +1,5 @@
 require 'fluentnode'
-D3_Server = require '../src/D3-Server'
+D3_Server = require '../src/server/D3-Server'
 async     = require 'async'
 
 describe 'view - d3-radar', ->

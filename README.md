@@ -3,6 +3,8 @@ Tools and scripts to create BSIMM-Graphs
 
 Build status: [![Build Status](https://travis-ci.org/DinisCruz/BSIMM-Graphs.svg?branch=master)](https://travis-ci.org/DinisCruz/BSIMM-Graphs)
 
+The data is stored in the repo https://github.com/DinisCruz/BSIMM-Graphs-Data which should be forked to hold private/custom data
+
 # Research
 
  - "D3.js - Radar Chart or Spider Chart - Adjusted from radar-chart-d3" - http://bl.ocks.org/nbremer/6506614

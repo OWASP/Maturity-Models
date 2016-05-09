@@ -12,7 +12,6 @@ class Bsimm_Data
     values = []
 
     for file in @.data_Files()
-      console.log file.file_Extension()
       switch file.file_Extension()
         when '.json'
           values.add file.load_Json()

@@ -1,7 +1,6 @@
-require 'fluentnode'
 
 
-D3_Server = require '../src/D3-Server'
+D3_Server = require '../../src/server/D3-Server'
 
 describe 'D3-Server', ->
 
@@ -24,6 +23,11 @@ describe 'D3-Server', ->
     using new D3_Server(), ->
       assert_Is_Null @.server
       @.port.assert_Is expected_Port
+
+  it 'constructor (with options)', ->
+    port = 12345
+    using new D3_Server(port:port), ->
+      @.port.assert_Is 12345
 
   it 'start_Server', ->
     using new D3_Server(), ->

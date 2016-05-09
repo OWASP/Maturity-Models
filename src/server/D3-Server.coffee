@@ -1,3 +1,5 @@
+require 'fluentnode'
+
 express    = require 'express'
 load       = require 'express-load'
 d3         = require 'd3'
@@ -7,9 +9,10 @@ cheerio    = require 'cheerio'
 require 'fluentnode'
 
 class D3_Server
-  constructor: ->
-    @.server = null
-    @.port   = process.env.PORT || 3000
+  constructor: (options)->
+    @.options = options || {}
+    @.server  = null
+    @.port    = @.options.port || process.env.PORT || 3000
 
   setup_Server: =>
     
@@ -27,7 +30,7 @@ class D3_Server
 
   add_Bower_Support: ()=>
     #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
-    @.app.use '/lib',  express.static __dirname.path_Combine('../bower_components')
+    @.app.use '/lib',  express.static __dirname.path_Combine('../../bower_components')
 
 
   route_Main: (req, res) ->

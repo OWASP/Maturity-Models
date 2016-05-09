@@ -11,7 +11,7 @@ describe 'Bsimm-Data',->
     using new Bsimm_Data(), ->
       @.data_Files().assert_Not_Empty()
 
-  it 'data', ->
+  it 'data', -> 
     using new Bsimm_Data(), ->
       data  = @.data().assert_Not_Empty()
       using data, ->
