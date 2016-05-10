@@ -8,8 +8,9 @@ cheerio    = require 'cheerio'
 
 require 'fluentnode'
 
-class D3_Server
+class Server
   constructor: (options)->
+    @.app     = null
     @.options = options || {}
     @.server  = null
     @.port    = @.options.port || process.env.PORT || 3000
@@ -20,14 +21,14 @@ class D3_Server
     @.app.d3 = d3
     @.app.jsdom = jsdom
     @.app.set 'view engine', 'jade'
-
-
+    
     #routes
     #@.app.get '/', @.route_Main
     @.app.get '/'         , (req, res) => res.redirect 'd3-radar'
     @.app.get '/ping'     , (req, res) => res.end 'pong'
     @.app.get '/d3-radar' , (req, res) => res.render 'd3-radar'
-
+    @
+    
   add_Bower_Support: ()=>
     #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
     @.app.use '/lib',  express.static __dirname.path_Combine('../../bower_components')
@@ -77,4 +78,4 @@ class D3_Server
       callback $, data
 
 
-module.exports = D3_Server
+module.exports = Server

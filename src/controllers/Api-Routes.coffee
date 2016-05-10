@@ -1,7 +1,9 @@
 express = require 'express'
 
-class File_Controller
+class Api_File
   constructor: ->
     @.router = express.Router()
 
-module.exports = File_Controller
+    
+
+module.exports = Api_File

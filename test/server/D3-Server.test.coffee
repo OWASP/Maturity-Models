@@ -1,17 +1,17 @@
 
 
-D3_Server = require '../../src/server/D3-Server'
+Server = require '../../src/server/Server'
 
 describe 'D3-Server', ->
 
-  d3_Server = null
+  server = null
 
   beforeEach ->
-    d3_Server = new D3_Server()
+    server = new Server()
 
   afterEach (done)->
-    if d3_Server.server
-      d3_Server.stop ->
+    if server.server
+      server.stop ->
         done()
     else
       done()
@@ -19,24 +19,26 @@ describe 'D3-Server', ->
 
   it 'constructor', ->
     expected_Port = process.env.PORT || 3000
-    D3_Server.assert_Is_Function()
-    using new D3_Server(), ->
+    Server.assert_Is_Function()
+    using new Server(), ->
       assert_Is_Null @.server
+      assert_Is_Null @.app
+      @.options.assert_Is {}
       @.port.assert_Is expected_Port
 
   it 'constructor (with options)', ->
     port = 12345
-    using new D3_Server(port:port), ->
+    using new Server(port:port), ->
       @.port.assert_Is 12345
 
   it 'start_Server', ->
-    using new D3_Server(), ->
+    using new Server(), ->
       @.setup_Server()
       @.app.assert_Is_Object
       (@.server is null).assert_Is_True()
 
   it 'start_Server', (done)->
-    using d3_Server, ->
+    using server, ->
       @.port = 1000 + 3000.random()
       @.setup_Server()
       @.start_Server()
@@ -47,7 +49,7 @@ describe 'D3-Server', ->
         done()
 
   it 'add_Bower_Support', (done)->
-    using d3_Server, ->
+    using server, ->
       @.port = 1000 + 3000.random()
       @.setup_Server()
       @.add_Bower_Support()
@@ -57,7 +59,7 @@ describe 'D3-Server', ->
         done()
 
   it 'route_Main', ->
-    using d3_Server, ->
+    using server, ->
       @.setup_Server()
       req =
         app  : @.app
@@ -69,14 +71,14 @@ describe 'D3-Server', ->
       @.route_Main req, res
 
   it 'server_Url', ->
-    using d3_Server, ->
+    using server, ->
       expected_Port = process.env.PORT || 3000
       @.server_Url().assert_Is "http://localhost:#{expected_Port}"
       @.port = 12345
       @.server_Url().assert_Is 'http://localhost:12345'
 
   it 'run', (done)->
-    using d3_Server, ->
+    using server, ->
       @.run(true)
       @.port.assert_Is_Not 3000
       @.server_Url().GET (data)=>
@@ -84,7 +86,7 @@ describe 'D3-Server', ->
         done()
 
   it 'stop', (done)->
-    using d3_Server, ->
+    using server, ->
       @.run(true)
       @.stop =>
         @.server_Url().GET (data)=>
