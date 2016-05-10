@@ -37,7 +37,7 @@ describe 'D3-Server', ->
 
   it 'start_Server', (done)->
     using server, ->
-      @.port = 1000 + 3000.random()
+      @.port = 20000 + 5000.random()
       @.setup_Server()
       @.start_Server()
       @.app.assert_Is_Function()
@@ -48,7 +48,7 @@ describe 'D3-Server', ->
 
   it 'add_Bower_Support', (done)->
     using server, ->
-      @.port = 1000 + 3000.random()
+      @.port = 2000 + 5000.random()
       @.setup_Server()
       @.add_Bower_Support()
       @.start_Server()
