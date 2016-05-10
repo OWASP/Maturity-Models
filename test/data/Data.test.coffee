@@ -14,6 +14,12 @@ describe 'Data',->
       @.files().first().assert_File_Not_Exists()
       @.data_Path.path_Combine(@.files().first()).assert_File_Exists()
 
+  it 'files_Names', ->
+    using new Data(), ->
+      @.files_Names().assert_Not_Empty()
+      @.files_Names().first().assert_Is @.files().first().file_Name_Without_Extension()
+
+
   it 'files_Paths', ->
     using new Data(), ->
       @.files().size().assert_Is_Not @.files_Paths().size()

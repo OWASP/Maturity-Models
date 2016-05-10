@@ -1,0 +1,11 @@
+tends layout
+
+block content
+
+    div.callout.large.primary
+        div.row.column
+            h2 Available data files
+            ul
+                for file in files
+                    li
+                        a(href='/api/v1/file/get/' + file)= file

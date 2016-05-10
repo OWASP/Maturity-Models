@@ -4,7 +4,7 @@ json5 = require 'json5'
 class Data
   constructor: ->
     @.data_Path = __dirname.path_Combine('../../data')
-  
+
   files: =>
     values = []
     for file in @.data_Path.files_Recursive()
@@ -12,6 +12,9 @@ class Data
         values.push file.remove(@.data_Path)
     values
 
+  files_Names: =>
+    (file.file_Name_Without_Extension() for file in @.files())
+    
   files_Paths: =>
     @.data_Path.files_Recursive()
 
