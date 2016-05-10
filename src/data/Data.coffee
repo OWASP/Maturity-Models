@@ -1,17 +1,24 @@
 require('coffee-script/register')
 json5 = require 'json5'
 
-class Bsimm_Data
+class Data
   constructor: ->
-    @.data_Path = __dirname.path_Combine('../data')
+    @.data_Path = __dirname.path_Combine('../../data')
   
-  data_Files: =>
+  files: =>
+    values = []
+    for file in @.data_Path.files_Recursive()
+      if  file.file_Extension() in ['.json', '.json5', '.coffee']
+        values.push file.remove(@.data_Path)
+    values
+
+  files_Paths: =>
     @.data_Path.files_Recursive()
-  
+
   data: =>
     values = []
 
-    for file in @.data_Files()
+    for file in @.files_Paths()
       switch file.file_Extension()
         when '.json'
           values.add file.load_Json()
@@ -22,4 +29,4 @@ class Bsimm_Data
           
     return values
       
-module.exports = Bsimm_Data
+module.exports = Data
