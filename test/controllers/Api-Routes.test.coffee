@@ -1,7 +1,36 @@
-Api_File = require '../../src/controllers/Api-File'
+Api_Routes = require '../../src/controllers/Api-Routes'
+Server     = require '../../src/server/Server'
+
 
 describe 'controllers | Api-Controller', ->
+  app = null
+
+  beforeEach ->
+    app = new Server().setup_Server().app
+
   it 'constructor', ->
-    using new Api_File(), ->
-      @.router.assert_Is_Function()
+    options = app: app
+    using new Api_Routes(null), ->
+      @.options.assert_Is {}
+    using new Api_Routes(options), ->
+      @       .constructor.name.assert_Is 'Api_Routes'
+      @.app   .constructor.name.assert_Is 'EventEmitter'
+      @.routes.constructor.name.assert_Is 'Routes'
+      @.router.constructor.name.assert_Is 'Function'
+      @.options.assert_Is options
+
+  it 'add_Routes', ->
+    using new Api_Routes(app:app), ->            
+      @.app._router.stack.size()
+      @.routes.list().assert_Is [ '/', '/ping', '/d3-radar' ]
+
+  it 'list', ->
+    res =
+      send: (data)->
+        data.assert_Is [ '/', '/ping', '/d3-radar' , 'list']
+
+    using new Api_Routes(app:app), ->
+      @.add_Routes()
+      @.app.use('routes', @.router)
+      @.list(null, res)
       

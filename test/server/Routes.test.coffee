@@ -1,7 +1,14 @@
-Routes    = require '../../src/server/Routes'
-D3_Server = require '../../src/server/D3-Server'
+Routes   = require '../../src/server/Routes'
+Server   = require '../../src/server/Server'
+expresss = require 'express' 
 
 describe 'server | Routes', ->
+  
+  app = null
+  
+  beforeEach ->
+    app = new Server().setup_Server().app
+    
   it 'construtor', ->
     using new Routes(app: 'app'),->
       @.options.assert_Is app: 'app'
@@ -10,8 +17,25 @@ describe 'server | Routes', ->
   it 'list', ->
     using new Routes() , ->
       @.list().assert_Is []
-
-    d3_Server = new D3_Server().setup_Server()  
-    using new Routes(app: d3_Server.app) , ->
+    
+    using new Routes(app: app) , ->
       @.list().assert_Is 	[ '/', '/ping', '/d3-radar' ]
+
+  it.only 'list (with Router() routes)', ->
+    app._router.stack.size().assert_Is 5                      # default mappings
+
+    router = expresss.Router()
+    router.get  '/test---123', ->                              # create new routes using Router
+    router.post '/test---456', ->
+    app   .use  '/aaaa---789', router                          # add it to the main route
+    app._router.stack.size().assert_Is 6
+
+    #console.log app._router.stack
+    using new Routes(app: app) , ->
+      @.list().assert_Is [ '/',
+                           '/ping',
+                           '/d3-radar',
+                           '/aaaa---789/test---123',
+                           '/aaaa---789/test---456' ]
+      
         
