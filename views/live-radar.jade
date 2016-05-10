@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+    div.callout.large.primary
+        div.row.column.text-center
+            h3 BSIMM Radar Graphs (ajax data)
+
+            div.label.success Live Data
+            hr
+            div.chart-container
+
+    script.
+
+        url_Data = '/api/v1/file/get/radar-data'
+        $.get(url_Data, function(data)
+            {
+                var config = {
+                    color: function (index) {
+                        return ['black', 'orange', 'green'][index];
+                    },
+                    w: 450,
+                    h: 450,
+                    levels: 6,
+                    maxValue: 3.0
+                }
+                RadarChart.draw(".chart-container", data, config);
+            })

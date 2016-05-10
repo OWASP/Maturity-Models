@@ -22,7 +22,7 @@ describe 'controllers | Api-Controller', ->
     res =
       render: (page, data)->
         page.assert_Is 'file-list'
-        data.files.assert_Size_Is 3
+        data.files.assert_Size_Is_Bigger_Than 3
 
     using new View_File(app:app), ->
       @.add_Routes()

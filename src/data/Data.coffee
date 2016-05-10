@@ -18,6 +18,13 @@ class Data
   files_Paths: =>
     @.data_Path.files_Recursive()
 
+  find: (filename)=>
+    if filename
+      for file in @.files_Paths()                          # this can be optimized with a cache
+        if file.file_Name_Without_Extension() is filename
+          return @.data(file)
+    return null
+
   data: (file)=>
     if file
       switch file.file_Extension()

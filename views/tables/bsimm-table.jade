@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+
+    div.callout.large.primary
+        div.row.column.text
+            if(!table)
+                h2 no data
+            else
+                h2 BSIMM Table for
+                        != ' ' + table.metadata.team
+                br
+                table
+                    thead
+                        tr
+                            th(width="200") Governance
+                            th(width="200") Intelligence
+                            th(width="200") SSDL
+                            th(width="200") Deployment
+                    tbody
+                        pre= table.activities.json_Str()
+
+                        for key in table.activities.Governance.keys()
+                                tr
+                                    td= key

@@ -56,18 +56,18 @@ describe 'D3-Server', ->
         data.assert_Contains 'jQuery JavaScript Library v2.2.3'
         done()
 
-  it 'add_Controllers', ->
+  it 'add_Controllers', -> 
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 8
+      @.routes().assert_Size_Is 10
       @
 
   it 'add_Redirects', ->
     using server, ->
       @.setup_Server()
       @.add_Redirects()
-      @.routes().assert_Size_Is 4
+      @.routes().assert_Size_Is 5
       @
 
   it 'route_Main', ->
@@ -94,12 +94,14 @@ describe 'D3-Server', ->
       @.setup_Server()
       @.add_Controllers()
       @.add_Redirects()
-      @.routes().assert_Is [ '/', '/ping', '/d3-radar' ,
+      console.log @.routes()
+      @.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar'
                              '/api/v1/routes/list'
                              '/api/v1/file/list'
                              '/api/v1/file/get/:filename'
-                             '/view/routes/list',
-        '/view/file/list'
+                             '/view/routes/list'
+                             '/view/file/list'
+                             '/view/:filename/table'
                              '/routes']
       
   it 'run', (done)->

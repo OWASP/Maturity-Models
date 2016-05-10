@@ -17,17 +17,16 @@ class Api_File
 
   get: (req, res)=>
     filename = req.params?.filename
-    if filename
-      for file in @.data.files_Paths()                          # this can be optimized
-        if file.file_Name_Without_Extension() is filename
-          res.setHeader('Content-Type', 'application/json');
-          data = @.data.data(file)
-          if req.query?.pretty is ""
-            return res.send data.json_Pretty()
-          else
-            return res.send data
-
-    res.send { error: 'not found'}
+    data = @.data.find filename
+    if data
+      res.setHeader('Content-Type', 'application/json');
+      
+      if req.query?.pretty is ""
+        return res.send data.json_Pretty()
+      else
+        return res.send data
+    else
+      res.send { error: 'not found'}
 
   list: (req, res)=>
     res.send @.data.files().file_Names()

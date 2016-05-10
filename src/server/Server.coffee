@@ -25,9 +25,10 @@ class Server
     
     #routes
     #@.app.get '/', @.route_Main
-    @.app.get '/'         , (req, res) => res.redirect 'd3-radar'
-    @.app.get '/ping'     , (req, res) => res.end 'pong'
-    @.app.get '/d3-radar' , (req, res) => res.render 'd3-radar'
+    @.app.get '/'          , (req, res) => res.redirect 'd3-radar'
+    @.app.get '/ping'      , (req, res) => res.end      'pong'
+    @.app.get '/d3-radar'  , (req, res) => res.render   'd3-radar'
+    @.app.get '/live-radar', (req, res) => res.render   'live-radar'
     @
 
   add_Bower_Support: ()=>
@@ -41,11 +42,13 @@ class Server
     Api_File    = require '../controllers/Api-File'
     View_Routes = require '../controllers/View-Routes'
     View_File   = require '../controllers/View-File'
+    View_Table  = require '../controllers/View-Table'
 
-    @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router
+    @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router 
     @.app.use api_Path , new Api_File(   app:@.app).add_Routes().router
     @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
     @.app.use view_Path, new View_File(  app:@.app).add_Routes().router
+    @.app.use view_Path, new View_Table( app:@.app).add_Routes().router
 
   add_Redirects: ->
     new Redirects(app:@.app).add_Redirects()

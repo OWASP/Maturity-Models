@@ -37,8 +37,8 @@ describe 'controllers | Api-Controller', ->
 
     res =
       send: (data)->
-        data.assert_Size_Is(3)
-        data.assert_Is [ 'coffee-data.coffee', 'health-care-results.json5', 'json-data.json' ]
+        data.assert_Size_Is_Bigger_Than 3
+        data.assert_Contains [ 'coffee-data.coffee', 'health-care-results.json5', 'json-data.json' ]
 
 
     using new Api_File(), ->

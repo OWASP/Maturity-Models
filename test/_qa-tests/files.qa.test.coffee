@@ -25,7 +25,7 @@ describe '_qa-tests | files', ->
 
   it '/api/v1/files/list', (done)->
     make_Request_Json '/api/v1/file/list', (data)->
-      data.assert_Is [ 'coffee-data.coffee', 'health-care-results.json5', 'json-data.json' ]
+      data.assert_Contains [ 'coffee-data.coffee', 'health-care-results.json5', 'json-data.json' ]
       done()
 
   it '/api/v1/file/get/AAAA', (done)->
