@@ -21,7 +21,7 @@ describe 'server | Routes', ->
     using new Routes(app: app) , ->
       @.list().assert_Is 	[ '/', '/ping', '/d3-radar' ]
 
-  it.only 'list (with Router() routes)', ->
+  it 'list (with Router() routes)', ->
     app._router.stack.size().assert_Is 5                      # default mappings
 
     router = expresss.Router()

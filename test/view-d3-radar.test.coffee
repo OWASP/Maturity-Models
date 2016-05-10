@@ -1,17 +1,17 @@
 require 'fluentnode'
-D3_Server = require '../src/server/D3-Server'
+Server = require '../src/server/Server'
 async     = require 'async'
 
 describe 'view - d3-radar', ->
 
-  d3_Server = null
+  server = null
   html      = null
   $         = null
   page      = '/d3-radar'
 
   before (done)->
-    using new D3_Server(), ->
-      d3_Server = @
+    using new Server(), ->
+      server = @
       @.run(true)
       @.get_Html page, (_$, _html)->
         $ = _$
@@ -19,7 +19,7 @@ describe 'view - d3-radar', ->
         done()
 
   after ->
-    d3_Server.stop
+    server.stop
 
   it 'html components', ->
     $('script').length.assert_Is 6
@@ -28,12 +28,12 @@ describe 'view - d3-radar', ->
 
   it 'check dependencies can be loaded', (done)->
     check_Script =  (target, next)->
-      d3_Server.get_Html target.attribs.src , ($, html)->
+      server.get_Html target.attribs.src , ($, html)->
         html.assert_Not_Contains 'Cannot GET'
         next()
 
     check_Style =  (style, next)->
-      d3_Server.get_Html style.attribs.href, ($, html)->
+      server.get_Html style.attribs.href, ($, html)->
         html.assert_Not_Contains 'Cannot GET'
         next()
 
