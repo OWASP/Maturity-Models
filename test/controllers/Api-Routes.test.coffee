@@ -20,14 +20,15 @@ describe 'controllers | Api-Controller', ->
       @.options.assert_Is options
 
   it 'add_Routes', ->
-    using new Api_Routes(app:app), ->            
-      @.app._router.stack.size()
-      @.routes.list().assert_Is [ '/', '/ping', '/d3-radar' ]
+    using new Api_Routes(app:app), ->
+      @.router.stack.assert_Size_Is 0 
+      @.add_Routes()
+      @.router.stack.assert_Size_Is 1
 
   it 'list', ->
     res =
       send: (data)->
-        data.assert_Is [ '/', '/ping', '/d3-radar' , '/list']
+        data.assert_Is [ '/', '/ping', '/d3-radar' , '/routes/list']
 
     using new Api_Routes(app:app), ->
       @.add_Routes()

@@ -34,8 +34,12 @@ class Server
     @.app.use '/lib',  express.static __dirname.path_Combine('../../bower_components')
 
   add_Controllers: ->
-    Api_Routes = require '../controllers/Api-Routes'
-    @.app.use '/routes', new Api_Routes(app:@.app).add_Routes().router
+    api_Path  = '/api/v1'
+    view_Path = '/view/v1'
+    Api_Routes  = require '../controllers/Api-Routes'
+    View_Routes = require '../controllers/View-Routes'
+    @.app.use api_Path , new Api_Routes(app:@.app).add_Routes().router
+    @.app.use view_Path, new Api_Routes(app:@.app).add_Routes().router
 
   route_Main: (req, res) ->
     d3 = req.app.d3

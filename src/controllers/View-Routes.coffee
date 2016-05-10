@@ -1,7 +1,7 @@
 Routes  = require '../server/Routes'
 express = require 'express'
 
-class Api_Routes
+class View_Routes
   constructor: (options)->
     @.options = options || {}
     @.router  = express.Router()
@@ -11,9 +11,8 @@ class Api_Routes
   add_Routes: ()=>
     @.router.get '/routes/list', @.list
     @
-    
+
   list: (req, res)=>
-    res.send @.routes.list()
+    res.render 'routes', @.routes.list()
 
-
-module.exports = Api_Routes
+module.exports = View_Routes

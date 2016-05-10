@@ -62,7 +62,7 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 4
+      @.routes().assert_Size_Is 5
       @
 
   it 'route_Main', ->
@@ -88,7 +88,9 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Is [ '/', '/ping', '/d3-radar' , '/routes/list']
+      @.routes().assert_Is [ '/', '/ping', '/d3-radar' , 
+                             '/api/v1/routes/list', 
+                             '/view/v1/routes/list']
       
   it 'run', (done)->
     using server, ->

@@ -24,6 +24,8 @@ describe '_qa-tests | routes', ->
       done()
 
   it '/routes/list', (done)->
-    server.server_Url().add('/routes/list').json_GET (data)->
-      data.assert_Is ["/","/ping","/d3-radar","/routes/list"]
+    server.server_Url().add('/api/v1/routes/list').json_GET (data)->
+      using data , ->
+        @.assert_Contains ['/ping', '/d3-radar']
+        @.assert_Is_Greater_Than 4
       done()
