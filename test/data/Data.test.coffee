@@ -20,10 +20,10 @@ describe 'Data',->
       @.files_Paths().assert_Not_Empty()
       @.files_Paths().first().assert_File_Exists()
 
-  it 'data', -> 
+  it 'all_Data', ->
     using new Data(), ->
-      data  = @.data().assert_Not_Empty()
+      data  = @.all_Data().assert_Not_Empty()
       using data, ->
-        @.first().user.assert_Is 'test'
-        @.second().user.assert_Is 'in coffee'
-        @.third().user.name.assert_Is 'Joe'
+        @.first( ).user.assert_Is 'in coffee'
+        @.second().user.assert_Is 'test'
+        @.third( ).user.name.assert_Is 'Joe'

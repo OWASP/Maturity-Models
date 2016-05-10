@@ -15,18 +15,23 @@ class Data
   files_Paths: =>
     @.data_Path.files_Recursive()
 
-  data: =>
-    values = []
-
-    for file in @.files_Paths()
+  data: (file)=>
+    if file
       switch file.file_Extension()
         when '.json'
-          values.add file.load_Json()
+          file.load_Json()
         when '.json5'
-          values.add json5.parse file.file_Contents()
+          json5.parse file.file_Contents()
         when '.coffee'
-          values.add require file
-          
+          require file
+
+  all_Data: =>
+    values = []
+    for file in @.files_Paths()
+      value = @.data(file)
+      if value
+        values.add value
+
     return values
       
 module.exports = Data

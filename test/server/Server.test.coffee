@@ -60,7 +60,7 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 5
+      @.routes().assert_Size_Is 7
       @
 
   it 'add_Redirects', ->
@@ -96,6 +96,8 @@ describe 'D3-Server', ->
       @.add_Redirects()
       @.routes().assert_Is [ '/', '/ping', '/d3-radar' ,
                              '/api/v1/routes/list'
+                             '/api/v1/file/list'
+                             '/api/v1/file/get/:filename'
                              '/view/routes/list'
                              '/routes']
       

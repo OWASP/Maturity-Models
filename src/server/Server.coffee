@@ -38,8 +38,10 @@ class Server
     api_Path  = '/api/v1'
     view_Path = '/view'
     Api_Routes  = require '../controllers/Api-Routes'
+    Api_File    = require '../controllers/Api-File'
     View_Routes = require '../controllers/View-Routes'
-    @.app.use api_Path , new Api_Routes(app:@.app).add_Routes().router
+    @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router
+    @.app.use api_Path , new Api_File(   app:@.app).add_Routes().router
     @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
 
   add_Redirects: ->

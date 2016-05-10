@@ -11,11 +11,22 @@ class Api_File
     @.data    = new Data()
 
   add_Routes: ()=>
-    @.router.get '/files/list', @.list
-    #@
+    @.router.get '/file/list', @.list
+    @.router.get '/file/get/:filename', @.get
+    @
 
-  list: ->
-    @.data.files()
+  get: (req, res)=>
+    filename = req.params?.filename
+    if filename
+      for file in @.data.files_Paths()                          # this can be optimized
+        if file.file_Name_Without_Extension() is filename
+          return res.send @.data.data file
+          
+    res.send 'not found'
+
+  list: (req, res)=>
+    res.send @.data.files().file_Names()
+
     
 
 module.exports = Api_File
