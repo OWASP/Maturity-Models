@@ -42,6 +42,7 @@ class Server
     @.app.use api_Path , new Api_Routes(app:@.app).add_Routes().router
     @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
 
+  add_Redirects: ->
     new Redirects(app:@.app).add_Redirects()
 
   route_Main: (req, res) ->
@@ -77,6 +78,7 @@ class Server
     @.setup_Server()
     @.add_Bower_Support()
     @.add_Controllers()
+    @.add_Redirects()
     @.start_Server()
 
   stop: (callback)=>

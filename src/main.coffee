@@ -2,7 +2,7 @@ Server = require('./server/Server');
 
 start_Server = (options)->
   console.log 'start server'
-  console.log('Staring bsimm-graph server');
+  console.log('Staring bsimm-graph server')
 
   using new Server(options), ->
     @.run();

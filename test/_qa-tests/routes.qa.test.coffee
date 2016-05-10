@@ -38,4 +38,13 @@ describe '_qa-tests | routes', ->
         $('h2').html().assert_Is 'Available routes'
         $('a')[2].attribs.assert_Is { href : '/d3-radar'}
         $.html($('a')[2]).assert_Is '<a href="/d3-radar">/d3-radar</a>'
-      done()      
+      done()
+
+  it 'redirects', (done)->
+    check_Redirect = (source, target, next) ->
+      server.server_Url().add(source).GET (data)->
+        data.assert_Is "Found. Redirecting to #{target}"
+        next()
+
+    check_Redirect '/routes', '/view/routes/list', ->
+      done()
