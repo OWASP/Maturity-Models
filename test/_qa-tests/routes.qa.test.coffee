@@ -6,7 +6,7 @@ describe '_qa-tests | routes', ->
 
   beforeEach (done)->
     port = 1000.add 2000.random()
-    using main(port : port), -> 
+    using main(port : port), ->
       server = @
       done()
 
@@ -47,4 +47,13 @@ describe '_qa-tests | routes', ->
         next()
 
     check_Redirect '/routes', '/view/routes/list', ->
+      done()
+
+
+  it 'check link: back to all routes', (done)->
+    server.server_Url().add('/view/file/list').GET (data)->
+      $ = cheerio.load data
+      link = $('#link-to-routes')
+      link.attr().assert_Is { id: 'link-to-routes', href: '/routes', class: 'label round success' }
+      link.html().assert_Is 'back to all routes'
       done()
