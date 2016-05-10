@@ -6,7 +6,7 @@ describe '_qa-tests | routes', ->
 
   beforeEach (done)->
     port = 1000.add 2000.random()
-    using main(port : port), ->
+    using main(port : port), -> 
       server = @
       done()
 

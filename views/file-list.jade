@@ -8,4 +8,4 @@ block content
             ul
                 for file in files
                     li
-                        a(href='/api/v1/file/get/' + file)= file
+                        a(href='/api/v1/file/get/' + file + '?pretty')= file

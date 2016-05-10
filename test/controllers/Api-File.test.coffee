@@ -24,6 +24,9 @@ describe 'controllers | Api-Controller', ->
       params : 
         filename: 'json-data' 
     res =
+      setHeader: (name, value)->
+        name.assert_Is 'Content-Type'
+        value.assert_Is 'application/json'
       send: (data)->          
         data.user.name.assert_Is 'Joe'
 

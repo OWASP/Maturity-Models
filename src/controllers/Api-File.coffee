@@ -20,6 +20,7 @@ class Api_File
     if filename
       for file in @.data.files_Paths()                          # this can be optimized
         if file.file_Name_Without_Extension() is filename
+          res.setHeader('Content-Type', 'application/json');
           data = @.data.data(file)
           if req.query?.pretty is ""
             return res.send data.json_Pretty()

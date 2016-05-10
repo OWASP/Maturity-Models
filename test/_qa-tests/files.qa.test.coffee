@@ -34,7 +34,7 @@ describe '_qa-tests | files', ->
       done()      
       
   it '/api/v1/file/get/json-data', (done)->
-    make_Request_Json '/api/v1/file/get/json-data', (data)->
+    make_Request_Json '/api/v1/file/get/json-data', (data)-> 
       console.log data
       data.user.name.assert_Is 'Joe'
 
@@ -58,6 +58,6 @@ describe '_qa-tests | files', ->
       using data , ->
         $ = cheerio.load data
         $('h2').html().assert_Is 'Available data files' 
-        $('a')[2].attribs.assert_Is { href : '/api/v1/file/get/json-data'}
-        $.html($('a')[2]).assert_Is '<a href="/api/v1/file/get/json-data">json-data</a>'            
+        $('a')[2].attribs.assert_Is { href : '/api/v1/file/get/json-data?pretty'}
+        $.html($('a')[2]).assert_Is '<a href="/api/v1/file/get/json-data?pretty">json-data</a>'
       done()
