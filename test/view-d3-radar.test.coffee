@@ -9,7 +9,7 @@ describe 'view - d3-radar', ->
   $         = null
   page      = '/d3-radar'
 
-  before (done)->
+  beforeEach (done)->
     using new Server(), ->
       server = @
       @.run(true)
@@ -18,7 +18,7 @@ describe 'view - d3-radar', ->
         html = _html
         done()
 
-  after ->
+  afterEach ->
     server.stop
 
   it 'html components', ->

@@ -58,6 +58,13 @@ describe 'D3-Server', ->
         data.assert_Contains 'jQuery JavaScript Library v2.2.3'
         done()
 
+  it 'add_Controllers', ->
+    using server, ->
+      @.setup_Server()
+      @.add_Controllers()
+      @.routes().assert_Size_Is 4
+      @
+
   it 'route_Main', ->
     using server, ->
       @.setup_Server()
@@ -77,6 +84,12 @@ describe 'D3-Server', ->
       @.port = 12345
       @.server_Url().assert_Is 'http://localhost:12345'
 
+  it 'routes', ()->
+    using server, ->
+      @.setup_Server()
+      @.add_Controllers()
+      @.routes().assert_Is [ '/', '/ping', '/d3-radar' , '/routes/list']
+      
   it 'run', (done)->
     using server, ->
       @.run(true)

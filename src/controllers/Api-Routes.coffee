@@ -9,10 +9,10 @@ class Api_Routes
     @.routes  = new Routes(app:@.app)
 
   add_Routes: ()=>
-    @.router.get 'list', @.list
+    @.router.get '/list', @.list
     @
     
-  list: (req, res)->
+  list: (req, res)=>
     res.send @.routes.list()
 
 

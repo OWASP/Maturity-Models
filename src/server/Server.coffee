@@ -5,6 +5,7 @@ load       = require 'express-load'
 d3         = require 'd3'
 jsdom      = require 'jsdom'
 cheerio    = require 'cheerio'
+Routes     = require './Routes'
 
 require 'fluentnode'
 
@@ -15,8 +16,7 @@ class Server
     @.server  = null
     @.port    = @.options.port || process.env.PORT || 3000
 
-  setup_Server: =>
-    
+  setup_Server: =>    
     @.app = express()
     @.app.d3 = d3
     @.app.jsdom = jsdom
@@ -28,11 +28,14 @@ class Server
     @.app.get '/ping'     , (req, res) => res.end 'pong'
     @.app.get '/d3-radar' , (req, res) => res.render 'd3-radar'
     @
-    
+
   add_Bower_Support: ()=>
     #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
     @.app.use '/lib',  express.static __dirname.path_Combine('../../bower_components')
 
+  add_Controllers: ->
+    Api_Routes = require '../controllers/Api-Routes'
+    @.app.use '/routes', new Api_Routes(app:@.app).add_Routes().router
 
   route_Main: (req, res) ->
     d3 = req.app.d3
@@ -58,11 +61,15 @@ class Server
   server_Url: =>
     "http://localhost:#{@.port}"
 
+  routes: =>    
+    new Routes(app:@.app).list()
+      
   run: (random_Port)=>
     if random_Port
       @.port = 23000 + 3000.random()
     @.setup_Server()
     @.add_Bower_Support()
+    @.add_Controllers()
     @.start_Server()
 
   stop: (callback)=>

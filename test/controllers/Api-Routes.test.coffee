@@ -27,7 +27,7 @@ describe 'controllers | Api-Controller', ->
   it 'list', ->
     res =
       send: (data)->
-        data.assert_Is [ '/', '/ping', '/d3-radar' , 'list']
+        data.assert_Is [ '/', '/ping', '/d3-radar' , '/list']
 
     using new Api_Routes(app:app), ->
       @.add_Routes()
