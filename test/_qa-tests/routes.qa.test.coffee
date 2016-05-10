@@ -1,4 +1,5 @@
-main = require '../../src/main'
+main    = require '../../src/main'
+cheerio = require 'cheerio'
 
 describe '_qa-tests | routes', ->
   server = null
@@ -18,14 +19,23 @@ describe '_qa-tests | routes', ->
       data.assert_Is 'Found. Redirecting to d3-radar'
       done()
 
-  it '/ping', (done)->
+  it '/api/v1/ping', (done)->
     server.server_Url().add('/ping').GET (data)->
       data.assert_Is 'pong'
       done()
 
-  it '/routes/list', (done)->
+  it '/api/v1/routes/list', (done)->
     server.server_Url().add('/api/v1/routes/list').json_GET (data)->
       using data , ->
         @.assert_Contains ['/ping', '/d3-radar']
         @.assert_Is_Greater_Than 4
       done()
+
+  it '/view/route/list', (done)->
+    server.server_Url().add('/view/routes/list').GET (data)->
+      using data , ->
+        $ = cheerio.load data
+        $('h2').html().assert_Is 'Available routes'
+        $('a')[2].attribs.assert_Is { href : '/d3-radar'}
+        $.html($('a')[2]).assert_Is '<a href="/d3-radar">/d3-radar</a>'
+      done()      

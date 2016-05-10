@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+    div.callout.large.primary
+        div.row.column
+            h2 Available routes
+            ul
+                for route in routes
+                    li
+                        a(href=route)= route

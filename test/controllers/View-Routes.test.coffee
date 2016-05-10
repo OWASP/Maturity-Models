@@ -23,7 +23,7 @@ describe 'controllers | Api-Controller', ->
     res =
       render: (page, data)->
         page.assert_Is 'routes'
-        data.assert_Is [ '/', '/ping', '/d3-radar' , '/routes/list']
+        data.assert_Is routes: [ '/', '/ping', '/d3-radar' , '/routes/list']
 
     using new View_Routes(app:app), ->
       @.add_Routes()

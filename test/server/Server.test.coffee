@@ -1,5 +1,3 @@
-
-
 Server = require '../../src/server/Server'
 
 describe 'D3-Server', ->
@@ -62,7 +60,7 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 5
+      @.routes().assert_Size_Is 6
       @
 
   it 'route_Main', ->
@@ -88,9 +86,10 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Is [ '/', '/ping', '/d3-radar' , 
-                             '/api/v1/routes/list', 
-                             '/view/v1/routes/list']
+      @.routes().assert_Is [ '/', '/ping', '/d3-radar' ,
+                             '/api/v1/routes/list'
+                             '/view/routes/list'
+                             '/routes']
       
   it 'run', (done)->
     using server, ->

@@ -13,6 +13,6 @@ class View_Routes
     @
 
   list: (req, res)=>
-    res.render 'routes', @.routes.list()
+    res.render 'routes', routes: @.routes.list()
 
 module.exports = View_Routes

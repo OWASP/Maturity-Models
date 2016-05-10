@@ -6,6 +6,7 @@ d3         = require 'd3'
 jsdom      = require 'jsdom'
 cheerio    = require 'cheerio'
 Routes     = require './Routes'
+Redirects  = require './Redirects'
 
 require 'fluentnode'
 
@@ -35,11 +36,13 @@ class Server
 
   add_Controllers: ->
     api_Path  = '/api/v1'
-    view_Path = '/view/v1'
+    view_Path = '/view'
     Api_Routes  = require '../controllers/Api-Routes'
     View_Routes = require '../controllers/View-Routes'
     @.app.use api_Path , new Api_Routes(app:@.app).add_Routes().router
-    @.app.use view_Path, new Api_Routes(app:@.app).add_Routes().router
+    @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
+
+    new Redirects(app:@.app).add_Redirects()
 
   route_Main: (req, res) ->
     d3 = req.app.d3
