@@ -24,7 +24,7 @@ describe 'main', ->
       @.constructor.name.assert_Is 'Server'
       @.server_Url().assert_Contains port 
       @.server_Url().GET (data)=>
-        data.assert_Is 'Found. Redirecting to d3-radar'
+        data.assert_Is 'Found. Redirecting to d3-radar' 
         done()
 
   it 'check d3-graph', (done)->

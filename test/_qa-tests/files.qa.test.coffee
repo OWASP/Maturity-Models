@@ -34,12 +34,10 @@ describe '_qa-tests | files', ->
       done()      
       
   it '/api/v1/file/get/json-data', (done)->
-    make_Request_Json '/api/v1/file/get/json-data', (data)-> 
-      console.log data
+    make_Request_Json '/api/v1/file/get/json-data', (data)->
       data.user.name.assert_Is 'Joe'
 
       make_Request_Json '/api/v1/file/get/health-care-results', (data)->
-        console.log data
         data.user.assert_Is 'test'
 
         make_Request_Json '/api/v1/file/get/coffee-data', (data)->

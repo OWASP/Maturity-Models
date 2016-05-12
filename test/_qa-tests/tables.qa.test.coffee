@@ -25,11 +25,10 @@ describe '_qa-tests | tables', ->
         $('h2').html().assert_Is 'no data'
         done()
         
-  it '/view/team-A/table', (done)->
-    make_Request '/view/team-A/table', (data)-> 
+  it.only '/view/team-A/table', (done)->
+    make_Request '/view/team-A/table', (data)->   
       using data , ->        
         $ = cheerio.load data
-        #console.log data
         $('h2').html().assert_Is 'BSIMM Table for Team A'
         $('th').length.assert_Is 4
         $($('th')[0]).html().assert_Is 'Governance'
@@ -37,8 +36,5 @@ describe '_qa-tests | tables', ->
         $($('th')[2]).html().assert_Is 'SSDL'
         $($('th')[3]).html().assert_Is 'Deployment'
 
-        $('tr').length.assert_Is 21
-        $($('tr')[1]).text().assert_Is "SM.1.1"
-        #$('a')[2].attribs.assert_Is { href : '/api/v1/file/get/json-data?pretty'}
-        #$.html($('a')[2]).assert_Is '<a href="/api/v1/file/get/json-data?pretty">json-data</a>'
+        $('tr').length.assert_Is 22
       done()

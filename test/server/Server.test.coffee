@@ -60,7 +60,7 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 10
+      @.routes().assert_Size_Is 11
       @
 
   it 'add_Redirects', ->
@@ -101,7 +101,7 @@ describe 'D3-Server', ->
                              '/api/v1/file/get/:filename'
                              '/view/routes/list'
                              '/view/file/list'
-                             '/view/:filename/table'
+                             '/view/:filename/table', '/view/:filename/table.json'
                              '/routes']
       
   it 'run', (done)->

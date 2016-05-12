@@ -8,18 +8,40 @@ block content
                 h2 no data
             else
                 h2 BSIMM Table for
-                        != ' ' + table.metadata.team
+                        != ' ' + title
                 br
                 table
                     thead
                         tr
-                            th(width="200") Governance
-                            th(width="200") Intelligence
-                            th(width="200") SSDL
-                            th(width="200") Deployment
-                    tbody
-                        pre= table.activities.json_Str()
+                            for title in table.headers
+                                th(colspan=2)= title
 
-                        for key in table.activities.Governance.keys()
-                                tr
-                                    td= key
+                    tbody
+                        tr
+                            each val in [1, 2, 3, 4]
+                                td
+                                    b Activity
+                                td
+                                    b Status
+                        for row in table.rows
+                            tr
+                                if row[0]
+                                    td
+                                        .label.success.round= row[0]
+                                    td
+                                        != row[1]
+                                if row[2]
+                                    td
+                                        .label.info.round= row[2]
+                                    td
+                                        != row[3]
+                                if row[4]
+                                    td
+                                        .label.warning.round= row[4]
+                                    td
+                                        != row[5]
+                                if row[6]
+                                    td
+                                        .label.regular.round= row[6]
+                                    td
+                                        != row[7]

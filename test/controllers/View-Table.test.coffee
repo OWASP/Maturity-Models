@@ -32,17 +32,18 @@ describe 'controllers | Api-Controller', ->
     res =
       render: (page, data)->
         page.assert_Is 'tables/bsimm-table'
-        data.table.activities.Governance.assert_Is_Object()
+        data.table.headers.assert_Is [ 'Governance', 'Intelligence', 'SSDL', 'Deployment' ]
     view_File.table(req, res)
 
-  it.only 'table_Json', -> 
+  it 'table_Json', ->
     res =
       setHeader: (key,value)->
         key  .assert_Is 'Content-Type'
         value.assert_Is 'application/json' 
-      send: (data)-> 
-        data.headers.assert_Is ['Governance', 'Intelligence', 'SSD', 'Deployment']
-        data.rows.keys().size().assert_Is 2
+      send: (data)->
+        data = data.json_Parse()            # required because the data is json_Pretty
+        data.headers.assert_Is ['Governance', 'Intelligence', 'SSDL', 'Deployment']
+        data.rows.keys().size().assert_Is 20
         data.rows[0].size().assert_Is 8
         data.rows[0].assert_Is [ 'SM.1.1', 'Yes', 'AM1.2', 'Maybe',
                                  'AA.1.1','Maybe','PT.1.1','Maybe' ]

@@ -14,7 +14,7 @@ describe 'view - d3-radar', ->
       server = @
       @.run(true)
       @.get_Html page, (_$, _html)->
-        $ = _$
+        $ = _$ 
         html = _html
         done()
 

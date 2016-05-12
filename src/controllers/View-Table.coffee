@@ -16,8 +16,11 @@ class View_Table
   table: (req, res)=>
     filename = req.params?.filename
     if filename
-      data = @.data.find filename
-      return res.render 'tables/bsimm-table', table: data
+      raw_data   = @.data.find filename
+      table_Data = @.transform_Data(raw_data)
+      title      = raw_data?.metadata?.team
+
+      return res.render 'tables/bsimm-table', table: table_Data, title: title
 
     return res.send 'not found'
 
@@ -27,20 +30,20 @@ class View_Table
       data = @.data.find filename
       res.setHeader('Content-Type', 'application/json');
 
-      return res.send @.transform_Data data.json_Pretty()
+      return res.send @.transform_Data(data).json_Pretty()
 
     return res.send {}
 
   transform_Data: (data)=>
     table =
-      headers: ['Governance', 'Intelligence', 'SSD', 'Deployment']
+      headers: ['Governance', 'Intelligence', 'SSDL', 'Deployment']
       rows:    {}
 
 
 
     map_Activities = (activities)->
       index = 0
-      for key in activities.keys().take(2)
+      for key in activities.keys()
         table.rows[index] ?= []
 
         cells = table.rows[index]
@@ -49,11 +52,12 @@ class View_Table
 
         index++
 
-
-    map_Activities data.activities.Governance
-    map_Activities data.activities.Intelligence
-    map_Activities data.activities.SSDL
-    map_Activities data.activities.Deployment
+    if data and data.activities
+      using data.activities, ->
+        map_Activities @.Governance
+        map_Activities @.Intelligence
+        map_Activities @.SSDL
+        map_Activities @.Deployment
 
     return table
     
