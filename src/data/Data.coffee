@@ -33,7 +33,12 @@ class Data
         when '.json5'
           json5.parse file.file_Contents()
         when '.coffee'
-          require file
+          
+          data_Or_Function = require(file)
+          if data_Or_Function instanceof Function   # check if what was received from the coffee script is an object or an function
+            return data_Or_Function()
+          else
+            return data_Or_Function
 
   all_Data: =>
     values = []
