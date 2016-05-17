@@ -35,6 +35,11 @@ describe 'controllers | Api-Controller', ->
         data.table.headers.assert_Is [ 'Governance', 'Intelligence', 'SSDL', 'Deployment' ]
     view_File.table(req, res)
 
+  it 'table (bad file)', ->
+    res = send: (data)-> data.assert_Is 'not found'
+    req = params: null
+    view_File.table(req, res)
+
   it 'table_Json', ->
     res =
       setHeader: (key,value)->
@@ -48,4 +53,9 @@ describe 'controllers | Api-Controller', ->
         data.rows[0].assert_Is [ 'SM.1.1', 'Yes', 'AM1.2', 'Maybe',
                                  'AA.1.1','Maybe','PT.1.1','Maybe' ]
 
+    view_File.table_Json(req, res)
+
+  it 'table_Json (bad filename)', ->
+    res = send: (data)-> data.assert_Is {}
+    req = params: null
     view_File.table_Json(req, res)

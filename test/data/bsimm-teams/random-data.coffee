@@ -18,7 +18,7 @@ describe 'data | bsimm-teams | team-A', ->
 
   it 'check team-A.json data is random', (done)->
         
-    get_Data_Json '/api/v1/file/get/team-random', (json)->
+    get_Data_Json '/api/v1/file/get/team-random', (json)-> 
       json.metadata.team.assert_Is 'Team Random'
 
       matches = { Yes: 0, No : 0, NA: 0, Maybe: 0}
@@ -40,8 +40,8 @@ describe 'data | bsimm-teams | team-A', ->
 
       done()
 
-    it 'check team-A.json data is different for two separate requests', (done)->
-      get_Data_Json '/api/v1/file/get/team-random', (json_1)->
-        get_Data_Json '/api/v1/file/get/team-random', (json_2)->
-          json_1.assert_Is_Not json_2
-          done()
+  it 'check team-A.json data is different for two separate requests', (done)->
+    get_Data_Json '/api/v1/file/get/team-random', (json_1)->
+      get_Data_Json '/api/v1/file/get/team-random', (json_2)->
+        json_1.assert_Is_Not json_2
+        done()

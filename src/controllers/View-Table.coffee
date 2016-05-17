@@ -32,13 +32,12 @@ class View_Table
 
       return res.send @.transform_Data(data).json_Pretty()
 
-    return res.send {}
+    return res.send {} 
 
   transform_Data: (data)=>
     table =
       headers: ['Governance', 'Intelligence', 'SSDL', 'Deployment']
       rows:    {}
-
 
 
     map_Activities = (activities)->
