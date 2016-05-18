@@ -82,7 +82,11 @@ class Server
     fs = require 'fs'
 
     @.logs_Morgan = morgan 'combined'
-    @.logs_Folder  = __dirname.path_Combine('../../logs').folder_Create()
+    console.log '---------------: ' + __dirname
+    @.logs_Folder  = __dirname.path_Combine('../../logs')
+    console.log '---------------: ' + @.logs_Folder
+    @.logs_Folder.folder_Create()
+    
     @.logs_Options =
       date_format: 'YYYY_MM_DD-hh_mm',
       filename   : @.logs_Folder + '/logs-%DATE%.log',
