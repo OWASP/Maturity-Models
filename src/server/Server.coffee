@@ -117,8 +117,7 @@ class Server
   stop: (callback)=>
     if @.server
       @.server.close =>
-        callback() if callback
-    else
+        callback() if callback    
 
   get_Html: (virtual_Path, callback)->
     @.server_Url().add(virtual_Path).GET (data)->

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --recursive -R list",
-    "start": "GCLOUD_PROJECT=bsimm-graph node server.js "
+    "start": "node server.js "
   },
   "repository": {
     "type": "git",
