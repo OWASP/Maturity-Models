@@ -105,7 +105,7 @@ describe 'D3-Server', ->
       @.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar'
                              '/api/v1/logs/path'
                              '/api/v1/logs/list'
-                             '/api/v1/logs/file/:log-filename'
+                             '/api/v1/logs/file/:index'
                              '/api/v1/file/list'
                              '/api/v1/file/get/:filename'
                              '/api/v1/routes/list'
