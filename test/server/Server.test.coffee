@@ -82,6 +82,13 @@ describe 'D3-Server', ->
           data.svgstuff.assert_Contains '<g><circle cx="50"'
       @.route_Main req, res
 
+  it 'setup_Logging', ->
+    using server, ->
+      @.setup_Server()
+      @.setup_Logging()
+      @.logs_Morgan.assert_Is_Function()
+
+
   it 'server_Url', ->
     using server, ->
       expected_Port = process.env.PORT || 3000

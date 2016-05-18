@@ -3,6 +3,8 @@ require 'fluentnode'
 express    = require 'express'
 load       = require 'express-load'
 d3         = require 'd3'
+morgan     = require 'morgan'
+
 jsdom      = require 'jsdom'
 cheerio    = require 'cheerio'
 Routes     = require './Routes'
@@ -71,6 +73,12 @@ class Server
         .attr('r',  (d)-> d * 5)
     res.render 'index', svgstuff: svg.node().outerHTML
 
+
+  setup_Logging: =>
+    @.logs_Morgan = morgan 'combined'
+    @.app.use @.logs_Morgan 
+    #console.log 'Logging is setup'
+
   start_Server: =>
     @.server = @.app.listen @.port
 
@@ -84,6 +92,7 @@ class Server
     if random_Port
       @.port = 23000 + 3000.random()
     @.setup_Server()
+    @.setup_Logging()
     @.add_Bower_Support()
     @.add_Controllers()
     @.add_Redirects()
