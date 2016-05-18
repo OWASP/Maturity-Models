@@ -80,13 +80,10 @@ class Server
 
   setup_Logging: =>
     fs = require 'fs'
-
-    @.logs_Morgan = morgan 'combined'
-    console.log '---------------: ' + __dirname
     @.logs_Folder  = __dirname.path_Combine('../../logs')
-    console.log '---------------: ' + @.logs_Folder
-    @.logs_Folder.folder_Create()
-    
+    if @.logs_Folder.folder_Not_Exists()      # note: docker was having a problem with the creation of this folder
+      @.logs_Folder.folder_Create()           #       which is why this is now done on the Docker file (need to find root cause)
+
     @.logs_Options =
       date_format: 'YYYY_MM_DD-hh_mm',
       filename   : @.logs_Folder + '/logs-%DATE%.log',
