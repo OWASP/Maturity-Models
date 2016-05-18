@@ -7,7 +7,6 @@ git:
     submodules: false
 
 before_install:
-    - git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
     - git submodule update --init --recursive
 
@@ -15,3 +14,7 @@ before_script:
 
   - npm install -g bower
   - bower install
+
+after_success:
+  - echo "pushing changes to DinisCruz-Dev fork, which will trigger a docker cloud build"
+  - git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git master
