@@ -7,11 +7,11 @@ git:
     submodules: false
 
 before_install:
+    - git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
     - git submodule update --init --recursive
 
 before_script:
-  - git push https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git
-  - aaaa()
+
   - npm install -g bower
   - bower install
