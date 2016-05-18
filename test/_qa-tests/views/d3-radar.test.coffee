@@ -11,14 +11,14 @@ describe 'view - d3-radar', ->
 
   beforeEach (done)->
     using new Server(), ->
-      server = @
+      server = @ 
       @.run(true)
       @.get_Html page, (_$, _html)->
         $ = _$
         html = _html
         done()
 
-  afterEach ->
+  afterEach -> 
     server.stop
 
   it 'html components', ->

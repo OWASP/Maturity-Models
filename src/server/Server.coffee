@@ -1,14 +1,16 @@
 require 'fluentnode'
 
-express    = require 'express'
-load       = require 'express-load'
-d3         = require 'd3'
-morgan     = require 'morgan'
+FileStreamRotator = require('file-stream-rotator')
 
-jsdom      = require 'jsdom'
-cheerio    = require 'cheerio'
-Routes     = require './Routes'
-Redirects  = require './Redirects'
+express           = require 'express'
+load              = require 'express-load'
+d3                = require 'd3'
+morgan            = require 'morgan'
+
+jsdom             = require 'jsdom'
+cheerio           = require 'cheerio'
+Routes            = require './Routes'
+Redirects         = require './Redirects'
 
 require 'fluentnode'
 
@@ -40,14 +42,16 @@ class Server
   add_Controllers: ->
     api_Path  = '/api/v1'
     view_Path = '/view'
-    Api_Routes  = require '../controllers/Api-Routes'
     Api_File    = require '../controllers/Api-File'
+    Api_Logs    = require '../controllers/Api-Logs'
+    Api_Routes  = require '../controllers/Api-Routes'
     View_Routes = require '../controllers/View-Routes'
     View_File   = require '../controllers/View-File'
     View_Table  = require '../controllers/View-Table'
 
-    @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router 
+    @.app.use api_Path , new Api_Logs(   app:@.app).add_Routes().router
     @.app.use api_Path , new Api_File(   app:@.app).add_Routes().router
+    @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router
     @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
     @.app.use view_Path, new View_File(  app:@.app).add_Routes().router
     @.app.use view_Path, new View_Table( app:@.app).add_Routes().router
@@ -75,13 +79,24 @@ class Server
 
 
   setup_Logging: =>
+    fs = require 'fs'
+
     @.logs_Morgan = morgan 'combined'
-    @.app.use @.logs_Morgan 
-    #console.log 'Logging is setup'
+    @.logs_Folder  = __dirname.path_Combine('../../logs').folder_Create()
+    @.logs_Options =
+      date_format: 'YYYY_MM_DD-hh_mm',
+      filename   : @.logs_Folder + '/logs-%DATE%.log',
+      frequency  : '30m', 
+      verbose    : false
+
+    @.logs_Stream = FileStreamRotator.getStream @.logs_Options
+    @.logs_Morgan = morgan 'combined', { stream: @.logs_Stream }
+    @.app.use @.logs_Morgan
+
 
   start_Server: =>
     @.server = @.app.listen @.port
-
+  
   server_Url: =>
     "http://localhost:#{@.port}"
 

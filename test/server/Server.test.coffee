@@ -60,7 +60,7 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 12
+      @.routes().assert_Size_Is 14
       @
 
   it 'add_Redirects', ->
@@ -86,8 +86,8 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.setup_Logging()
+      @.logs_Stream.assert_Is_Object()                # note: not sure how to test this better, neet to look at how morgan stream works
       @.logs_Morgan.assert_Is_Function()
-
 
   it 'server_Url', ->
     using server, ->
@@ -103,9 +103,11 @@ describe 'D3-Server', ->
       @.add_Redirects()
       #console.log @.routes()
       @.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar'
-                             '/api/v1/routes/list'
+                             '/api/v1/logs/path'
+                             '/api/v1/logs/list'
                              '/api/v1/file/list'
                              '/api/v1/file/get/:filename'
+                             '/api/v1/routes/list'
                              '/view/routes/list'      , '/view/routes/list-raw'
                              '/view/file/list'
                              '/view/:filename/table'  , '/view/:filename/table.json'

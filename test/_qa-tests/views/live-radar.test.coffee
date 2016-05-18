@@ -22,7 +22,7 @@ describe 'view - d3-radar', ->
     server.stop
 
   it 'html components', ->
-    $.assert_Is_Function()
+    $.assert_Is_Function() 
     $('script').length.assert_Is 5
     $('script').attr().assert_Is { src: '/lib/jquery/dist/jquery.min.js' } # this only checks the first file
     $('h3'    ).html().assert_Is 'BSIMM Radar Graphs (ajax data)'
