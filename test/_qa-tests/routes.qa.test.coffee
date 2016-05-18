@@ -39,7 +39,7 @@ describe '_qa-tests | routes', ->
         $('a')[2].attribs.assert_Is { href : '/d3-radar'}
         $.html($('a')[2]).assert_Is '<a href="/d3-radar">/d3-radar</a>'
         links = (a.attribs.href for a in $('a'))                          # get all routes
-        links.assert_Size_Is 31                                           # the routes should have been substituted here
+        links.assert_Size_Is 34                                           # the routes should have been substituted here
         links.assert_Contains ['/api/v1/file/get/team-random', '/view/team-random/table']
       done()
 
