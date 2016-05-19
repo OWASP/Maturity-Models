@@ -10,5 +10,7 @@ RUN     npm install
 RUN     git pull origin master
 RUN     git submodule update
 
+RUN     mkdir logs              # node app was failing to create this folder
+
 CMD     npm start
 
