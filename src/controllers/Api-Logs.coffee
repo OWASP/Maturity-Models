@@ -1,5 +1,7 @@
 express = require 'express'
 
+fs      = require 'fs'
+
 class Api_Logs
   constructor: (options)->
     @.options     = options || {}
@@ -11,9 +13,10 @@ class Api_Logs
     @.router.get '/logs/path'        , @.path
     @.router.get '/logs/list'        , @.list
     @.router.get '/logs/file/:index' , @.file
+    @.router.get '/logs/stream'      , @.stream
     @
 
-  
+
   list: (req, res)=>
     res.send @.logs_Folder.files().file_Names()
 
@@ -30,5 +33,9 @@ class Api_Logs
 
   path: (req, res)=>
     res.send @.logs_Folder
+
+
+  stream: (req,res)=>
+    res.send 'not working, needs to be done using web sockets'      
 
 module.exports = Api_Logs    

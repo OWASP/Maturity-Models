@@ -60,7 +60,7 @@ describe 'D3-Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 15
+      @.routes().assert_Size_Is_Bigger_Than 15
       @
 
   it 'add_Redirects', ->
@@ -106,6 +106,7 @@ describe 'D3-Server', ->
                              '/api/v1/logs/path'
                              '/api/v1/logs/list'
                              '/api/v1/logs/file/:index'
+                             '/api/v1/logs/stream'
                              '/api/v1/file/list'
                              '/api/v1/file/get/:filename'
                              '/api/v1/routes/list'

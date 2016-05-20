@@ -44,3 +44,9 @@ describe 'controllers | Api-Controller', ->
           data.assert_Is __dirname.path_Combine('../../logs')
           data.assert_Folder_Exists()
       @.path null, res
+
+  it 'stream', ()->
+    res = send: (data) -> data.assert_Is 'not working, needs to be done using web sockets'
+    using new Api_Logs(), ->
+      @.stream(null, res)
+      
