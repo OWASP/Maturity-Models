@@ -25,7 +25,7 @@ describe 'view - d3-radar', ->
     $.assert_Is_Function()
     $('script').length.assert_Is 6
     $('script').attr().assert_Is { src: '/lib/jquery/dist/jquery.min.js' } # this only checks the first file
-    $('h3'    ).html().assert_Is 'BSIMM Radar Graphs (v0.6)'
+    $('h3'    ).html().assert_Is 'BSIMM Radar Graphs (v0.7)'
 
   it 'check dependencies can be loaded', (done)->
     check_Script =  (target, next)->
