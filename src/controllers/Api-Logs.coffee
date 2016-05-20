@@ -12,6 +12,7 @@ class Api_Logs
     @.router.get '/logs/list'          , @.list
     @.router.get '/logs/file/:index'   , @.file
     @.router.get '/logs/file/big_vuln' , @.big_vunl
+    @.router.get '/logs/file/small_vuln' , @.big_vunl
     @
 
   
