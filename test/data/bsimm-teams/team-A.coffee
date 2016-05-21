@@ -21,7 +21,7 @@ describe 'data | bsimm-teams | team-A', ->
     server.server_Url().add(path).json_GET callback
 
   it 'check team-A.json data', (done)->
-    get_Data_Json '/api/v1/file/get/team-A', (json)->
+    get_Data_Json '/api/v1/file/get/team-A', (json)-> 
       json.metadata.team.assert_Is 'Team A'
       json.activities.Governance['SM.1.1'].assert_Is 'Yes'
       json.activities.keys().assert_Size_Is 4

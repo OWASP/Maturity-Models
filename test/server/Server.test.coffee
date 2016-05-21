@@ -53,7 +53,7 @@ describe 'D3-Server', ->
       @.add_Bower_Support()
       @.start_Server()
       @.server_Url().add('/lib/jquery/dist/jquery.js').GET (data)=>
-        data.assert_Contains 'jQuery JavaScript Library v2.2.3'
+        data.assert_Contains 'jQuery JavaScript Library v2.2.4'
         done()
 
   it 'add_Controllers', -> 
