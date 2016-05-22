@@ -1,37 +1,43 @@
 Application = require('spectron').Application
+path        = require('path')
+
 assert = require('assert')
-chai = require('chai')
-chaiAsPromised = require('chai-as-promised')
-path = require('path')
-global.before ->
-  chai.should()
-  chai.use chaiAsPromised
-  return
+chai   = require('chai')
+#chaiAsPromised = require('chai-as-promised')
 
-exports.getElectronPath = ->
-  electronPath = path.join(__dirname, '../../../', 'node_modules', '.bin', 'electron')
-  electronPath
+class Global_Setup
+  constructor: ->
+    @.app = null
 
-exports.setupTimeout = (test) ->
-  if process.env.CI
-    test.timeout 30000
-  else
-    test.timeout 10000
-  return
+  getElectronPath: ->
+    path.join(__dirname, '../../../', 'node_modules', '.bin', 'electron')
 
-exports.startApplication = (options) ->
-  options.path = exports.getElectronPath()
-  if process.env.CI
-    options.startTimeout = 30000
-  app = new Application(options)
-  app.start().then ->
-    assert.equal app.isRunning(), true
-    chaiAsPromised.transferPromiseness = app.transferPromiseness
-    app
+  #setupTimeout: (test) ->
+    #if process.env.CI
+    #  test.timeout 30000
+    #else
+    #  test.timeout 10000
 
-exports.stopApplication = (app) ->
-  if !app or !app.isRunning()
-    return
-  app.stop().then ->
-    assert.equal app.isRunning(), false
-    return
+  startApplication: (options, callback) ->
+    options.path = @.getElectronPath()
+
+    #if process.env.CI
+    #  options.startTimeout = 30000
+
+    @.app = new Application(options)
+
+    @.app.start()
+         .then =>
+            assert.equal @.app.isRunning(), true
+            callback(@.app)
+            #chaiAsPromised.transferPromiseness = @.app.transferPromiseness
+            #return @.app
+
+  stopApplication: (callback) =>
+    if !@.app or !@.app.isRunning()
+      return
+    @.app.stop().then =>
+      callback()
+      #assert.equal @.app.isRunning(), false
+
+module.exports = new Global_Setup()
