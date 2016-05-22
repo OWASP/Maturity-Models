@@ -1,3 +1,4 @@
+return 
 var Application = require('spectron').Application
 var assert = require('assert')
 var chai = require('chai')

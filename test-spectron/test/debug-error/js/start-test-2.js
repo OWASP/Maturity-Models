@@ -1,3 +1,4 @@
+return 
 require('fluentnode')
 
 var helpers = require('./global-setup')
