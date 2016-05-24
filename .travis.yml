@@ -19,6 +19,7 @@ env:
 
 before_install:
 
+    - git ..
     - git clone https://github.com/DinisCruz/BSIMM-Graphs-QA.git
     - cd BSIMM-Graphs-QA
     - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs-QA.git
@@ -30,7 +31,7 @@ before_install:
     - git add .
     - git commit -m 'added git.log.txt in travis CI'
     - git push -f upstream master
-    
+
     - pwd
     - cd ..
     - ls
