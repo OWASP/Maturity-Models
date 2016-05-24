@@ -1,4 +1,5 @@
 module.exports = function (wallaby) {
+    wallaby
     return {
         files: [
             { pattern: 'test-spectron/src/**/*.coffee'},
@@ -9,8 +10,10 @@ module.exports = function (wallaby) {
             'test-spectron/test/**/*.coffee'
         ],
 
+        //testFramework: 'mocha',
+
         env: {
-            type: 'node'
-        }
+            type: 'node'//,
+        },
     };
 };

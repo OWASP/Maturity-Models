@@ -1,21 +1,41 @@
-return 
-electron_Prebuild = require 'electron-prebuilt'
+abc = require './abc'
 
-Application = require('spectron').Application
+describe 'bug', ->
+  it 'happpens with require' , ->
+    console.log 'all good...'
+
+return 
+
+
+
+#require 'fluentnode'
+#helpers = require('./global-setup')
+
+appPath = __dirname.path_Combine('../../electron-apps/web-view')
+
 assert = require('assert')
 
-describe 'application launch', ->
+describe 'application launch 4', ->
+  #@.timeout 10000
+  app   = null
+  path  = [ appPath ]
 
-  @timeout 10000
+  it 'checkpath',-> 
+    console.log 'helpers123'
+    #console.log helpers.getElectronPath()
 
-  beforeEach ()->
-    @app = new Application(path: electron_Prebuild)
-    @app.start()
-    
-  afterEach ->
-    if @app and @app.isRunning()
-      @app.stop()
+  return
+  beforeEach () ->
+    #helpers.setupTimeout this
+    helpers.startApplication  args: path, (_app)->
+      app = _app
 
-  it 'shows an initial window', ->
-    @app.client.getWindowCount().then (count) ->
-      assert.equal count, 1
+  afterEach (done)->
+    helpers.stopApplication ->
+      done()
+
+  it 'shows an initial window abc', ->
+    app.isRunning().assert_Is_True()
+    app.client.getWindowCount()
+              .then (count) ->
+                assert.equal count, 2

@@ -1,15 +1,17 @@
+module.exports = {}
+return
 Application = require('spectron').Application
 path        = require('path')
 
-assert = require('assert')
-chai   = require('chai')
-#chaiAsPromised = require('chai-as-promised')
+assert      = require('assert')
+#chai   = require('chai')
 
 class Global_Setup
   constructor: ->
     @.app = null
 
   getElectronPath: ->
+    console.log __dirname
     path.join(__dirname, '../../../', 'node_modules', '.bin', 'electron')
 
   #setupTimeout: (test) ->

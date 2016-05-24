@@ -10,6 +10,11 @@ describe 'application launch 4', ->
   app   = null
   path  = [ appPath ]
 
+  it 'checkpath',-> 
+    console.log helpers      
+    console.log helpers.getElectronPath()
+
+  return
   beforeEach () ->
     #helpers.setupTimeout this
     helpers.startApplication  args: path, (_app)->
