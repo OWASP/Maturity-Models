@@ -19,13 +19,10 @@ env:
 
 before_install:
 
-    - pwd
-    - cd ..
-    - pwd
-    - ls
     - git clone https://github.com/DinisCruz/BSIMM-Graphs-QA.git
-    - ls BSIMM-Graphs-QA
-    - git remote add upstream
+    - cd BSIMM-Graphs-QA
+    - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs-QA.git
+    - pwd
 
 
     #- echo 'building docker image'
