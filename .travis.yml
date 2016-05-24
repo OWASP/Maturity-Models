@@ -28,9 +28,9 @@ before_install:
 
     - git log -n5 --pretty=oneline > git.log.txt
     - git add .
-    - git commit 'added git.log.txt in travis CI'
-
+    - git commit -m 'added git.log.txt in travis CI'
     - git push -f upstream master
+    
     - pwd
     - cd ..
     - ls
