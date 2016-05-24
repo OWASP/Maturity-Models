@@ -14,7 +14,7 @@ before_install:
 
     - echo 'building docker image'
     - docker images
-    - docker build --no-cache -t diniscruz/bsimm-graphs /deploy/docker-images/bsimm-graphs/
+    - docker build --no-cache -t diniscruz/bsimm-graphs ./deploy/docker-images/bsimm-graphs/
     - docker images
 
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
