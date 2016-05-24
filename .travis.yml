@@ -18,34 +18,6 @@ env:
 
 
 before_install:
-
-    - cd ..
-    - git clone https://github.com/DinisCruz/BSIMM-Graphs-QA.git
-    - cd BSIMM-Graphs-QA
-    - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs-QA.git
-
-    - git config --global user.email "bot@travis.com"
-    - git config --global user.name "Travis Bot"
-
-    - git log -n5 --pretty=oneline > git.log.txt
-    - git add .
-    - git commit -m 'added git.log.txt in travis CI'
-    - git push -f upstream master
-
-    - pwd
-    - cd ..
-    - ls
-    - cd BSIMM-Graphs
-    - ls -la
-
-
-    #- echo 'building docker image'
-    #- docker images
-    #- docker build --no-cache -t diniscruz/bsimm-graphs ./deploy/docker-images/bsimm-graphs/
-    #- docker images
-    #- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-    #- docker push diniscruz/bsimm-graphs
-
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
     - git submodule update --init --recursive
 
@@ -54,15 +26,44 @@ before_script:
   - npm install -g bower
   - bower install
 
-
-
 after_success:
+
+  - echo ">>>>> Building DOCKER IMAGE and pushing it go Docker Hub <<<<<"
+
+  - echo 'building docker image'
+  - docker images
+  - docker build --no-cache -t diniscruz/bsimm-graphs ./deploy/docker-images/bsimm-graphs/
+  - docker images
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push diniscruz/bsimm-graphs
+
+  - echo ">>>>> Cloning BSIMM-Graph-QA, adding extra commit and pushing it to DinisCruz-Dev for  <<<<<"
+
+  - cd ..
+  - git clone https://github.com/DinisCruz/BSIMM-Graphs-QA.git
+  - cd BSIMM-Graphs-QA
+  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs-QA.git
 
   - git config --global user.email "bot@travis.com"
   - git config --global user.name "Travis Bot"
 
+  - git log -n5 --pretty=oneline > travis-git-log.txt
   - git add .
+  - git commit -m 'added travis-git-log.txt in travis CI'
+  - git push -f upstream master
 
-  - git commit -m 'custom update to .gitmodules (for snap-ci)'
-  - echo "pushing changes to DinisCruz-Dev fork, which will trigger a docker cloud build"
-  - git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git master
+  #- pwd
+  #- cd ..
+  #- ls
+  #- cd BSIMM-Graphs
+  #- ls -la
+
+
+  #- git config --global user.email "bot@travis.com"
+  #- git config --global user.name "Travis Bot"
+
+  #- git add .
+
+  #- git commit -m 'custom update to .gitmodules (for snap-ci)'
+  #- echo "pushing changes to DinisCruz-Dev fork, which will trigger a docker cloud build"
+  #- git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git master
