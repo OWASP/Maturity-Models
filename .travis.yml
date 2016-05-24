@@ -16,5 +16,7 @@ before_script:
   - bower install
 
 after_success:
+  - git add .
+  - git commit -m 'custom update to .gitmodules (for snap-ci)'
   - echo "pushing changes to DinisCruz-Dev fork, which will trigger a docker cloud build"
   - git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git master
