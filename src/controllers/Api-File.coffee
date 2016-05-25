@@ -13,6 +13,7 @@ class Api_File
   add_Routes: ()=>
     @.router.get '/file/list', @.list
     @.router.get '/file/get/:filename', @.get
+    @.router.get '/file/get-raw/:filename', @.get_Raw
     @
 
   get: (req, res)=>
@@ -27,6 +28,13 @@ class Api_File
         return res.send data
     else
       res.send { error: 'not found'}
+
+  get_Raw: (req,res)->
+    res.send 'nothing to see here'
+    #filename = req.params?.filename
+    #res.send __dirname.path_Combine( '../data/files')
+    #                  .path_Combine filename.file_Contents()
+
 
   list: (req, res)=>
     res.send @.data.files().file_Names()
