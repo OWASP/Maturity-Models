@@ -45,7 +45,7 @@ describe '_qa-tests | routes', ->
 
   it '/view/route/list', (done)->
     server.server_Url().add('/view/routes/list-raw').GET (data)->
-      using data , ->
+      using data , -> 
         $ = cheerio.load data
         $('h2').html().assert_Is 'Available routes'
         $('a')[2].attribs.assert_Is { href : '/d3-radar'}
