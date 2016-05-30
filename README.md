@@ -9,6 +9,7 @@ The data is stored in the repo https://github.com/DinisCruz/BSIMM-Graphs-Data wh
  - [BSIMM Questions for Teams v0.7 (with all consolidated team questions and maybe column)](http://blog.diniscruz.com/2016/04/bsimm-questions-for-teams-v07-with-all.html)
  - [Updated version of BSIMM Questions for Teams (now will all activities mapped)](http://blog.diniscruz.com/2016/04/updated-version-of-bsimm-questions-for.html)
  - [First pass at BSIMM questions for teams](http://blog.diniscruz.com/2016/04/first-pass-at-bsimm-questions-for-teams.html)
+
 ## Research
 
  - "D3.js - Radar Chart or Spider Chart - Adjusted from radar-chart-d3" - http://bl.ocks.org/nbremer/6506614
