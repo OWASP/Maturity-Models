@@ -20,7 +20,7 @@ describe 'controllers | Api-File', ->
       @.router.stack.assert_Size_Is 3
       
   it 'get', ->
-    req = 
+    req =
       params : 
         filename: 'json-data' 
     res =
@@ -33,11 +33,37 @@ describe 'controllers | Api-File', ->
     using new Api_File(), ->
       @.get(req, res)
 
+  it 'get (pretty)', ->
+    req =
+      params :
+        filename: 'json-data'
+      query:
+        pretty : ''
+    res =
+      setHeader: (name, value)->
+        name.assert_Is 'Content-Type'
+        value.assert_Is 'application/json'
+      send: (data_pretty)->
+        assert_Is_Undefined data_pretty.user
+        data = data_pretty.json_Parse()
+        data.user.name.assert_Is 'Joe'
+
+    using new Api_File(), ->
+      @.get(req, res)
+
+  it 'get (bad data)', ->
+    req = params : null
+    res =
+      send: (data)->
+        data.assert_Is {error: 'not found' }
+    using new Api_File(), ->
+      @.get(req, res)
+
   it 'list', ->
     res =
       send: (data)->
         data.assert_Size_Is_Bigger_Than 3
-        data.assert_Contains [ 'coffee-data.coffee', 'health-care-results.json5', 'json-data.json' ]
+        data.assert_Contains [ 'coffee-data', 'health-care-results', 'json-data' ]
 
 
     using new Api_File(), ->

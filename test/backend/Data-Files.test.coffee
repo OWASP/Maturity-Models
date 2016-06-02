@@ -44,7 +44,4 @@ describe 'controllers | Api-Controller', ->
     data =  data_Files.get_File_Data(filename)
     data.user.name.assert_Is 'Joe'
 
-  it 'list',->
-    using data_Files.list(), ->
-      @.assert_Size_Is_Bigger_Than 3
-      @.assert_Contains [ 'coffee-data.coffee', 'health-care-results.json5', 'json-data.json' ]
+  

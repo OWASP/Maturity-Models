@@ -49,8 +49,8 @@ class Data_Files
 
   #set_File_Data: fileName
 
-  list: ()=>
-    @.files().file_Names()
+  #list: ()=>
+  #  @.files().file_Names()
     
   files: =>
     values = []

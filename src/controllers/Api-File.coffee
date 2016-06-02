@@ -19,7 +19,7 @@ class Api_File
 
   edit: (req, res)=>
     console.log 'under construction'
-    
+
   get: (req, res)=>
     filename = req.params?.filename                       # get filename from path
                                                           # validation is needed here, see https://github.com/DinisCruz/BSIMM-Graphs/issues/18
@@ -35,8 +35,17 @@ class Api_File
       res.send { error: 'not found'}
 
   list: (req, res)=>
-    res.send @.data_Files.list()
-
-    
+    res.send @.data_Files.files_Names()
 
 module.exports = Api_File
+
+
+
+
+
+
+
+
+
+
+
