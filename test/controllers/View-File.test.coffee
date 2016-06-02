@@ -10,8 +10,8 @@ describe 'controllers | Api-Controller', ->
 
   it 'constructor', ->    
     using new View_File(app: app), ->
-      @     .constructor.name.assert_Is 'View_File'
-      @.data.constructor.name.assert_Is 'Data'
+      @           .constructor.name.assert_Is 'View_File'
+      @.data_Files.constructor.name.assert_Is 'Data_Files'
 
   it 'add_Routes', ->
     using new View_File(app:app), ->

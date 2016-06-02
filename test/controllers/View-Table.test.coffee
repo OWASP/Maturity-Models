@@ -20,8 +20,8 @@ describe 'controllers | Api-Controller', ->
 
   it 'constructor', ->
     using new View_File(app: app), ->
-      @     .constructor.name.assert_Is 'View_Table'
-      @.data.constructor.name.assert_Is 'Data'
+      @           .constructor.name.assert_Is 'View_Table'
+      @.data_Files.constructor.name.assert_Is 'Data_Files'
 
   it 'add_Routes', ->
     using new View_File(app:app), ->

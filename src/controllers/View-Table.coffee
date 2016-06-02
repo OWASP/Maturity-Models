@@ -1,12 +1,12 @@
-Data    = require '../data/Data'
-express = require 'express'
+Data_Files = require '../backend/Data-Files'
+express    = require 'express'
 
 class View_Table
   constructor: (options)->
-    @.options = options || {}
-    @.router  = express.Router()
-    @.app     = @.options.app
-    @.data    = new Data()
+    @.options     = options || {}
+    @.router      = express.Router()
+    @.app         = @.options.app
+    @.data_Files  = new Data_Files()
 
   add_Routes: ()=>
     @.router.get '/:filename/table'     , @.table
@@ -16,7 +16,7 @@ class View_Table
   table: (req, res)=>
     filename = req.params?.filename
     if filename
-      raw_data   = @.data.find filename
+      raw_data   = @.data_Files.find filename
       table_Data = @.transform_Data(raw_data)
       title      = raw_data?.metadata?.team
 
@@ -27,7 +27,7 @@ class View_Table
   table_Json: (req,res)=>     # sends the data in a transformation this is easy to show in a table
     filename = req.params?.filename
     if filename
-      data = @.data.find filename
+      data = @.data_Files.find filename
       res.setHeader('Content-Type', 'application/json');
 
       return res.send @.transform_Data(data).json_Pretty()

@@ -1,3 +1,4 @@
+return 
 Data = require '../../src/data/Data'
 
 describe 'Data',->

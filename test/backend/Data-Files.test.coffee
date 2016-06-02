@@ -9,8 +9,7 @@ describe 'controllers | Api-Controller', ->
 
   it 'constructor',->
     using data_Files, ->
-      @.constructor.name.assert_Is 'Data_Files'
-      @.data.constructor.name.assert_Is 'Data'
+      @.constructor.name.assert_Is 'Data_Files'      
 
   it 'get_File_Data', ()->
     filename = 'json-data'

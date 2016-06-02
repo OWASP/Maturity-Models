@@ -41,5 +41,5 @@ describe 'controllers | Api-Controller', ->
 
 
     using new Api_File(), ->
-      @.data_Files.data.data_Path.assert_Folder_Exists()
+      @.data_Files.data_Path.assert_Folder_Exists()
       @.list(null,res)
