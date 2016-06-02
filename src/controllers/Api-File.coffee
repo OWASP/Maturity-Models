@@ -11,10 +11,14 @@ class Api_File
     @.data    = new Data()
 
   add_Routes: ()=>
-    @.router.get '/file/list', @.list
-    @.router.get '/file/get/:filename', @.get
+    @.router.get  '/file/list', @.list
+    @.router.get  '/file/get/:filename' , @.get
+    @.router.post '/file/edit/:filename', @.edit
     @
 
+  edit: (req, res)=>
+    console.log 'under construction'
+    
   get: (req, res)=>
     filename = req.params?.filename
     data = @.data.find filename

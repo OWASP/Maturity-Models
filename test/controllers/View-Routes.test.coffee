@@ -27,7 +27,7 @@ describe 'controllers | Api-Controller', ->
     res =
       render: (page, data)->
         page.assert_Is 'routes'
-        data.routes.assert_Size_Is 20
+        data.routes.assert_Size_Is 22
                    .assert_Contains '/api/v1/file/get/team-random'
                    .assert_Contains '/view/team-random/table'
 

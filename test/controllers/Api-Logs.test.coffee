@@ -2,20 +2,35 @@ Api_Logs = require '../../src/controllers/Api-Logs'
 Server   = require '../../src/server/Server'
 
 describe 'controllers | Api-Controller', ->
-  app = null
+  app               = null
+  log_File_Name     = null
+  log_File_Contents = null
+  tmp_Log_Folder    = null
+  api_Logs          = null
 
-  beforeEach ->
+  before ->
     app = new Server().setup_Server().app
+    log_File_Name     = 'tmp_log_file - '.add_5_Random_Letters()
+    log_File_Contents = 'some log data - '.add_5_Random_Letters()
+    tmp_Log_Folder    = './tmp_logs'.folder_Create().real_Path()
+
+    tmp_Log_Folder.path_Combine(log_File_Name).file_Write(log_File_Contents)
+    using new Api_Logs(), ->
+      api_Logs = @
+      @.logs_Folder = tmp_Log_Folder
+
+  after ->
+    tmp_Log_Folder.folder_Delete_Recursive().assert_Is_True()
 
   it 'constructor', ->
     using new Api_Logs(), ->
       @.constructor.name.assert_Is 'Api_Logs'
       @.router.assert_Is_Function()
 
-  it 'file', ->
-    using new Api_Logs(), ->
+  it 'file ', ->
+    using api_Logs,->
       req = params : index : 0
-      res = send: (data)-> data.assert_Contains 'GET /aaaaa'
+      res = send: (data)-> data.assert_Is log_File_Contents
       @.file req, res
 
   it 'file (empty data)', ->
@@ -24,17 +39,17 @@ describe 'controllers | Api-Controller', ->
       res = send: (data) -> data.assert_Is 'not found'
       @.file req, res
 
-    it 'file (bad data)', ->
+  it 'file (bad data)', ->
     using new Api_Logs(), ->
       req = params : index : 'AAAAA'
       res = send: (data)-> data.assert_Is 'not found'
       @.file req, res
     
   it 'list', ->
-    using new Api_Logs(), ->
+    using api_Logs,->
       res =
         send: (data)->
-          data.assert_Size_Is_Bigger_Than 0
+          data.assert_Is [log_File_Name]
       @.list null, res
 
   it 'path', ->
