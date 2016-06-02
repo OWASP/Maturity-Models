@@ -27,7 +27,10 @@ before_script:
   - bower install
 
 after_success:
-
+  - echo ">>>>> Updating Dev fork <<<<<"
+  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git
+  - git push -f upstream 
+  
   - echo ">>>>> Building DOCKER IMAGE and pushing it go Docker Hub <<<<<"
 
   - echo 'building docker image'
@@ -51,18 +54,6 @@ after_success:
   - git add .
   - git commit -m 'added travis-git-log.txt in travis CI'
   - git push -f upstream master
-
-  #- pwd
-  #- cd ..
-  #- ls
-  #- cd BSIMM-Graphs
-  #- ls -la
-
-
-  #- git config --global user.email "bot@travis.com"
-  #- git config --global user.name "Travis Bot"
-
-  #- git add .
 
   #- git commit -m 'custom update to .gitmodules (for snap-ci)'
   #- echo "pushing changes to DinisCruz-Dev fork, which will trigger a docker cloud build"
