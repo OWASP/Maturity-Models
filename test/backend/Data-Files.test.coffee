@@ -41,7 +41,21 @@ describe 'controllers | Api-Controller', ->
       
   it 'get_File_Data', ()->
     filename = 'json-data'
-    data =  data_Files.get_File_Data(filename)
-    data.user.name.assert_Is 'Joe'
+    using data_Files, ->
+      @.get_File_Data(filename)
+          .user.name.assert_Is 'Joe'
 
-  
+  it 'set_File_Data', ()->
+    filename = 'temp_file.json'
+    contents = '{ aaa : 123 }'
+    using data_Files, ->
+      file_Path = @.set_File_Data filename, contents
+      console.log file_Path
+      file_Path.assert_File_Exists() 
+ 
+  it 'set_File_Data (bad data)', ()->
+    using data_Files, ->
+      assert_Is_Null @.set_File_Data()
+      assert_Is_Null @.set_File_Data 'aaa'
+      assert_Is_Null @.set_File_Data null, 'bbbb'
+      assert_Is_Null @.set_File_Data 'aaa', {}

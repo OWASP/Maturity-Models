@@ -23,9 +23,8 @@ class Data_Files
           file.load_Json()
         when '.json5'
           json5.parse file.file_Contents()
-        when '.coffee'
-
-          data_Or_Function = require(file)
+        when '.coffee'                              # todo: add securty issue that use of coffee-script file this way would allow RCE
+          data_Or_Function = require(file)          #       here (which means that we can't really allow these coffee files from being edited
           if data_Or_Function instanceof Function   # check if what was received from the coffee script is an object or an function
             return data_Or_Function()
           else
@@ -37,7 +36,7 @@ class Data_Files
   files_Paths: =>
     @.data_Path.files_Recursive()
 
-  find: (filename)=>
+  find: (filename)=>                                       # todo: this method need caching since it will search all files everytime (could also be a minor DoS issue)
     if filename
       for file in @.files_Paths()                          # this can be optimized with a cache
         if file.file_Name_Without_Extension() is filename
@@ -47,11 +46,6 @@ class Data_Files
   get_File_Data: (filename) ->
     @.find filename
 
-  #set_File_Data: fileName
-
-  #list: ()=>
-  #  @.files().file_Names()
-    
   files: =>
     values = []
     for file in @.data_Path.files_Recursive()
@@ -59,5 +53,15 @@ class Data_Files
         values.push file.remove(@.data_Path)
     values
 
-
+  set_File_Data: (filename, file_Contents) ->               # todo: add security issue: that this method will allow the writing
+    if not filename or not file_Contents                    #       of any file (not just the files in the data
+      return null                                           #       folder, which are the ones that should be edited)
+    if typeof file_Contents isnt 'string'    
+      return null
+    file_Path = @.find filename                             # todo: add security issue: filename is not validated
+    if file_Path is null or file_Path.file_Not_Exists()
+      file_Path = @.data_Path.path_Combine filename         # todo: add security issue: directory transvesal
+    file_Path.file_Write file_Contents                       # todo: add security issue: no authorization, will write outside data root
+    return file_Path
+    
 module.exports = Data_Files
