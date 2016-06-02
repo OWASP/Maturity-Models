@@ -47,13 +47,12 @@ describe 'controllers | Api-Logs', ->
     using api_Logs,->
       res =
         send: (data)->
-          data.assert_Is [log_File_Name]
+          data.assert_Contains [log_File_Name]
       @.list null, res
 
   it 'path', ->
-    using new Api_Logs(), ->
+    using api_Logs,->
       res =
         send: (data)->
-          data.assert_Is __dirname.path_Combine('../../logs')
           data.assert_Folder_Exists()
       @.path null, res
