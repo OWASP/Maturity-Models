@@ -9,8 +9,8 @@ class Api_File
     @.router     = express.Router()
     @.app        = @.options.app
     @.routes     = new Routes(app:@.app)
-    @.data       = new Data()
-    @.data_files = new Data_Files()
+    #@.data       = new Data()
+    @.data_Files = new Data_Files()
 
   add_Routes: ()=>
     @.router.get  '/file/list', @.list
@@ -22,13 +22,13 @@ class Api_File
     console.log 'under construction'
     
   get: (req, res)=>
-    filename = req.params?.filename                 # get filename from path
-                                                    # validation is needed here, see issue ...
-    data = @.data_files.get_File_Data filename      #
+    filename = req.params?.filename                       # get filename from path
+                                                          # validation is needed here, see https://github.com/DinisCruz/BSIMM-Graphs/issues/18
+    data = @.data_Files.get_File_Data filename            # get data
     if data
-      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Content-Type', 'application/json');  # todo: need default way to handle this type of responses
       
-      if req.query?.pretty is ""
+      if req.query?.pretty is ""                          # todo: this should also be handled in better way (same as above)
         return res.send data.json_Pretty()
       else
         return res.send data
@@ -36,7 +36,7 @@ class Api_File
       res.send { error: 'not found'}
 
   list: (req, res)=>
-    res.send @.data_files.list()
+    res.send @.data_Files.list()
 
     
 

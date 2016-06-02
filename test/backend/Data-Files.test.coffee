@@ -12,11 +12,11 @@ describe 'controllers | Api-Controller', ->
       @.constructor.name.assert_Is 'Data_Files'
       @.data.constructor.name.assert_Is 'Data'
 
-  it 'get_File', ()->
+  it 'get_File_Data', ()->
     filename = 'json-data'
     data =  data_Files.get_File_Data(filename)
     data.user.name.assert_Is 'Joe'
-    
+
   it 'list',->
     using data_Files.list(), ->
       @.assert_Size_Is_Bigger_Than 3

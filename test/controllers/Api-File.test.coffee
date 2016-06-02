@@ -11,7 +11,7 @@ describe 'controllers | Api-Controller', ->
     using new Api_File(), ->
       @.constructor.name.assert_Is 'Api_File' 
       @.router.assert_Is_Function()
-      @.data.assert_Is_Object()
+      @.data_Files.constructor.name.assert_Is 'Data_Files'
       
       
   it 'add_Routes', ->
@@ -41,5 +41,5 @@ describe 'controllers | Api-Controller', ->
 
 
     using new Api_File(), ->
-      @.data.data_Path.assert_Folder_Exists()
+      @.data_Files.data.data_Path.assert_Folder_Exists()
       @.list(null,res)
