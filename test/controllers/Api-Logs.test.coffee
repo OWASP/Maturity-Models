@@ -1,15 +1,13 @@
 Api_Logs = require '../../src/controllers/Api-Logs'
 Server   = require '../../src/server/Server'
 
-describe 'controllers | Api-Controller', ->
-  app               = null
+describe 'controllers | Api-Controller', ->  
   log_File_Name     = null
   log_File_Contents = null
   tmp_Log_Folder    = null
   api_Logs          = null
 
-  before ->
-    app = new Server().setup_Server().app
+  before ->  
     log_File_Name     = 'tmp_log_file - '.add_5_Random_Letters()
     log_File_Contents = 'some log data - '.add_5_Random_Letters()
     tmp_Log_Folder    = './tmp_logs'.folder_Create().real_Path()
