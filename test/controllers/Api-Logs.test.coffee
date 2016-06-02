@@ -1,7 +1,7 @@
 Api_Logs = require '../../src/controllers/Api-Logs'
 Server   = require '../../src/server/Server'
 
-describe 'controllers | Api-Controller', ->  
+describe 'controllers | Api-Logs', ->  
   log_File_Name     = null
   log_File_Contents = null
   tmp_Log_Folder    = null

@@ -1,7 +1,7 @@
 Api_File = require '../../src/controllers/Api-File'
 Server   = require '../../src/server/Server'
 
-describe 'controllers | Api-Controller', ->
+describe 'controllers | Api-File', ->
   app = null
 
   beforeEach ->

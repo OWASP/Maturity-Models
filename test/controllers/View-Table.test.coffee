@@ -2,7 +2,7 @@ View_File = require '../../src/controllers/View-Table'
 Server     = require '../../src/server/Server'
 
 
-describe 'controllers | Api-Controller', ->
+describe 'controllers | View-Table', ->
   app       = null
   req       = null
   view_File = null

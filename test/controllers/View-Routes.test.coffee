@@ -2,7 +2,7 @@ View_Routes = require '../../src/controllers/View-Routes'
 Server     = require '../../src/server/Server'
 
 
-describe 'controllers | Api-Controller', ->
+describe 'controllers | View-Routes', ->
   app = null
 
   beforeEach ->

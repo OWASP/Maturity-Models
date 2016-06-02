@@ -2,7 +2,7 @@ View_File = require '../../src/controllers/View-File'
 Server     = require '../../src/server/Server'
 
 
-describe 'controllers | Api-Controller', ->
+describe 'controllers | View-File', ->
   app = null
 
   beforeEach ->

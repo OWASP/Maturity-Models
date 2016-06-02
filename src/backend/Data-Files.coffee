@@ -1,4 +1,3 @@
-Data    = require '../data/Data'
 json5   = require 'json5'
 
 
@@ -59,9 +58,6 @@ class Data_Files
       if  file.file_Extension() in ['.json', '.json5', '.coffee']
         values.push file.remove(@.data_Path)
     values
-
-
-
 
 
 module.exports = Data_Files
