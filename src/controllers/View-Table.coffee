@@ -16,7 +16,7 @@ class View_Table
   table: (req, res)=>
     filename = req.params?.filename
     if filename
-      raw_data   = @.data_Files.find filename
+      raw_data   = @.data_Files.get_File_Data filename
       table_Data = @.transform_Data(raw_data)
       title      = raw_data?.metadata?.team
 
@@ -27,7 +27,7 @@ class View_Table
   table_Json: (req,res)=>     # sends the data in a transformation this is easy to show in a table
     filename = req.params?.filename
     if filename
-      data = @.data_Files.find filename
+      data = @.data_Files.get_File_Data filename
       res.setHeader('Content-Type', 'application/json');
 
       return res.send @.transform_Data(data).json_Pretty()
