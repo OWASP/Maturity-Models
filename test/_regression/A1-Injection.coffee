@@ -80,3 +80,18 @@ describe '_regression | A1 - Injection', ->
       create_File '.html'
       create_File '.css'
       create_File '...'
+
+  #require('coffee-script/register');          # in case wallably has not registered it
+  it 'Issue 24 - Data_Files.set_File_Data - allows editing of coffee-script files (RCE)', ->
+    using new Data_Files(), ->
+      new_File_Contents = 'module.exports = ()-> 40+2'
+      file_Name         = 'coffee-data'
+      file_Path         = @.find_File file_Name
+      file_Contents = file_Path.file_Contents()
+      @.get_File_Data(file_Name).user.assert_Is 'in coffee'        # confirm original data
+
+      result = @.set_File_Data_Json file_Name, new_File_Contents   # try to make change
+      assert_Is_Null result                                        # confirm save fail
+
+      file_Path.file_Contents().assert_Is_Not new_File_Contents    # confirm data was NOT changed
+      .assert_Is     file_Contents
