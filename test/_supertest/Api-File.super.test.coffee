@@ -28,52 +28,11 @@ describe '_supertest | Api-File', ->
         res.body.metadata.team.assert_Is 'Team A'
 
   it '/file/save/save-test', ()->
-    #url_Get  = version + '/file/get/team-C'
     url_Save = version + '/file/save/save-test'
-    server = request(app)
-
-    console.log url_Save
-
-    data = { save : 'test' }
-    server.post url_Save
+    data     = { "save" : "test" }
+    request(app)
+      .post url_Save
       .send data
-      .set 'Accept', /application\/json/
       .expect 200
-      .expect (res)->
-        res.body.assert_Is error: 'file saved ok AAAAA'
-
-    return
-
-#    server
-#      .get(url_Get)
-#      .expect (res)->
-#        asd.asd()
-#        data = res.data
-#        console.log data
-#        done()
-
-
-
-#    return
-#    get_Data = (next)->
-#      server.get(url_Get)
-#        .expect (res)->
-
-#          next(res.body)
-
-#    save_Data = (data, next)->
-#      data.team = 'BBBBB'
-#      console.log  data
-#      server.post url_Save
-#          .send data
-#          .set 'Accept', /application\/json/
-#          .expect 500
-#          .expect (res)->
-#            res.body.assert_Is error: 'file saved okl'
-#            next()
-#
-#    check_Data = (next)->
-#
-#    get_Data (data)->
-#      save_Data data, ()->
-#        console.log 'here'
+      .expect (res)->        
+        res.body.assert_Is error: 'file saved ok'
