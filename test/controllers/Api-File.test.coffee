@@ -91,7 +91,18 @@ describe 'controllers | Api-File', ->
       send: (data)->
         file_Path.file_Contents().assert_Is changed_Data.json_Str()
         data.assert_Is { status: 'file saved ok'}
-        file_Path.assert_File_Deleted() 
+        file_Path.assert_File_Deleted()
 
     using new Api_File(), ->
-      @.save req, res      
+      @.save req, res
+
+  it 'save (bad file)', ->
+    req =
+      params: filename: 'aaaa'
+      body  : 'bbb'
+    res =
+      send: (data)->
+        data.assert_Is { error: 'save failed'}
+
+    using new Api_File(), ->
+      @.save req, res
