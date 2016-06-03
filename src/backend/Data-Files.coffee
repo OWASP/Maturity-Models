@@ -18,15 +18,16 @@ class Data_Files
     if file
       switch file.file_Extension()
         when '.json'
-          file.load_Json()
+          return file.load_Json()
         when '.json5'
-          json5.parse file.file_Contents()
+          return json5.parse file.file_Contents()
         when '.coffee'                              # todo: add securty issue that use of coffee-script file this way would allow RCE
           data_Or_Function = require(file)          #       here (which means that we can't really allow these coffee files from being edited
           if data_Or_Function instanceof Function   # check if what was received from the coffee script is an object or an function
             return data_Or_Function()
           else
             return data_Or_Function
+    return null        
 
   files_Names: =>
     (file.file_Name_Without_Extension() for file in @.files())

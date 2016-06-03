@@ -73,15 +73,13 @@ describe 'controllers | Api-Controller', ->
     using data_Files.get_File_Data(target_File), ->             # get another copy of data
       @.metadata.team.assert_Is good_Value                      # confirm original value is there
       
-  it 'set_File_Data (create new file)', ()->
+  it 'set_File_Data (not able to create new file)', ()->
     filename = 'temp_file.json'
     contents = '{ "aaa" : 123 }'
     using data_Files, ->
-      file_Path = @.set_File_Data filename, contents
-      using file_Path, ->
-        @.assert_File_Exists()
-        @.load_Json().assert_Is contents.json_Parse()
-        @.file_Delete().assert_Is_True()
+      @.set_File_Data filename, contents
+      assert_Is_Null @.get_File_Data filename, contents  
+      
  
   it 'set_File_Data (bad data)', ()->
     using data_Files, ->

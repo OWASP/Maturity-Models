@@ -27,7 +27,7 @@ describe 'controllers | View-Routes', ->
     res =
       render: (page, data)->
         page.assert_Is 'routes'
-        data.routes.assert_Size_Is_Bigger_Than 22
+        data.routes.assert_Size_Is_Bigger_Than 21
                    .assert_Contains '/api/v1/file/get/team-random'
                    .assert_Contains '/view/team-random/table'
 
