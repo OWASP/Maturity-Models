@@ -6,7 +6,7 @@ describe 'main', ->
   server = null
 
   beforeEach (done)->
-    port = 1000.add 2000.random()
+    port = 20000.add 10000.random()
     using start_Server(port : port), ->
       server = @
       done()

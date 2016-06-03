@@ -13,3 +13,4 @@ describe 'testing d3', ->
     document = jsdom.jsdom()
     svg = d3.select(document.body).append("svg");
     svg[0].parentNode.assert_Is {}
+ 

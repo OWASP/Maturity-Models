@@ -2,9 +2,7 @@ json5   = require 'json5'
 
 
 class Data_Files
-  constructor: (options)->
-    #@.options = options || {}      
-    #@.data      = new Data()
+  constructor: ()->
     @.data_Path = __dirname.path_Combine('../../data')
 
   all_Data: =>
@@ -53,15 +51,18 @@ class Data_Files
         values.push file.remove(@.data_Path)
     values
 
-  set_File_Data: (filename, file_Contents) ->               # todo: add security issue: that this method will allow the writing
-    if not filename or not file_Contents                    #       of any file (not just the files in the data
-      return null                                           #       folder, which are the ones that should be edited)
+  # Issue 19 - Data_Files.set_File_Data - Path Traversal
+  # Issue 20 - Data_Files.set_File_Data - DoS via filename and file_Contents
+  # Issue 23 - Data_Files.set_File_Data - allows creation of files with any extension
+  set_File_Data: (filename, file_Contents) ->
+    if not filename or not file_Contents
+      return null
     if typeof file_Contents isnt 'string'    
       return null
-    file_Path = @.find filename                             # todo: add security issue: filename is not validated
+    file_Path = @.find filename
     if file_Path is null or file_Path.file_Not_Exists()
-      file_Path = @.data_Path.path_Combine filename         # todo: add security issue: directory transvesal
-    file_Path.file_Write file_Contents                       # todo: add security issue: no authorization, will write outside data root
+      file_Path = @.data_Path.path_Combine filename
+    file_Path.file_Write file_Contents
     return file_Path
     
 module.exports = Data_Files
