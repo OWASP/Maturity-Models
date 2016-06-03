@@ -68,7 +68,7 @@ describe 'controllers | Api-Controller', ->
     using data_Files.get_File_Data(target_File), ->             # get new copy of data         
       @.metadata.team.assert_Is temp_Value                      # check value has been changed
       @.metadata.team         = good_Value                      # restore original value
-      data_Files.set_File_Data target_File, @.json_Str()        # save it again
+      data_Files.set_File_Data target_File, @.json_Pretty()     # save it again
 
     using data_Files.get_File_Data(target_File), ->             # get another copy of data
       @.metadata.team.assert_Is good_Value                      # confirm original value is there
