@@ -21,10 +21,11 @@ describe '_security | A1 - Injection', ->
       # TEST
       @.set_File_Data file_Name, new_File_Contents                 # PAYLOAD make change
       file_Path.file_Contents().assert_Is new_File_Contents        # confirm it was changed
-      #console.log require('module')._cache[file_Path]             # need to find a way to reset the cache
-      @.get_File_Data(file_Name).user.assert_Is 'in coffee'        # this is wrong!!! it should be 42
+      delete require.cache[file_Path]                              # clean the node cache
+      @.get_File_Data(file_Name).assert_Is '42'                    # it should be 42 now (which means that the payload was executed
 
       # CLEAN
       @.set_File_Data file_Name, file_Contents                     # restore file contents
       file_Path.file_Contents().assert_Is file_Contents            # confirm it was reset ok
+      delete require.cache[file_Path]                              # clear the cache again
       @.get_File_Data(file_Name).user.assert_Is 'in coffee'        # confirm original data
