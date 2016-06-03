@@ -1,6 +1,6 @@
 Server = require '../../src/server/Server'
 
-describe 'D3-Server', ->
+describe 'server | Server', ->
 
   server = null
 

@@ -55,7 +55,8 @@ class Server
     @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
     @.app.use view_Path, new View_File(  app:@.app).add_Routes().router
     @.app.use view_Path, new View_Table( app:@.app).add_Routes().router
-
+    @
+    
   add_Redirects: ->
     new Redirects(app:@.app).add_Redirects()
 

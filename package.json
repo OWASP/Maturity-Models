@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "coffee-coverage": "^1.0.1",
-    "istanbul": "^0.4.3"
+    "istanbul": "^0.4.3",
+    "supertest": "^1.2.0"
   }
 }
