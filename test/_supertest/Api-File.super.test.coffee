@@ -27,7 +27,8 @@ describe '_supertest | Api-File', ->
       .expect (res)->
         res.body.metadata.team.assert_Is 'Team A'
 
-  it '/file/save/save-test', ()->
+  # Issue 27 - Find better solution for chained super test requests
+  it '/file/save/save-test 1', ()->
     url_Save = version + '/file/save/save-test'
     data     = { "save" : "test" }
     request(app)
@@ -35,4 +36,14 @@ describe '_supertest | Api-File', ->
       .send data
       .expect 200
       .expect (res)->        
-        res.body.assert_Is error: 'file saved ok'
+        res.body.assert_Is status: 'file saved ok'
+        
+  it '/file/save/save-test 2', ()->
+    url_Save = version + '/file/save/save-test'
+    data     = { "will-be" : "changed by tests" }
+    request(app)
+    .post url_Save
+    .send data
+    .expect 200
+    .expect (res)->
+      res.body.assert_Is status: 'file saved ok'

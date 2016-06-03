@@ -37,7 +37,7 @@ class Api_File
   save: (req, res)=>
     filename = req.params?.filename                       # get filename from QueryString
     if typeof req.body is 'object'
-      data = req.body.json_Str()
+      data = req.body.json_Pretty()
     else
       data = req.body                                     # from post body
     if filename and data                                  # check that both exist
