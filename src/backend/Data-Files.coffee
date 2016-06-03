@@ -57,9 +57,9 @@ class Data_Files
         values.push file.remove(@.data_Path)
     values
 
-  # Issue 19 - Data_Files.set_File_Data - Path Traversal
-  # Issue 20 - Data_Files.set_File_Data - DoS via filename and file_Contents
-  # Issue 23 - Data_Files.set_File_Data - allows creation of files with any extension
+  # Issue 24 - Data_Files.set_File_Data - allows editing of coffee-script files (RCE)
+  # Issue 25 - Refactor set_File_Data to Set_File_Data_JSON
+  # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
   set_File_Data: (filename, file_Contents) ->
 
     if not filename or not file_Contents                # check if both values are set
