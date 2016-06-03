@@ -36,7 +36,7 @@ describe '_securtiy | A1 - Injection', ->
       target_Folder.folder_Delete_Recursive().assert_Is_True()             # Delete temp folder
 
   # https://github.com/DinisCruz/BSIMM-Graphs/issues/20
-  it.only 'Issue 20 - Data_Files.set_File_Data - DoS via filename and file_Contents', ->
+  it 'Issue 20 - Data_Files.set_File_Data - DoS via filename and file_Contents', ->
     #@.timeout 5000
     # Create files with large strings
     using new Data_Files(), ->
@@ -52,7 +52,6 @@ describe '_securtiy | A1 - Injection', ->
         if should_Work                                        # if it should work
           file_Path.assert_File_Exists()                      #   confirm file exists
           file_Path.file_Delete().assert_Is_True()            #   delete temp file
-          file_Path.assert_File_Not_Exists()
         else                                                  # if not
           file_Path.assert_File_Not_Exists()                  #   confirm creation failed
 
@@ -72,3 +71,26 @@ describe '_securtiy | A1 - Injection', ->
       create_File 10 ,1000000 , true                           # 1 Mb
       #create_File 10 ,10000000 , true                          # 10 Mb - will work and take about 250 ms
       #create_File 10 ,100000000 , true                         # 100 Mb - will work and take about 2 secs
+
+
+  it 'Issue 23 - Data_Files.set_File_Data - allows creation of files with any extension', ->
+    using new Data_Files(), ->
+      create_File = (extension)=>
+        file_Name     = 10.random_String() + extension
+        file_Contents = 10.random_String()
+        file_Path     = @.data_Path.path_Combine(file_Name)
+
+        @.set_File_Data file_Name, file_Contents               # PAYLOAD: create file
+
+        file_Path.assert_File_Exists()                         #   confirm file exists
+                 .file_Delete().assert_Is_True()               #   delete temp file
+
+      create_File '.json'                                      # these are the ones that should work
+
+      create_File '.json5'                                     # these are the ones that should NOT work
+      create_File '.coffee'
+      create_File '.js'
+      create_File '.exe'
+      create_File '.html'
+      create_File '.css'
+      create_File '...'
