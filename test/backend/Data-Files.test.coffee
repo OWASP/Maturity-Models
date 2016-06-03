@@ -37,7 +37,7 @@ describe 'controllers | Api-Controller', ->
     using data_Files, ->
       @.files().size().assert_Is_Not @.files_Paths().size()
       @.files_Paths().assert_Not_Empty()
-      @.files_Paths().first().assert_File_Exists()      
+      @.files_Paths().first().assert_File_Exists()
       
   it 'get_File_Data', ()->
     filename = 'json-data'

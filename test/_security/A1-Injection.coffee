@@ -37,7 +37,7 @@ describe '_securtiy | A1 - Injection', ->
 
   # https://github.com/DinisCruz/BSIMM-Graphs/issues/20
   it.only 'Issue 20 - Data_Files.set_File_Data - DoS via filename and file_Contents', ->
-
+    #@.timeout 5000
     # Create files with large strings
     using new Data_Files(), ->
       create_File = (file_Size, content_Size, should_Work)=>
@@ -62,10 +62,13 @@ describe '_securtiy | A1 - Injection', ->
       create_File 100,10 , true
       create_File 156,10 , true
       #create_File 157,10 , false                              # interesting in wallaby, after 156 chars it doesn't work
-      create_File 208,10 , false                               #             in mocha, it's after 208
-      return
+      #create_File 208,10 , false                              #             in mocha, it's after 208
+      create_File 512,10 , false                               #             in travis the number is really higher (not sure about the exact one)
+
       # testing multiple file contents
-      create_File 10 ,10 , true
-      create_File 10 ,100 , true
-      create_File 10 ,10000 , true
-      create_File 10 ,1000000 , true
+      create_File 10 ,10 , true                                # 10 bytes
+      create_File 10 ,100 , true                               # 100 bytes
+      create_File 10 ,10000 , true                             # 10 Kb
+      create_File 10 ,1000000 , true                           # 1 Mb
+      #create_File 10 ,10000000 , true                          # 10 Mb - will work and take about 250 ms
+      #create_File 10 ,100000000 , true                         # 100 Mb - will work and take about 2 secs
