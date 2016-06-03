@@ -52,7 +52,7 @@ after_success:
 
   - git log -n5 --pretty=oneline > travis-git-log.txt
   - git add .
-  - git commit -m 'added travis-git-log.txt in travis CI'
+  - git commit -m 'Comming files for ' + $(git rev-parse HEAD)
   - git push -f upstream master
 
   #- git commit -m 'custom update to .gitmodules (for snap-ci)'
