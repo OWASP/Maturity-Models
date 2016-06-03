@@ -38,20 +38,50 @@ describe 'controllers | Api-Controller', ->
       @.files().size().assert_Is_Not @.files_Paths().size()
       @.files_Paths().assert_Not_Empty()
       @.files_Paths().first().assert_File_Exists()
-      
+
+  it 'find_File', ->
+    using data_Files, ->
+      team_A = @.find_File 'team-A'
+      team_A.assert_File_Exists()
+
+      assert_Is_Null @.find_File 'Team-A'  # search is case sensitive
+      assert_Is_Null @.find_File 'aaaaaa'
+      assert_Is_Null @.find_File null
+
   it 'get_File_Data', ()->
     filename = 'json-data'
     using data_Files, ->
       @.get_File_Data(filename)
           .user.name.assert_Is 'Joe'
 
-  it 'set_File_Data', ()->
+
+  it 'set_File_Data', ->    
+    target_File = 'team-C'
+    good_Value  = 'Team C'
+    temp_Value  = 'BBBBB'
+
+    using data_Files.get_File_Data(target_File), ->             # get data
+      @.metadata.team.assert_Is good_Value
+      @.metadata.team        =  temp_Value                      # change value
+      data_Files.set_File_Data target_File, @.json_Str()        # save it
+
+    using data_Files.get_File_Data(target_File), ->             # get new copy of data         
+      @.metadata.team.assert_Is temp_Value                      # check value has been changed
+      @.metadata.team         = good_Value                      # restore original value
+      data_Files.set_File_Data target_File, @.json_Str()        # save it again
+
+    using data_Files.get_File_Data(target_File), ->             # get another copy of data
+      @.metadata.team.assert_Is good_Value                      # confirm original value is there
+      
+  it 'set_File_Data (create new file)', ()->
     filename = 'temp_file.json'
-    contents = '{ aaa : 123 }'
+    contents = '{ "aaa" : 123 }'
     using data_Files, ->
       file_Path = @.set_File_Data filename, contents
-      console.log file_Path
-      file_Path.assert_File_Exists() 
+      using file_Path, ->
+        @.assert_File_Exists()
+        @.load_Json().assert_Is contents.json_Parse()
+        @.file_Delete().assert_Is_True()
  
   it 'set_File_Data (bad data)', ()->
     using data_Files, ->
@@ -59,3 +89,7 @@ describe 'controllers | Api-Controller', ->
       assert_Is_Null @.set_File_Data 'aaa'
       assert_Is_Null @.set_File_Data null, 'bbbb'
       assert_Is_Null @.set_File_Data 'aaa', {}
+      
+        
+
+  

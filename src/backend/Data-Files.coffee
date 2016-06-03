@@ -34,15 +34,15 @@ class Data_Files
   files_Paths: =>
     @.data_Path.files_Recursive()
 
-  find: (filename)=>                                       # todo: this method need caching since it will search all files everytime (could also be a minor DoS issue)
+  find_File: (filename)=>                                # todo: this method need caching since it will search all files everytime (could also be a minor DoS issue)
     if filename
       for file in @.files_Paths()                          # this can be optimized with a cache
         if file.file_Name_Without_Extension() is filename
-          return @.data(file)
+          return file          
     return null
 
   get_File_Data: (filename) ->
-    @.find filename
+    @.data @.find_File filename
 
   files: =>
     values = []
@@ -55,14 +55,18 @@ class Data_Files
   # Issue 20 - Data_Files.set_File_Data - DoS via filename and file_Contents
   # Issue 23 - Data_Files.set_File_Data - allows creation of files with any extension
   set_File_Data: (filename, file_Contents) ->
-    if not filename or not file_Contents
+
+    if not filename or not file_Contents                # check if both values are set
       return null
-    if typeof file_Contents isnt 'string'    
+
+    if typeof file_Contents isnt 'string'               # check if file_Contents is a string
       return null
-    file_Path = @.find filename
-    if file_Path is null or file_Path.file_Not_Exists()
-      file_Path = @.data_Path.path_Combine filename
+
+    file_Path = @.find_File filename                    # resolve file path based on file name
+
+    if file_Path is null or file_Path.file_Not_Exists() # check if was able to resolve it
+      return null
+
     file_Path.file_Write file_Contents
-    return file_Path
     
 module.exports = Data_Files
