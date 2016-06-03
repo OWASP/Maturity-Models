@@ -54,39 +54,51 @@ describe 'controllers | Api-Controller', ->
       @.get_File_Data(filename)
           .user.name.assert_Is 'Joe'
 
-
-  it 'set_File_Data', ->    
+  it 'set_File_Data', ->
     target_File = 'team-C'
     good_Value  = 'Team C'
     temp_Value  = 'BBBBB'
 
-    using data_Files.get_File_Data(target_File), ->             # get data
+    using data_Files.get_File_Data(target_File), ->               # get data
       @.metadata.team.assert_Is good_Value
-      @.metadata.team        =  temp_Value                      # change value
-      data_Files.set_File_Data target_File, @.json_Str()        # save it
+      @.metadata.team        =  temp_Value                        # change value
+      data_Files.set_File_Data_Json target_File, @.json_Str()     # save it
+                .assert_Is_True()                                 # confirm save was ok
 
-    using data_Files.get_File_Data(target_File), ->             # get new copy of data         
-      @.metadata.team.assert_Is temp_Value                      # check value has been changed
-      @.metadata.team         = good_Value                      # restore original value
-      data_Files.set_File_Data target_File, @.json_Pretty()     # save it again
+    using data_Files.get_File_Data(target_File), ->               # get new copy of data
+      @.metadata.team.assert_Is temp_Value                        # check value has been changed
+      @.metadata.team         = good_Value                        # restore original value
+      data_Files.set_File_Data_Json target_File, @.json_Pretty()  # save it again
 
-    using data_Files.get_File_Data(target_File), ->             # get another copy of data
-      @.metadata.team.assert_Is good_Value                      # confirm original value is there
-      
+    using data_Files.get_File_Data(target_File), ->               # get another copy of data
+      @.metadata.team.assert_Is good_Value                        # confirm original value is there
+
+  it 'set_File_Data (bad json)', ()->
+    target_File = 'team-C'
+    bad_Json    = '{ not-good : json } '
+    using data_Files, ->
+      assert_Is_Null data_Files.set_File_Data_Json target_File, bad_Json
+
+  it 'set_File_Data (non json files)', ()->
+    target_File = 'team-A'                           # team-A is an json5 file
+    good_Json    = '{ "is-good" : "json" } '
+    using data_Files, ->
+      assert_Is_Null data_Files.set_File_Data_Json target_File, good_Json
+
   it 'set_File_Data (not able to create new file)', ()->
     filename = 'temp_file.json'
     contents = '{ "aaa" : 123 }'
     using data_Files, ->
-      @.set_File_Data filename, contents
+      @.set_File_Data_Json filename, contents
       assert_Is_Null @.get_File_Data filename, contents  
       
  
   it 'set_File_Data (bad data)', ()->
     using data_Files, ->
-      assert_Is_Null @.set_File_Data()
-      assert_Is_Null @.set_File_Data 'aaa'
-      assert_Is_Null @.set_File_Data null, 'bbbb'
-      assert_Is_Null @.set_File_Data 'aaa', {}
+      assert_Is_Null @.set_File_Data_Json()
+      assert_Is_Null @.set_File_Data_Json 'aaa'
+      assert_Is_Null @.set_File_Data_Json null, 'bbbb'
+      assert_Is_Null @.set_File_Data_Json 'aaa', {}
       
         
 

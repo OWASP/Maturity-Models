@@ -57,15 +57,18 @@ class Data_Files
         values.push file.remove(@.data_Path)
     values
 
-  # Issue 24 - Data_Files.set_File_Data - allows editing of coffee-script files (RCE)
-  # Issue 25 - Refactor set_File_Data to Set_File_Data_JSON
   # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
-  set_File_Data: (filename, file_Contents) ->
+  set_File_Data_Json: (filename, json_Data) ->
 
-    if not filename or not file_Contents                # check if both values are set
+    if not filename or not json_Data                    # check if both values are set
       return null
 
-    if typeof file_Contents isnt 'string'               # check if file_Contents is a string
+    if typeof json_Data isnt 'string'                   # check if file_Contents is a string
+      return null
+
+    try                                                 # confirm that json_Data parses OK into JSON
+      JSON.parse json_Data                              
+    catch      
       return null
 
     file_Path = @.find_File filename                    # resolve file path based on file name
@@ -73,6 +76,12 @@ class Data_Files
     if file_Path is null or file_Path.file_Not_Exists() # check if was able to resolve it
       return null
 
-    file_Path.file_Write file_Contents
+    if file_Path.file_Extension() isnt '.json'          # check that the file is .json
+      return null
+
+
+    file_Path.file_Write json_Data                      # after all checks save file 
+
+    return file_Path.file_Contents() is json_Data       # confirm file was saved ok
     
 module.exports = Data_Files

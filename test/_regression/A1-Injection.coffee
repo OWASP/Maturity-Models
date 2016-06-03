@@ -13,26 +13,32 @@ describe '_regression | A1 - Injection', ->
       folder_Name  = 'outside-data-root'
       file_Name    = 'some-file.txt'
       file_Content = 'some content'
-      target_Folder = @.data_Path.path_Combine('../' + folder_Name)        # Create target folder
-      .folder_Create()
-      .assert_Folder_Exists()                   # Confirm it exists
+      target_Folder = @.data_Path.path_Combine('../' + folder_Name)   # Create target folder
+                                 .folder_Create()
+                                 .assert_Folder_Exists()              # Confirm it exists
 
-      target_Folder.path_Combine(file_Name)                                # Create target File
-      .file_Write(file_Content)
-      .assert_File_Exists()                                   # Confirm it exists
+      target_Folder.path_Combine(file_Name)                           # Create target File
+                   .file_Write(file_Content)
+                  .assert_File_Exists()                               # Confirm it exists
+
 
       payload     = "../#{folder_Name}/#{file_Name}"
+      payload_2   = "..\#{folder_Name}/#{file_Name}"                  # also trying with \
+      payload_3   = "..\\#{folder_Name}/#{file_Name}"                 # also trying with \\
+
       new_Content = 'new - content'
 
       @.data_Path.path_Combine(payload)
-      .file_Contents().assert_Is file_Content                   # Confirm original content is there
+                 .file_Contents().assert_Is file_Content              # Confirm original content is there
 
-      assert_Is_Null @.set_File_Data payload, new_Content                  # PAYLOAD: Create file outsite data root (this should not work now)
+      assert_Is_Null @.set_File_Data_Json payload  , new_Content      # PAYLOAD: Create file outsite data root (this should not work now)
+      assert_Is_Null @.set_File_Data_Json payload_2, new_Content      #          with \ variation
+      assert_Is_Null @.set_File_Data_Json payload_3, new_Content      #          with \\ variation
 
       @.data_Path.path_Combine(payload)
-      .file_Contents().assert_Is file_Content                   # Confirm original content is there (i.e. path outside web root was not modified)
+                 .file_Contents().assert_Is file_Content              # Confirm original content is there (i.e. path outside web root was not modified)
 
-      target_Folder.folder_Delete_Recursive().assert_Is_True()             # Delete temp folder
+      target_Folder.folder_Delete_Recursive().assert_Is_True()        # Delete temp folder
 
   # https://github.com/DinisCruz/BSIMM-Graphs/issues/20
   it 'Issue 20 - Data_Files.set_File_Data - DoS via filename', ->
@@ -44,7 +50,7 @@ describe '_regression | A1 - Injection', ->
 
         file_Path.assert_File_Not_Exists()                    # confirm file doesn't exist
 
-        @.set_File_Data file_Name, file_Contents              # PAYLOAD: create file
+        @.set_File_Data_Json file_Name, file_Contents              # PAYLOAD: create file
 
         file_Path.assert_File_Not_Exists()                  #   confirm creation failed
 
@@ -62,7 +68,7 @@ describe '_regression | A1 - Injection', ->
         file_Contents = 10.random_String()
         file_Path     = @.data_Path.path_Combine(file_Name)
 
-        @.set_File_Data file_Name, file_Contents               # PAYLOAD: create file
+        @.set_File_Data_Json file_Name, file_Contents               # PAYLOAD: create file
 
         file_Path.assert_File_Not_Exists()                     # confirm file doesn't exists
 
