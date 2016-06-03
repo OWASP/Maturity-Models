@@ -27,11 +27,10 @@ describe '_securtiy | A1 - Injection', ->
       @.data_Path.path_Combine(payload)
                  .file_Contents().assert_Is file_Content                   # Confirm original content is there
 
-      @.set_File_Data payload, new_Content                                 # PAYLOAD: Create file outsite data root
+      assert_Is_Null @.set_File_Data payload, new_Content                  # PAYLOAD: Create file outsite data root (this should not work now)
 
       @.data_Path.path_Combine(payload)
-                 .file_Contents().assert_Is_Not file_Content               # Confirm original content is NOT there
-                                 .assert_Is new_Content                    # Confirm that it has been changed
+                 .file_Contents().assert_Is file_Content                   # Confirm original content is there (i.e. path outside web root was not modified)
 
       target_Folder.folder_Delete_Recursive().assert_Is_True()             # Delete temp folder
 
@@ -56,21 +55,21 @@ describe '_securtiy | A1 - Injection', ->
           file_Path.assert_File_Not_Exists()                  #   confirm creation failed
 
 
-      # testing multiple file sizes
-      create_File 10 ,10 , true
-      create_File 100,10 , true
-      create_File 156,10 , true
-      #create_File 157,10 , false                              # interesting in wallaby, after 156 chars it doesn't work
-      #create_File 208,10 , false                              #             in mocha, it's after 208
-      create_File 512,10 , false                               #             in travis the number is really higher (not sure about the exact one)
+      # testing multiple file sizes (before fix the first 3 where true)
+      create_File 10 ,10 , false
+      create_File 100,10 , false
+      create_File 156,10 , false
+      #create_File 157,10 , false                             # interesting in wallaby, after 156 chars it doesn't work
+      #create_File 208,10 , false                             #             in mocha, it's after 208
+      create_File 512,10 , false                              #             in travis the number is really higher (not sure about the exact one)
 
-      # testing multiple file contents
-      create_File 10 ,10 , true                                # 10 bytes
-      create_File 10 ,100 , true                               # 100 bytes
-      create_File 10 ,10000 , true                             # 10 Kb
-      create_File 10 ,1000000 , true                           # 1 Mb
-      #create_File 10 ,10000000 , true                          # 10 Mb - will work and take about 250 ms
-      #create_File 10 ,100000000 , true                         # 100 Mb - will work and take about 2 secs
+      # testing multiple file contents (before fix all where true)
+      create_File 10 ,10      , false                         # 10 bytes
+      create_File 10 ,100     , false                         # 100 bytes
+      create_File 10 ,10000   , false                         # 10 Kb
+      create_File 10 ,1000000 , false                         # 1 Mb
+      #create_File 10 ,10000000 , true                        # 10 Mb - will work and take about 250 ms
+      #create_File 10 ,100000000 , true                       # 100 Mb - will work and take about 2 secs
 
 
   it 'Issue 23 - Data_Files.set_File_Data - allows creation of files with any extension', ->
@@ -82,12 +81,10 @@ describe '_securtiy | A1 - Injection', ->
 
         @.set_File_Data file_Name, file_Contents               # PAYLOAD: create file
 
-        file_Path.assert_File_Exists()                         #   confirm file exists
-                 .file_Delete().assert_Is_True()               #   delete temp file
+        file_Path.assert_File_Not_Exists()                     # confirm file doesn't exists
 
-      create_File '.json'                                      # these are the ones that should work
-
-      create_File '.json5'                                     # these are the ones that should NOT work
+      create_File '.json'                                      # confirm that none work now
+      create_File '.json5'
       create_File '.coffee'
       create_File '.js'
       create_File '.exe'
