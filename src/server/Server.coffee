@@ -4,6 +4,7 @@ FileStreamRotator = require('file-stream-rotator')
 
 express           = require 'express'
 load              = require 'express-load'
+bodyParser        = require('body-parser');
 d3                = require 'd3'
 morgan            = require 'morgan'
 
@@ -26,7 +27,11 @@ class Server
     @.app.d3 = d3
     @.app.jsdom = jsdom
     @.app.set 'view engine', 'jade'
-    
+
+    #bodyParser
+    @.app.use bodyParser.json()
+    @.app.use bodyParser.urlencoded extended: true 
+
     #routes
     #@.app.get '/', @.route_Main
     @.app.get '/'          , (req, res) => res.redirect 'd3-radar'

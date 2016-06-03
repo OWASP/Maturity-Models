@@ -19,7 +19,6 @@ describe '_supertest | Server', ->
     .get('/')
     .expect 302
 
-
   it '/ (redirect)', ->
     request(app)
     .get('/')

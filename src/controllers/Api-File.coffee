@@ -17,7 +17,7 @@ class Api_File
     @.router.post '/file/save/:filename', @.save
     @
 
-  get: (req, res)=>
+  get: (req, res)=>    
     filename = req.params?.filename                       # get filename from path
                                                           # validation is needed here, see https://github.com/DinisCruz/BSIMM-Graphs/issues/18
     data = @.data_Files.get_File_Data filename            # get data
@@ -31,12 +31,15 @@ class Api_File
     else
       res.send { error: 'not found'}
 
-  list: (req, res)=>
+  list: (req, res)=>    
     res.send @.data_Files.files_Names()
 
   save: (req, res)=>
     filename = req.params?.filename                       # get filename from QueryString
-    data     = req.body                                   # from post body
+    if typeof req.body is 'object'
+      data = req.body.json_Str()
+    else
+      data = req.body                                     # from post body
     if filename and data                                  # check that both exist
       if @.data_Files.set_File_Data_Json filename, data   # if set_File_Data_Json was ok
         return res.send status: 'file saved ok'           # send an ok status
