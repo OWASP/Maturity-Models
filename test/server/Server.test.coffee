@@ -107,7 +107,7 @@ describe 'D3-Server', ->
                              '/api/v1/logs/list'
                              '/api/v1/logs/file/:index'
                              '/api/v1/file/list'                             
-                             '/api/v1/file/get/:filename' , '/api/v1/file/edit/:filename'
+                             '/api/v1/file/get/:filename' , '/api/v1/file/save/:filename'
                              '/api/v1/routes/list'
                              '/view/routes/list'      , '/view/routes/list-raw'
                              '/view/file/list'

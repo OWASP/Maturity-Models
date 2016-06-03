@@ -14,11 +14,8 @@ class Api_File
   add_Routes: ()=>
     @.router.get  '/file/list', @.list
     @.router.get  '/file/get/:filename' , @.get
-    @.router.post '/file/edit/:filename', @.edit
+    @.router.post '/file/save/:filename', @.save
     @
-
-  edit: (req, res)=>
-    console.log 'under construction'
 
   get: (req, res)=>
     filename = req.params?.filename                       # get filename from path
@@ -36,6 +33,14 @@ class Api_File
 
   list: (req, res)=>
     res.send @.data_Files.files_Names()
+
+  save: (req, res)=>
+    filename = req.params?.filename                       # get filename from QueryString
+    data     = req.body                                   # from post body
+    if filename and data                                  # check that both exist
+      if @.data_Files.set_File_Data_Json filename, data   # if set_File_Data_Json was ok
+        return res.send status: 'file saved ok'           # send an ok status
+    res.send error: 'save failed'                         # if something failed send generic error message
 
 module.exports = Api_File
 

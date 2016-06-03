@@ -1,24 +1,26 @@
 Api_File = require '../../src/controllers/Api-File'
-Server   = require '../../src/server/Server'
+#Server   = require '../../src/server/Server'
 
 describe 'controllers | Api-File', ->
-  app = null
+  #app      = null
+  api_File = null
 
-  beforeEach ->
-    app = new Server().setup_Server().app
+  before ->
+    using new Api_File(), ->
+      api_File = @
+    #app = new Server().setup_Server().app
 
   it 'constructor', ->
-    using new Api_File(), ->
+    using api_File, ->
       @.constructor.name.assert_Is 'Api_File' 
       @.router.assert_Is_Function()
       @.data_Files.constructor.name.assert_Is 'Data_Files'
-      
-      
+
   it 'add_Routes', ->
-    using new Api_File(app:app), ->   
+    using api_File, ->
       @.add_Routes()
-      @.router.stack.assert_Size_Is 3
-      
+      @.router.stack.assert_Size_Is 3    
+
   it 'get', ->
     req =
       params : 
@@ -69,3 +71,27 @@ describe 'controllers | Api-File', ->
     using new Api_File(), ->
       @.data_Files.data_Path.assert_Folder_Exists()
       @.list(null,res)
+
+  it 'save', ->
+    data_Path = api_File.data_Files
+                        .data_Path.assert_Folder_Exists()
+
+    file_Name    = "tmp-file"
+    file_Path    = "#{data_Path}/#{file_Name}.json"
+    initial_Data = { initial: 'data' }
+    changed_Data = { other  : 'data' }
+
+    file_Path.file_Write initial_Data.json_Str()
+
+    req =
+      params: filename: file_Name
+      body  : changed_Data.json_Str()
+
+    res =
+      send: (data)->
+        file_Path.file_Contents().assert_Is changed_Data.json_Str()
+        data.assert_Is { status: 'file saved ok'}
+        file_Path.assert_File_Deleted() 
+
+    using new Api_File(), ->
+      @.save req, res      

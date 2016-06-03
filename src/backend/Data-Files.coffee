@@ -70,9 +70,9 @@ class Data_Files
       JSON.parse json_Data                              
     catch      
       return null
-
+    
     file_Path = @.find_File filename                    # resolve file path based on file name
-
+    
     if file_Path is null or file_Path.file_Not_Exists() # check if was able to resolve it
       return null
 
