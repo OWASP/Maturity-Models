@@ -11,17 +11,17 @@ describe '_supertest | Server', ->
 
   it '/aaaa (bad file)', ->                       #
     request(app)
-    .get('/aaaa')
-    .expect 404
+      .get('/aaaa')
+      .expect 404
 
   it '/ (redirect)', ->
     request(app)
-    .get('/')
-    .expect 302
+      .get('/')
+      .expect 302
 
   it '/ (redirect)', ->
     request(app)
-    .get('/')
-    .expect 302
-    .expect (res)->
-      res.headers.location.assert_Is 'd3-radar'
+      .get('/')
+      .expect 302
+      .expect (res)->
+        res.headers.location.assert_Is 'd3-radar'

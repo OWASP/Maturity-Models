@@ -14,11 +14,9 @@ describe 'controllers | Api-Controller', ->
 
   it 'all_Data', ->
     using data_Files, ->
-      data  = @.all_Data().assert_Not_Empty()
-      using data, ->
-        @.first( ).user.assert_Is 'in coffee'
-        @.second().user.assert_Is 'test'
-        @.third( ).user.name.assert_Is 'Joe'
+      using @.all_Data().assert_Not_Empty(), ->
+        for item in @
+          item.assert_Is_Object()
         
   it 'files', ->
     using data_Files, ->
