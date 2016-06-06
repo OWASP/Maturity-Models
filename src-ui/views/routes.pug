@@ -6,4 +6,5 @@ block content
             div.row.column
                 h2 Available routes
                 ul
-                    #routes {{routes}}
+                    #routes(ng-repeat="(key, value) in routes.sort()")
+                        a(href='{{value}}') {{value}}

@@ -67,7 +67,7 @@ describe 'server | Server', ->
     using server, ->
       @.setup_Server()
       @.add_Redirects()
-      @.routes().assert_Size_Is 3
+      @.routes().assert_Size_Is 2
       @
 
   it 'route_Main', ->
@@ -112,7 +112,7 @@ describe 'server | Server', ->
                              '/view/routes/list'      , '/view/routes/list-raw'
                              '/view/file/list'
                              '/view/:filename/table'  , '/view/:filename/table.json'
-                             '/', '/routes']
+                             '/']
       
   it 'run', (done)->
     using server, ->
