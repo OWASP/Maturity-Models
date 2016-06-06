@@ -16,19 +16,19 @@ describe '_supertest | /ui/html', ->
     app    = server.app
     request(app)
       .get('/ui/html/')
-      .expect 404
+      .expect 200
       .expect (res)->
         html = res.text
         $    = cheerio.load html
 
-  it 'Check html doesnt load ok', ->
+  xit 'Check html doesnt load ok', ->
     html.assert_Is 'Cannot GET /ui/html/\n'
 
-  xit 'Check html loaded ok', ->
+  it 'Check html loaded ok', ->
     console.log html
     html.size().assert_Bigger_Than 150
     html.assert_Contains 'angular.js'
-    $('script').length.assert_Is 2
+    $('script').length.assert_Is 3
 
   it 'Check Server Javascript resources', ->
     request(app)
