@@ -7,7 +7,7 @@ load              = require 'express-load'
 bodyParser        = require('body-parser');
 d3                = require 'd3'
 morgan            = require 'morgan'
-pug               = require 'pug'
+#pug               = require 'pug'
 jsdom             = require 'jsdom'
 cheerio           = require 'cheerio'
 Routes            = require './Routes'
@@ -26,8 +26,8 @@ class Server
     @.app = express()
     @.app.d3 = d3
     @.app.jsdom = jsdom
-    @.app.set 'view engine', 'pug'
-    @.app.engine('pug', pug.renderFile);
+    #@.app.set 'view engine', 'pug'
+    #@.app.engine('pug', pug.renderFile);
 
     #bodyParser
     @.app.use bodyParser.json()

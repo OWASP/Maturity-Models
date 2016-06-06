@@ -28,10 +28,25 @@ describe 'controllers | Api-Routes', ->
   it 'list', ->
     res =
       send: (data)->
-        data.assert_Is [ '/ping', '/routes/list', '/routes/list-raw']
+        data.assert_Contains [ '/ping', '/routes/list', '/routes/list-raw']
+        data.assert_Contains [ '/aaaa/team-C']
 
     using new Api_Routes(app:app), ->
       @.add_Routes()
       @.app.use('routes', @.router)
+      @.router.get '/aaaa/:filename'
       @.list(null, res)
+
+  it 'list_Raw', ->
+    res =
+      send: (data)->
+        data.assert_Contains [ '/ping']
+        data.assert_Contains [ '/aaaa/:filename']
+
+    using new Api_Routes(app:app), ->
+      @.app.use('routes', @.router)
+      @.router.get '/aaaa/:filename'
+      @.list_Raw(null, res)
+
+
       
