@@ -43,6 +43,6 @@
     "gulp-coffee": "^2.3.2",
     "gulp-plumber": "^1.1.0",
     "gulp-pug": "^3.0.3",
-    "supertest": "^1.2.0",
+    "supertest": "^1.2.0"
   }
 }
