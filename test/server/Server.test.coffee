@@ -70,18 +70,6 @@ describe 'server | Server', ->
       @.routes().assert_Size_Is 2
       @
 
-  it 'route_Main', ->
-    using server, ->
-      @.setup_Server()
-      req =
-        app  : @.app
-      res =
-        render: (target, data)->
-          target.assert_Is 'index'
-          target.assert_Is 'index'
-          data.svgstuff.assert_Contains '<g><circle cx="50"'
-      @.route_Main req, res
-
   it 'setup_Logging', ->
     using server, ->
       @.setup_Server()
