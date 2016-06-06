@@ -9,3 +9,4 @@ node_modules
 bower_components
 coverage
 angular/.dist
+src-ui/.dist
