@@ -1,4 +1,5 @@
-describe '| directive | simple', ->
+#to be deleted
+xdescribe '| directive | simple', ->
 
   element = null
   $scope  = null
