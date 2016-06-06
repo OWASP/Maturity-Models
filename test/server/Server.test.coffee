@@ -60,14 +60,14 @@ describe 'server | Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 16
+      @.routes().assert_Size_Is 17
       @
 
   it 'add_Redirects', ->
     using server, ->
       @.setup_Server()
       @.add_Redirects()
-      @.routes().assert_Size_Is 5
+      @.routes().assert_Size_Is 6
       @
 
   it 'route_Main', ->
@@ -103,6 +103,7 @@ describe 'server | Server', ->
       @.add_Redirects()
       #console.log @.routes() 
       @.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar'
+                             '/angular', 
                              '/api/v1/logs/path'
                              '/api/v1/logs/list'
                              '/api/v1/logs/file/:index'

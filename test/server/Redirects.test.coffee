@@ -17,4 +17,4 @@ describe 'server | Redirects', ->
   it 'add_Redirects', ->
     using new Redirects(app:app), ->
       @.add_Redirects()
-      server.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar', '/routes' ]
+      server.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar', '/angular', '/routes' ]
