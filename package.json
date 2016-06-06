@@ -23,6 +23,7 @@
   "dependencies": {
     "async": "^1.5.2",
     "body-parser": "^1.15.1",
+    "chai": "^3.5.0",
     "cheerio": "^0.20.0",
     "coffee-script": "^1.10.0",
     "d3": "^3.5.16",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^1.8.0",
     "gulp-coffee": "^2.3.2",
     "gulp-plumber": "^1.1.0",
     "gulp-pug": "^3.0.3",
