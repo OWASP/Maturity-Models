@@ -6,9 +6,11 @@ RUN     sed -i 's/git@github.com:/https:\/\/<user>:<token>@github.com\//' .gitmo
 RUN     git submodule init
 RUN     git submodule update
 RUN     git pull origin master
+RUN     npm install
 
 RUN     npm install -g bower; bower --allow-root install
-RUN     npm install - gulp  ; cd src-ui; gulp
+RUN     npm install -g gulp;
+RUN     cd src-ui; gulp
 #WORKDIR src-ui
 #RUN     ../node_modules/.bin/gulp
 #WORKDIR ..

@@ -1,0 +1,21 @@
+extends angular-page.pug
+
+block content
+    div(ng-controller='EditDataController')
+        h2 Edit UI
+        p {{status}}
+        p showing data for {{target}}
+        button.small.round.success(ng-click='save_Data()') save
+
+
+        div(ng-model='status')
+        //p {{data_raw.activities.Governance}}
+        ul
+            li {{governance}}
+            li {{intelligence}}
+            li {{ssdl}}
+            li {{deployment}}
+
+        input(ng-model='deployment["AA.1.1"]')
+
+        textarea(rows=10 ng-model='data').
