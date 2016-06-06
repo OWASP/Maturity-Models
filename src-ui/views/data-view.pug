@@ -3,4 +3,7 @@ extends angular-page.pug
 block content
     div(ng-controller='ViewDataController')
         h2 View Data
+        p {{status}}
         p showing data for {{target}}
+        pre.
+            {{data}}
