@@ -12,5 +12,7 @@ describe 'angular | RoutesController', ->
       $controller('RoutesController', { $scope: scope })
 
   it 'constructor',->
-
-    expect(scope.test).to.equal '12345..'
+    inject ($httpBackend)->
+      $httpBackend.expectGET('/api/v1/routes/list').respond ['/','/b']
+      $httpBackend.flush()
+      scope.routes.assert_Is ['/','/b']

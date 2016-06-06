@@ -1,6 +1,6 @@
 describe '| angular | views | angular-page', ->
 
-  element = null
+  #element = null
   
   beforeEach ()->
     module('MM_Graph')
@@ -28,7 +28,7 @@ describe '| angular | views | angular-page', ->
       expect(element[3].src    ).to.contain '/lib/angular/angular.js'
 
       expect(element[4].tagName).to.equal 'SCRIPT'
-      expect(element[4].src    ).to.contain '/angular/js/angular-src.js'
+      expect(element[4].src    ).to.contain '/ui/js/angular-src.js'
 
       expect(element[5].tagName).to.equal 'SCRIPT'
       expect(element[5].src    ).to.contain '/lib/foundation/js/foundation.js'
@@ -43,10 +43,20 @@ describe '| angular | views | angular-page', ->
       expect(element[6].attributes[0].value).to.equal 'RoutesController'
 
 
-    inject ($rootScope, $compile, $templateCache)->
-      html =  $templateCache.get('routes.html')
-      template = angular.element html
-      $compile(template)($rootScope)
+    inject ($rootScope, $compile, $templateCache, $httpBackend)->
+      test_Data = ['/','/b']
+      $httpBackend.expectGET('/api/v1/routes/list').respond test_Data
+      html     =  $templateCache.get('routes.html')
+      element  = angular.element html
+      $compile(element)($rootScope)
       $rootScope.$apply();
-      element = template
-      expect(element[6].innerText).to.equal('12345..')
+
+      expect(element[6].innerText).to.equal 'Available routes'           # before the flush
+      $httpBackend.flush()
+      expect(element[6].innerText).to.equal 'Available routes["/","/b"]' # after the flush
+
+
+      routesId = angular.element(element[6])
+      routesId.find('div')[2].innerText.assert_Is JSON.stringify(test_Data)
+
+      

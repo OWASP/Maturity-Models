@@ -15,14 +15,14 @@ describe '_supertest | /angular', ->
                     
     app    = server.app
     request(app)
-      .get('/angular')
+      .get('/ui/html/')
       .expect 200
       .expect (res)->
         html = res.text
         $    = cheerio.load html
 
   it 'Check html loaded ok', ->
-    html.size().assert_Bigger_Than 250
+    html.size().assert_Bigger_Than 150
     html.assert_Contains 'angular.js'
     $('script').length.assert_Is 2
 
