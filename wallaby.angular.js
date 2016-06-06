@@ -1,3 +1,3 @@
 require('coffee-script/register')
 
-module.exports = require('./angular/wallaby.angular.coffee')
+module.exports = require('./src-ui/wallaby.angular.coffee')

@@ -46,7 +46,7 @@ class Server
   add_Bower_Support: ()=>
     #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
     @.app.use '/lib',  express.static __dirname.path_Combine('../../bower_components')
-    @.app.use '/angular',  express.static __dirname.path_Combine('../../src-ui/.dist')
+    @.app.use '/ui',  express.static __dirname.path_Combine('../../src-ui/.dist')
     @
 
   add_Controllers: ->
