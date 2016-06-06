@@ -1,0 +1,16 @@
+html(ng-app = "MM_Graph")
+    head
+        script(src='/lib/angular/angular.js')
+        script(src='/lib/angular-route/angular-route.js')
+        script(src='/angular/js/angular-src.js')
+    body
+
+        div(ng-view)
+
+        //script.
+            angular.bootstrap(document, ["MM_Graph"])
+        //div
+            label Name:
+            input(type="text" ng-model="yourName" placeholder="Enter a name here")
+            hr
+            h1 Hello {{yourName}}!  ... changed no alert

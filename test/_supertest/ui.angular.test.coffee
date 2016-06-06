@@ -9,7 +9,10 @@ describe '_supertest | /angular', ->
   $       = null
 
   before ()->
-    server = new Server().setup_Server().add_Controllers()
+    server = new Server().setup_Server()
+                         .add_Controllers()
+                         .add_Bower_Support()
+                    
     app    = server.app
     request(app)
       .get('/angular')
@@ -19,11 +22,17 @@ describe '_supertest | /angular', ->
         $    = cheerio.load html
 
   it 'Check html loaded ok', ->
-    html.size().assert_Bigger_Than 300
+    html.size().assert_Bigger_Than 250
     html.assert_Contains 'angular.js'
     $('script').length.assert_Is 2
 
+  it 'Check Server Javascript resources', ->
+    request(app)
+      .get('/lib/angular/angular.js')
+      .expect 200
+      
   it 'Angular Components', ->
+    $('script').eq(0).attr().src.assert_Is '/lib/angular/angular.js'
     $('html').attr()['ng-app'].assert_Is 'MM_Graph'
 
 

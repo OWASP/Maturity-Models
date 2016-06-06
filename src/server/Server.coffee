@@ -38,12 +38,14 @@ class Server
     @.app.get '/ping'      , (req, res) => res.end      'pong'
     @.app.get '/d3-radar'  , (req, res) => res.render   'd3-radar'
     @.app.get '/live-radar', (req, res) => res.render   'live-radar'
-    @.app.get '/angular'   , (req, res) => res.render   'angular'
+    #@.app.get '/angular'   , (req, res) => res.render   'angular'
     @
 
   add_Bower_Support: ()=>
     #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
     @.app.use '/lib',  express.static __dirname.path_Combine('../../bower_components')
+    @.app.use '/angular',  express.static __dirname.path_Combine('../../angular/.dist')
+    @
 
   add_Controllers: ->
     api_Path  = '/api/v1'

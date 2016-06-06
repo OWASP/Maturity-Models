@@ -21,7 +21,6 @@
     "node": "5.3.0"
   },
   "dependencies": {
-    "@google/cloud-trace": "^0.5.1",
     "async": "^1.5.2",
     "body-parser": "^1.15.1",
     "cheerio": "^0.20.0",
@@ -31,16 +30,19 @@
     "express-load": "^1.1.15",
     "file-stream-rotator": "0.0.6",
     "fluentnode": "^0.5.5",
-    "jade": "^1.11.0",
     "jsdom": "^8.4.1",
     "json5": "^0.5.0",
     "mocha": "^2.4.5",
     "morgan": "^1.7.0",
+    "pug": "^0.1.0",
     "serve-index": "^1.7.3"
   },
   "devDependencies": {
-    "coffee-coverage": "^1.0.1",
-    "istanbul": "^0.4.3",
-    "supertest": "^1.2.0"
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.0.3",
+    "supertest": "^1.2.0",
+    "webpack": "^1.13.1"
   }
 }
