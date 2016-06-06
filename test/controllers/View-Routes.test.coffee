@@ -1,8 +1,8 @@
 View_Routes = require '../../src/controllers/View-Routes'
 Server     = require '../../src/server/Server'
 
-
-describe 'controllers | View-Routes', ->
+# to be removed since this code is moving to the Angular based UI
+xdescribe 'controllers | View-Routes', ->
   app = null
 
   beforeEach ->

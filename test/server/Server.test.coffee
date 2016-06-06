@@ -60,14 +60,14 @@ describe 'server | Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 16
+      @.routes().assert_Size_Is 13
       @
 
   it 'add_Redirects', ->
     using server, ->
       @.setup_Server()
       @.add_Redirects()
-      @.routes().assert_Size_Is 5
+      @.routes().assert_Size_Is 3
       @
 
   it 'route_Main', ->
@@ -102,7 +102,7 @@ describe 'server | Server', ->
       @.add_Controllers()
       @.add_Redirects()
       #console.log @.routes() 
-      @.routes().assert_Is [ '/', '/ping', '/d3-radar', '/live-radar'
+      @.routes().assert_Is [ '/ping'
                              '/api/v1/logs/path'
                              '/api/v1/logs/list'
                              '/api/v1/logs/file/:index'
@@ -112,14 +112,14 @@ describe 'server | Server', ->
                              '/view/routes/list'      , '/view/routes/list-raw'
                              '/view/file/list'
                              '/view/:filename/table'  , '/view/:filename/table.json'
-                             '/routes']
+                             '/', '/routes']
       
   it 'run', (done)->
     using server, ->
       @.run(true)
       @.port.assert_Is_Not 3000
       @.server_Url().GET (data)=>
-        data.assert_Is 'Found. Redirecting to d3-radar'
+        data.assert_Is 'Found. Redirecting to /ui/html'
         done()
 
   it 'stop', (done)->

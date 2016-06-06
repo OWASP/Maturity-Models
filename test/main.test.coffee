@@ -24,12 +24,11 @@ describe 'main', ->
       @.constructor.name.assert_Is 'Server' 
       @.server_Url().assert_Contains port 
       @.server_Url().GET (data)=>
-        data.assert_Is 'Found. Redirecting to d3-radar' 
+        data.assert_Is 'Found. Redirecting to /ui/html' 
         done()
 
-  it 'check d3-graph', (done)->
+  it 'check /ui/html', (done)->
     using server, ->
-      @.server_Url().add('/d3-radar').GET (html)->
-        html.assert_Contains '<!DOCTYPE html><html><head><meta '
+      @.server_Url().add('/lib/angular/angular.js').GET (html)->
+        html.assert_Contains 'AngularJS v1.5'
         done()
-

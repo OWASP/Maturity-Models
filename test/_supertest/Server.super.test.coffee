@@ -6,7 +6,7 @@ describe '_supertest | Server', ->
   app     = null
 
   before ->
-    server = new Server().setup_Server().add_Controllers()
+    server = new Server().setup_Server().add_Controllers().add_Redirects()
     app    = server.app
 
   it '/aaaa (bad file)', ->                       #
@@ -24,4 +24,4 @@ describe '_supertest | Server', ->
       .get('/')
       .expect 302
       .expect (res)->
-        res.headers.location.assert_Is 'd3-radar'
+        res.headers.location.assert_Is '/ui/html'

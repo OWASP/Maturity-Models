@@ -35,10 +35,10 @@ class Server
 
     #routes
     #@.app.get '/', @.route_Main
-    @.app.get '/'          , (req, res) => res.redirect 'd3-radar'
+    #@.app.get '/'          , (req, res) => res.redirect 'd3-radar'
     @.app.get '/ping'      , (req, res) => res.end      'pong'
-    @.app.get '/d3-radar'  , (req, res) => res.render   'd3-radar'
-    @.app.get '/live-radar', (req, res) => res.render   'live-radar'
+    #@.app.get '/d3-radar'  , (req, res) => res.render   'd3-radar'
+    #@.app.get '/live-radar', (req, res) => res.render   'live-radar'
     #@.app.get '/test'      , (req, res) => res.render   'test'
     #@.app.get '/angular'   , (req, res) => res.render   'angular'
     @
@@ -69,6 +69,7 @@ class Server
     
   add_Redirects: ->
     new Redirects(app:@.app).add_Redirects()
+    @
 
   route_Main: (req, res) ->
     d3 = req.app.d3
