@@ -7,7 +7,7 @@ load              = require 'express-load'
 bodyParser        = require('body-parser');
 d3                = require 'd3'
 morgan            = require 'morgan'
-
+pug               = require 'pug'
 jsdom             = require 'jsdom'
 cheerio           = require 'cheerio'
 Routes            = require './Routes'
@@ -26,7 +26,8 @@ class Server
     @.app = express()
     @.app.d3 = d3
     @.app.jsdom = jsdom
-    @.app.set 'view engine', 'jade'
+    @.app.set 'view engine', 'pug'
+    @.app.engine('pug', pug.renderFile);
 
     #bodyParser
     @.app.use bodyParser.json()
@@ -38,6 +39,7 @@ class Server
     @.app.get '/ping'      , (req, res) => res.end      'pong'
     @.app.get '/d3-radar'  , (req, res) => res.render   'd3-radar'
     @.app.get '/live-radar', (req, res) => res.render   'live-radar'
+    #@.app.get '/test'      , (req, res) => res.render   'test'
     #@.app.get '/angular'   , (req, res) => res.render   'angular'
     @
 
