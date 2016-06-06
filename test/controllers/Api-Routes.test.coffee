@@ -23,12 +23,12 @@ describe 'controllers | Api-Routes', ->
     using new Api_Routes(app:app), ->
       @.router.stack.assert_Size_Is 0 
       @.add_Routes()
-      @.router.stack.assert_Size_Is 1
+      @.router.stack.assert_Size_Is 2
 
   it 'list', ->
     res =
       send: (data)->
-        data.assert_Is [ '/ping', '/routes/list']
+        data.assert_Is [ '/ping', '/routes/list', '/routes/list-raw']
 
     using new Api_Routes(app:app), ->
       @.add_Routes()

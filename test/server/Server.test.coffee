@@ -60,7 +60,7 @@ describe 'server | Server', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 13
+      @.routes().assert_Size_Is 14
       @
 
   it 'add_Redirects', ->
@@ -108,10 +108,10 @@ describe 'server | Server', ->
                              '/api/v1/logs/file/:index'
                              '/api/v1/file/list'                             
                              '/api/v1/file/get/:filename' , '/api/v1/file/save/:filename'
-                             '/api/v1/routes/list'
-                             '/view/routes/list'      , '/view/routes/list-raw'
+                             '/api/v1/routes/list'        , '/api/v1/routes/list-raw'
+                             '/view/routes/list'          , '/view/routes/list-raw'
                              '/view/file/list'
-                             '/view/:filename/table'  , '/view/:filename/table.json'
+                             '/view/:filename/table'      , '/view/:filename/table.json'
                              '/']
       
   it 'run', (done)->
