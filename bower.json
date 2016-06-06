@@ -11,6 +11,7 @@
   "dependencies": {
     "d3": "~3.5.16",
     "radar-chart-d3": "~1.2.1",
-    "foundation": "^5.5.3"
+    "foundation": "^5.5.3",
+    "angular": "^1.5.6"
   }
 }

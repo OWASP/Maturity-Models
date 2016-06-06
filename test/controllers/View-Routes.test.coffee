@@ -37,11 +37,13 @@ describe 'controllers | View-Routes', ->
       @.list(null, res)
 
 
+  # todo: these two tests are not checking for the real difference between /list and /list-raw   
   it 'list', ->
     res =
       render: (page, data)->
         page.assert_Is 'routes'
-        data.assert_Is routes: [ '/', '/ping', '/d3-radar' , '/live-radar', '/routes/list', '/routes/list-raw']
+        console.log data.routes.size()
+        data.routes.assert_Contains '/ping'
 
     using new View_Routes(app:app), ->
       @.add_Routes()
@@ -52,7 +54,7 @@ describe 'controllers | View-Routes', ->
     res =
       render: (page, data)->
         page.assert_Is 'routes'
-        data.assert_Is routes: [ '/', '/ping', '/d3-radar' , '/live-radar', '/routes/list', '/routes/list-raw']
+        data.routes.assert_Contains '/routes/list-raw'
 
     using new View_Routes(app:app), ->
       @.add_Routes()
