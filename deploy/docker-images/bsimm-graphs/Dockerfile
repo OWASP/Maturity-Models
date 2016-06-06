@@ -5,7 +5,18 @@ WORKDIR BSIMM-Graphs
 RUN     sed -i 's/git@github.com:/https:\/\/<user>:<token>@github.com\//' .gitmodules
 RUN     git submodule init
 RUN     npm install -g bower; bower --allow-root install
-RUN     npm install gulp    ; cd src-ui ; ../node_modules/.bin/gulp ; cd ..
+RUN     npm install
+#RUN     npm install gulp
+#RUN     npm install coffee-script
+WORKDIR src-ui
+RUN     pwd
+RUN     ls -la
+RUN     ../node_modules/.bin/coffee -v
+RUN     ../node_modules/.bin/gulp
+RUN     ls .dist
+WORKDIR cd ..
+RUN     pwd
+RUN     ls -la
 #RUN     npm install
 
 #RUN     git pull origin master

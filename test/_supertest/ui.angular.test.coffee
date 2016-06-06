@@ -25,7 +25,7 @@ describe '_supertest | /ui/html', ->
     html.assert_Is 'Cannot GET /ui/html/\n'
 
   it 'Check html loaded ok', ->
-    console.log html
+    #console.log html
     html.size().assert_Bigger_Than 150
     html.assert_Contains 'angular.js'
     $('script').length.assert_Is 2
