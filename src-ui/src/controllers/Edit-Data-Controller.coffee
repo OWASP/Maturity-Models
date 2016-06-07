@@ -20,9 +20,12 @@ angular.module('MM_Graph')
         $scope.intelligence = $scope.data?.activities?.Intelligence
         $scope.ssdl         = $scope.data?.activities?.Governance
         $scope.deployment   = $scope.data?.activities?.SSDL
-        
-        
+                
     else
       $scope.status = 'No team provided'
+
+
+    $scope.aaaa = (source)->
+      console.log $scope.checkboxModel
 
 

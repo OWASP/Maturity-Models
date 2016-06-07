@@ -7,7 +7,7 @@ templateCache = require('gulp-angular-templatecache');
 
 
 source_Folder = './src/**/*.coffee'
-pug_Folder    = './views/*.pug'
+pug_Folder    = './views/**/*.pug'
 html_Folder   = './.dist/html'
 js_Folder     = './.dist/js'
 

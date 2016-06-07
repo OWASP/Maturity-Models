@@ -1,4 +1,4 @@
 angular.module('MM_Graph')
   .directive  'simple', ()->
-    controller: 'AnController'
+    controller: 'EditDataController'
     templateUrl: 'simple.html'

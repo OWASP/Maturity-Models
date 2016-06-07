@@ -1,0 +1,24 @@
+h3 {{title}}...
+table
+    thead
+        tr
+            th ID
+            //th Description
+            th Yes
+            th No
+            th Maybe
+            th NA
+
+    tbody
+        tr(ng-repeat="(key, value) in data")
+            td {{key}}
+            //td {{value}}
+            td
+                input(type="radio" ng-name='key' ng-model="data[key]" value='Yes')
+            td
+                input(type="radio" ng-name='key' ng-model="data[key]" value='No')
+            td
+                input(type="radio" ng-name='key' ng-model="data[key]" value='Maybe')
+            td
+                input(type="radio" ng-name='key' ng-model="data[key]" value='NA')
+
