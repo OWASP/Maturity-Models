@@ -1,9 +1,0 @@
-extends angular-page.pug
-
-block content
-    div(ng-controller='EditDataController')
-        h2 Edit Data
-        p {{status}}
-        p showing data for {{target}}
-        button.small.round.success(ng-click='save_Data()') save
-        textarea(rows=20 ng-model='data').
