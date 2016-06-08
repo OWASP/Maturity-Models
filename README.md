@@ -1,7 +1,37 @@
-# BSIMM-Graphs
-Tools and scripts to create BSIMM-Graphs
+Node application to help managing Maturity Models like the ones created by BSIMM and OpenSAMM
 
-Build status: [![Build Status](https://travis-ci.org/DinisCruz/BSIMM-Graphs.svg?branch=master)](https://travis-ci.org/DinisCruz/BSIMM-Graphs)
+Build status: [![Build Status](https://travis-ci.org/DinisCruz/Maturity-Models.svg?branch=master)](https://travis-ci.org/DinisCruz/Maturity-Models)
+
+
+## Run from source
+
+```
+git clone git@github.com:DinisCruz/Maturity-Models.git
+cd Maturity-Models
+npm install
+bower install
+git submodule init
+git submodule update
+cd src-ui
+gulp
+cd ..
+npm start
+```
+
+## Run tests
+```
+npm test
+```
+
+## Docker image
+
+avaialble at https://hub.docker.com/r/diniscruz/bsimm-graphs/
+
+
+## BSIMM-Graphs
+The first version of this tool is designed to work with BSIMM mappings, but there is work under way to also add OpenSAMM mappings
+
+
 
 The data is stored in the repo https://github.com/DinisCruz/BSIMM-Graphs-Data which should be forked to hold private/custom data
 
