@@ -2,7 +2,7 @@ Server  = require '../../src/server/Server'
 request = require 'supertest'
 cheerio = require 'cheerio'
 
-describe '_supertest | /ui/html', ->
+describe '_supertest | /view', ->
   server  = null
   app     = null
   html    = null
@@ -11,18 +11,20 @@ describe '_supertest | /ui/html', ->
   before ()->
     server = new Server().setup_Server()
                          .add_Controllers()
+                         .add_Angular_Route()
                          .add_Bower_Support()
                     
     app    = server.app
     request(app)
-      .get('/ui/html/')
+      .get('/view/')
       .expect 200
       .expect (res)->
-        html = res.text
-        $    = cheerio.load html
+        if res
+          html = res.text
+          $    = cheerio.load html
 
   xit 'Check html doesnt load ok', ->
-    html.assert_Is 'Cannot GET /ui/html/\n'
+    html.assert_Is 'Cannot GET /view/\n'
 
   it 'Check html loaded ok', ->
     #console.log html

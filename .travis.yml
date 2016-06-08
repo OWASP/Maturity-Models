@@ -18,7 +18,9 @@ env:
 
 
 before_install:
+    - cat .gitmodules
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - cat .gitmodules
     - git submodule update --init --recursive
 
 before_script:
