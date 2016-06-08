@@ -1,7 +1,6 @@
 angular.module('MM_Graph')
-  .controller 'EditDataController', ($scope, $location, MM_Graph_API)->
-
-    target = $location.search().team
+  .controller 'EditDataController', ($scope, $routeParams,  MM_Graph_API)->
+    target = $routeParams.target
 
     $scope.save_Data = ()->
       #$scope.status = 'saving data ....'

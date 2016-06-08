@@ -1,8 +1,8 @@
 angular.module('MM_Graph')
-  .controller 'RadarController', ($scope, $location, MM_Graph_API)->
+  .controller 'RadarController', ($scope, $routeParams, MM_Graph_API)->
     $scope.version = 'v0.7.7'
 
-    target = $location.search().team
+    target = $routeParams.target
 
     if target
       MM_Graph_API.file_Get target,(result)->

@@ -1,7 +1,7 @@
 angular.module('MM_Graph')
-  .controller 'ViewDataController', ($scope, $location, MM_Graph_API)->
+  .controller 'ViewDataController', ($scope, $routeParams, MM_Graph_API)->
 
-    target = $location.search().team
+    target = $routeParams.target
 
     if target
       $scope.status = 'loading team data'

@@ -1,8 +1,12 @@
-dl.sub-nav
-    dt {{target}}
+br
+dl.sub-nav(ng-cloak)
+    dt
+        b
+            a(href='/view/teams') {{target}}
     dd
-        a(href='/view/table?team={{target}}') view
+        a(href='/view/{{target}}') view
     dd
-        a(href='/view/data-ui?team={{target}}') edit
+        a(href='/view/{{target}}/edit') edit
     dd
-        a(href='/view/raw?team={{target}}') raw
+        a(href='/view/{{target}}/raw') raw
+br
