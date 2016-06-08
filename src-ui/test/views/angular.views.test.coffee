@@ -28,7 +28,10 @@ describe '| angular | views | angular-page', ->
       expect(element[3].src    ).to.contain '/lib/angular/angular.js'
 
       expect(element[4].tagName).to.equal 'SCRIPT'
-      expect(element[4].src    ).to.contain '/ui/js/angular-src.js'
+      expect(element[4].src    ).to.contain '/lib/angular-route/angular-route.js'
+      
+      expect(element[5].tagName).to.equal 'SCRIPT'
+      expect(element[5].src    ).to.contain '/ui/js/angular-src.js'
 
       #expect(element[5].tagName).to.equal 'SCRIPT'
       #expect(element[5].src    ).to.contain '/lib/foundation/js/foundation.js'
