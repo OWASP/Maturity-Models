@@ -1,9 +1,0 @@
-extends angular-page.pug
-
-block content
-    //Issue 53 - Only use d3 script includes on pages that need it
-    link(rel="stylesheet", href="/lib/radar-chart-d3/src/radar-chart.min.css")
-    script(src='/lib/d3/d3.min.js')
-    script(src='/lib/radar-chart-d3/src/radar-chart.min.js')
-
-    ng-view
