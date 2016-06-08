@@ -1,0 +1,8 @@
+.row
+    div(ng-controller='RoutesController')
+        div.callout.large.primary
+            div.row.column
+                h4 API methods
+                ul
+                    #routes(ng-repeat="(key, value) in routes.sort()")
+                        a(href='{{value}}' target='_self') {{value}}

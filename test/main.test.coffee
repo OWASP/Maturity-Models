@@ -24,7 +24,7 @@ describe 'main', ->
       @.constructor.name.assert_Is 'Server' 
       @.server_Url().assert_Contains port 
       @.server_Url().GET (data)=>
-        data.assert_Is 'Found. Redirecting to /ui/html' 
+        data.assert_Is 'Found. Redirecting to /view' 
         done()
 
   it 'check /ui/html', (done)->

@@ -1,0 +1,19 @@
+.row
+    div(ng-controller='TeamsController')
+        div.callout.large.primary
+            div.row.column(ng-cloak)
+                h4 Current teams
+                table
+                    thead
+                        th name
+                        th(colspan=3).text-center action
+                    tbody
+                    tr(ng-repeat="(key, value) in teams.sort()")
+                        td
+                            span {{value}}
+                        td
+                            a(href='/view/table?team={{value}}') view
+                        td
+                            a(href='/view/data-ui?team={{value}}') edit
+                        td
+                            a(href='/view/raw?team={{value}}') raw

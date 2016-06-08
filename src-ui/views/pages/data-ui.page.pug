@@ -1,0 +1,30 @@
+
+style.
+    td { padding: 0px}
+
+
+div.ng-hide(ng-controller='EditDataController' ng-show='data')
+    br
+    .row.fullWidth
+        .small-2.columns
+            label.right.inline
+                b Team Name:
+        .small-4.columns
+            input(type="text" ng-model='metadata.team')
+        .small-1.columns
+            a.button.postfix(ng-click='save_Data()') save
+        .small-1.columns
+        .small-4.columns
+            .center.label.success.round {{status}}
+
+    .row.fullWidth
+        hr
+    .row.fullWidth
+        .medium-3.columns
+            activityTable(title='"Governance"', data='governance')
+        .medium-3.columns
+            activityTable(title='"Intelligence"', data='intelligence')
+        .medium-3.columns
+            activityTable(title='"SSDL"', data='ssdl')
+        .medium-3.columns
+            activityTable(title='"Deployment"' data='deployment')

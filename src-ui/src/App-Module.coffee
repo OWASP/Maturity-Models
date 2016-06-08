@@ -1,1 +1,1 @@
-app = angular.module('MM_Graph', [])
+app = angular.module('MM_Graph', ['ngRoute'])

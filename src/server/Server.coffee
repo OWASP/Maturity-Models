@@ -29,13 +29,12 @@ class Server
     @.app.use bodyParser.json()
     #@.app.use bodyParser.urlencoded extended: true
 
-    #routes
-    #@.app.get '/'          , (req, res) => res.redirect 'd3-radar'
+    # test route
     @.app.get '/ping'      , (req, res) => res.end      'pong'
-    #@.app.get '/d3-radar'  , (req, res) => res.render   'd3-radar'
-    #@.app.get '/live-radar', (req, res) => res.render   'live-radar'
-    #@.app.get '/test'      , (req, res) => res.render   'test'
-    #@.app.get '/angular'   , (req, res) => res.render   'angular'
+    @
+
+  add_Angular_Route: ()=>
+    @.app.get '/view*'        , (req, res) => res.sendFile __dirname.path_Combine('../../src-ui/.dist/html/index.html')
     @
 
   add_Bower_Support: ()=>
@@ -46,7 +45,7 @@ class Server
 
   add_Controllers: ->
     api_Path  = '/api/v1'
-    view_Path = '/view'
+    view_Path = '/_view'
     Api_File    = require '../controllers/Api-File'
     Api_Logs    = require '../controllers/Api-Logs'
     Api_Routes  = require '../controllers/Api-Routes'
@@ -98,6 +97,7 @@ class Server
       @.port = 23000 + 3000.random()
     @.setup_Server()
     @.setup_Logging()
+    @.add_Angular_Route()
     @.add_Bower_Support()
     @.add_Controllers()
     @.add_Redirects()

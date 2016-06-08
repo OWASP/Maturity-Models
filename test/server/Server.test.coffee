@@ -89,7 +89,8 @@ describe 'server | Server', ->
       @.setup_Server()
       @.add_Controllers()
       @.add_Redirects()
-      #console.log @.routes() 
+      @.add_Angular_Route()
+      #console.log @.routes()
       @.routes().assert_Is [ '/ping'
                              '/api/v1/logs/path'
                              '/api/v1/logs/list'
@@ -97,17 +98,17 @@ describe 'server | Server', ->
                              '/api/v1/file/list'                             
                              '/api/v1/file/get/:filename' , '/api/v1/file/save/:filename'
                              '/api/v1/routes/list'        , '/api/v1/routes/list-raw'
-                             '/view/routes/list'          , '/view/routes/list-raw'
-                             '/view/file/list'
-                             '/view/:filename/table'      , '/view/:filename/table.json'
-                             '/']
+                             '/_view/routes/list'         , '/_view/routes/list-raw'
+                             '/_view/file/list'
+                             '/_view/:filename/table'     , '/_view/:filename/table.json'
+                             '/', '/view*']
       
   it 'run', (done)->
     using server, ->
       @.run(true)
       @.port.assert_Is_Not 3000
       @.server_Url().GET (data)=>
-        data.assert_Is 'Found. Redirecting to /ui/html'
+        data.assert_Is 'Found. Redirecting to /view'
         done()
 
   it 'stop', (done)->

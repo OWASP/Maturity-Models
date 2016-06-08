@@ -6,4 +6,4 @@ app.directive  'activitytable', ()->
   scope:
     title: '=title'
     data : '=data'
-  templateUrl: 'directives/activity-table.html'
+  templateUrl: '/ui/html/directives/activity-table.html'

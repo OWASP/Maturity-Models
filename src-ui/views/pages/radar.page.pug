@@ -1,0 +1,82 @@
+
+link(rel="stylesheet", href="/lib/radar-chart-d3/src/radar-chart.min.css")
+script(src='/lib/d3/d3.min.js')
+script(src='/lib/radar-chart-d3/src/radar-chart.min.js')
+
+div.callout.large.primary
+    div.row.column.text-center
+        h3 BSIMM Radar Graphs (v0.7.5).
+        br
+        div.label.warning Earth Results
+        div.label.success HealthCare Results
+        hr
+        div.chart-container
+
+script.
+    alert('data')
+    var data = [
+        {
+            className: 'Earth Results',
+            axes: [
+                {axis: "Strategy & Metrics"                      , xOffset: 1    , value: 0},
+                {axis: "Conf & Vuln Management"                  , xOffset: -110 , value: 0},
+                {axis: "Software Environment"                    , xOffset: -30  , value: 0},
+                {axis: "Penetration Testing"                     , xOffset: 1    , value: 0},
+                {axis: "Security Testing"                        , xOffset: -25  , value: 0},
+                {axis: "Code Review"                             , xOffset: -60  , value: 0},
+                {axis: "Architecture Analysis"                   , xOffset: 1    , value: 0},
+                {axis: "Standards & Requirements"                , xOffset: 100  , value: 0},
+                {axis: "Security Features & Design"              , xOffset: 30   , value: 0},
+                {axis: "Attack Models"                           , xOffset: 1    , value: 0},
+                {axis: "Training"                                , xOffset: 30   , value: 0},
+                {axis: "Compliance and Policy"                   , xOffset: 100  , value: 0},
+
+            ]
+        },
+        {
+            className: 'Team A',
+            axes: [
+                { value: 2.0 },  // Strategy & Metrics
+                { value: 2.0 },  // Configuration & Vulnerability Management
+                { value: 1.8 },  // Software Environment
+                { value: 1.5 },  // Penetration Testing
+                { value: 1.5 },  // Security Testing
+                { value: 1.4 },  // Code Review
+                { value: 1.4 },  // Architecture Analysis
+                { value: 1.9 },  // Standards & Requirements
+                { value: 1.6 },  // Security Features & Design
+                { value: 1.3 },  // Attack Models
+                { value: 1.2 },  // Training
+                { value: 2.1 },  // Compliance and Policy
+            ]
+        },
+        {
+            className: 'HealthCare results',
+            colour:'red',
+            axes: [
+                { value: 1.8 },  // Strategy & Metrics
+                { value: 2.0 },  // Configuration & Vulnerability Management
+                { value: 1.3 },  // Software Environment
+                { value: 1.3 },  // Penetration Testing
+                { value: 0.9 },  // Security Testing
+                { value: 1.2 },  // Code Review
+                { value: 1.1 },  // Architecture Analysis
+                { value: 1.6 },  // Standards & Requirements
+                { value: 1.3 },  // Security Features & Design
+                { value: 1.2 },  // Attack Models
+                { value: 1.1 },  // Training
+                { value: 1.9 },  // Compliance and Policy
+            ]
+        }
+    ];
+
+    var config = {
+        color: function (index) { return ['black', 'orange', 'green'][index]; },
+        w: 450,
+        h: 450,
+        levels: 6,
+        maxValue:3.0
+    }
+    alert('data')
+    RadarChart.draw(".chart-container", data, config);
+

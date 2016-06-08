@@ -24,4 +24,4 @@ describe '_supertest | Server', ->
       .get('/')
       .expect 302
       .expect (res)->
-        res.headers.location.assert_Is '/ui/html'
+        res.headers.location.assert_Is '/view'
