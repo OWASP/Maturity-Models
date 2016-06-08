@@ -30,24 +30,24 @@ before_script:
 
 after_success:
   - echo ">>>>> Updating Dev fork <<<<<"
-  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git
+  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/Maturity-Models.git
   - git push -f upstream 
   
   - echo ">>>>> Building DOCKER IMAGE and pushing it go Docker Hub <<<<<"
 
   - echo 'building docker image'
   - docker images
-  - docker build --no-cache -t diniscruz/bsimm-graphs ./deploy/docker-images/bsimm-graphs/
+  - docker build --no-cache -t diniscruz/maturity-models ./deploy/docker-images/bsimm-graphs/
   - docker images
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push diniscruz/bsimm-graphs
+  - docker push diniscruz/maturity-models
 
-  - echo ">>>>> Cloning BSIMM-Graph-QA, adding extra commit and pushing it to DinisCruz-Dev for  <<<<<"
+  - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
 
   - cd ..
-  - git clone https://github.com/DinisCruz/BSIMM-Graphs-QA.git
-  - cd BSIMM-Graphs-QA
-  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs-QA.git
+  - git clone https://github.com/DinisCruz/Maturity-Models-QA.git
+  - cd Maturity-Models-QA
+  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/Maturity-Models-QA.git
 
   - git config --global user.email "bot@travis.com"
   - git config --global user.name "Travis Bot"
@@ -56,7 +56,3 @@ after_success:
   - git add .
   - git commit -m "Comming files for $(git rev-parse HEAD)"
   - git push -f upstream master
-
-  #- git commit -m 'custom update to .gitmodules (for snap-ci)'
-  #- echo "pushing changes to DinisCruz-Dev fork, which will trigger a docker cloud build"
-  #- git push -f https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/BSIMM-Graphs.git master
