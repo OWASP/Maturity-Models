@@ -1,5 +1,24 @@
-h3 {{title}}...
-table
+style.
+    .panel.callout {
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    td {
+        padding: 2px !important;
+        text-align: center !important;
+    }
+
+    input[type="radio"] {
+        vertical-align: middle !important;
+        margin :0 !important;
+    }
+
+.panel.callout.radius.text-center
+    b {{title}}
+
+table.fullWidth
+    tr
     thead
         tr
             th ID
@@ -10,8 +29,8 @@ table
             th NA
 
     tbody
-        tr(ng-repeat="(key, value) in data")
-            td {{key}}
+        tr.cell(ng-repeat="(key, value) in data")
+            td.text-left {{key}}
             //td {{value}}
             td
                 input(type="radio" ng-name='key' ng-model="data[key]" value='Yes')
@@ -21,4 +40,3 @@ table
                 input(type="radio" ng-name='key' ng-model="data[key]" value='Maybe')
             td
                 input(type="radio" ng-name='key' ng-model="data[key]" value='NA')
-

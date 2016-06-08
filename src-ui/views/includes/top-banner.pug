@@ -1,0 +1,28 @@
+nav.top-bar(data-topbar='', role='navigation')
+    ul.title-area
+        li.name
+            h1
+                a(href='/') BSIMM Graphs
+        //li.toggle-topbar.menu-icon
+            a(href='#')
+                span Menu
+    section.top-bar-section
+        // Right Nav Section
+        //ul.right
+            li.active
+                a(href='#') Right Button Active
+            li.has-dropdown
+                a(href='#') Right Button Dropdown
+                ul.dropdown
+                    li
+                        a(href='#') First link in dropdown
+                    li.active
+                        a(href='#') Active link in dropdown
+        // Left Nav Section
+        ul.left
+            li
+                a(ng-href='./routes.html') API methods
+            li
+                a(ng-href='./data-ui.html?team=team-A') Edit team A
+            li
+                a(ng-href='./data-ui.html?team=team-C') Edit team C

@@ -1,62 +1,39 @@
 extends angular-page.pug
 
+
 block content
+    style.
+        .fullWidth {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: initial;
+            }
+        td { padding: 0px}
+
+
     div(ng-controller='EditDataController')
-        .row
-            h2 Edit UI
+        br
+        .row.fullWidth
+            .small-2.columns
+                label.right.inline
+                    b Team Name:
+            .small-4.columns
+                input(type="text" ng-model='metadata.team')
+            .small-1.columns
+                a.button.postfix(ng-click='save_Data()') save
+            .small-1.columns
+            .small-4.columns
+                .center.label.success.round {{status}}
 
-            p {{status}}
-            button.small.round.success(ng-click='save_Data()') save
-        .row
+        .row.fullWidth
+            hr
+        .row.fullWidth
             .medium-3.columns
                 activityTable(title='"Governance"', data='governance')
             .medium-3.columns
-                activityTable(title='"Governance"', data='governance')
+                activityTable(title='"Intelligence"', data='intelligence')
             .medium-3.columns
-                activityTable(title='"Governance"', data='governance')
+                activityTable(title='"SSDL"', data='ssdl')
             .medium-3.columns
-                activityTable(title='"abc"' data='intelligence')
-                //
-        .row
-            p showing data for {{target}}
-
-            h2 Governance
-            //table(style='width:50%; padding:0px ; font-size:10px')
-                thead
-                    tr
-                        th ID
-                        th Description
-                        th Yes
-                        th No
-                        th Maybe
-                        th NA
-
-                tbody
-                    tr(ng-repeat="(key, value) in governance")
-                        td {{key}}
-                        td {{value}}
-                        td
-                            input(type="radio" ng-name='key' ng-model="governance[key]" value='Yes')
-                        td
-                            input(type="radio" ng-name='key' ng-model="governance[key]" value='No')
-                        td
-                            input(type="radio" ng-name='key' ng-model="governance[key]" value='Maybe')
-                        td
-                            input(type="radio" ng-name='key' ng-model="governance[key]" value='NA')
-
-
-
-
-
-            div(ng-model='status')
-            //p {{data_raw.activities.Governance}
-            input(type="checkbox" ng-model="checkboxModel" ng-change='aaaa(this)')
-            ul
-                li {{governance}}
-                li {{intelligence}}
-                li {{ssdl}}
-                li {{deployment}}
-
-            input(ng-model='deployment["AA.1.1"]')
-
-            textarea(rows=10 ng-model='data').
+                activityTable(title='"Deployment"' data='deployment')

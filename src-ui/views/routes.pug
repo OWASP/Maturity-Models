@@ -1,10 +1,11 @@
 extends angular-page.pug
 
 block content
-    div(ng-controller='RoutesController')
-        div.callout.large.primary
-            div.row.column
-                h2 Available routes
-                ul
-                    #routes(ng-repeat="(key, value) in routes.sort()")
-                        a(href='{{value}}') {{value}}
+    .row
+        div(ng-controller='RoutesController')
+            div.callout.large.primary
+                div.row.column
+                    h4 API methods
+                    ul
+                        #routes(ng-repeat="(key, value) in routes.sort()")
+                            a(href='{{value}}') {{value}}

@@ -14,6 +14,7 @@ html(ng-app = "MM_Graph")
 
 
     body
-        h1 here
-        //.row.center
+        include ./includes/top-banner.pug
         block content
+        script.
+            $(document).foundation();
