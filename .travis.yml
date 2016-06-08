@@ -25,10 +25,23 @@ before_install:
 
 before_script:
 
+  #- npm install -g bower
+  #- bower install
+  #- npm install -g gulp
+  #- cd ui; gulp; cd ..
+  - cd ui
+  - npm install
   - npm install -g bower
-  - bower install
   - npm install -g gulp
-  - cd ui; gulp; cd ..
+  - bower install
+  - gulp
+
+
+script:
+  - npm test
+  - cd ui
+  - npm test
+  - cd ..
 
 after_success:
   - echo ">>>>> Updating Dev fork <<<<<"
