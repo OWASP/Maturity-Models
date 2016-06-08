@@ -1,3 +1,6 @@
 [submodule "data/BSIMM-Graphs-Data"]
 	path = data/BSIMM-Graphs-Data
 	url = git@github.com:DinisCruz/BSIMM-Graphs-Data.git
+[submodule "src-ui"]
+	path = src-ui
+	url = git@github.com:DinisCruz/Maturity-Models-UI.git
