@@ -12,7 +12,7 @@ npm install
 bower install
 git submodule init
 git submodule update
-cd src-ui
+cd ui
 gulp
 cd ..
 npm start

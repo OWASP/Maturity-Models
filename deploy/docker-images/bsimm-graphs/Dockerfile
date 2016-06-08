@@ -10,7 +10,7 @@ RUN     npm install
 
 RUN     npm install -g bower; bower --allow-root install
 RUN     npm install -g gulp;
-RUN     cd src-ui; gulp
+RUN     cd ui; gulp
 
 RUN     mkdir logs              # node app was failing to create this folder
 
