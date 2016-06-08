@@ -3,4 +3,4 @@
 	url = git@github.com:DinisCruz/BSIMM-Graphs-Data.git
 [submodule "ui"]
 	path = ui
-	url = https://github.com/DinisCruz/Maturity-Models-ui
+	url = git@github.com:DinisCruz/Maturity-Models-UI.git
