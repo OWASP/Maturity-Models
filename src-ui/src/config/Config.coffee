@@ -4,4 +4,4 @@ angular.module('MM_Graph')
      enabled: true,
      requireBase: false
 
-    console.log 'global config will go here'  
+    #console.log 'global config will go here'

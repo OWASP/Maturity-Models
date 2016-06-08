@@ -16,6 +16,11 @@ class MM_Graph_API
       .success (data)->
         callback data
 
+  file_List: (callback)=>
+    url = "/api/v1/file/list"
+    @.$http.get url
+      .success callback
+
   file_Save: (target,data, callback)=>
     url = "/api/v1/file/save/#{target}?pretty"
     @.$http.post url, data

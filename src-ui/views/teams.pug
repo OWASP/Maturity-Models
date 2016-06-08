@@ -1,0 +1,11 @@
+extends angular-page.pug
+
+block content
+    .row
+        div(ng-controller='TeamsController')
+            div.callout.large.primary
+                div.row.column
+                    h4 Current teams
+                    ul
+                        #routes(ng-repeat="(key, value) in teams.sort()")
+                            a(href='./data-ui.html?team={{value}}') {{value}}
