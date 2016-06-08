@@ -35,6 +35,7 @@ before_script:
   - npm install -g gulp
   - bower install
   - gulp
+  - cd ..
 
 
 script:
