@@ -7,14 +7,12 @@ class MM_Graph_API
   routes: (callback)=>
     url = "/api/v1/routes/list"
     @.$http.get url
-           .success (data)->
-              callback data
+           .success callback
 
   file_Get: (target,callback)=>
     url = "/api/v1/file/get/#{target}?pretty"
     @.$http.get url
-      .success (data)->
-        callback data
+      .success callback
 
   file_List: (callback)=>
     url = "/api/v1/file/list"
@@ -26,6 +24,12 @@ class MM_Graph_API
     @.$http.post url, data
       .success (data)->
         callback data
+
+  view_Table: (target,callback)=>
+    url = "/view/#{target}/table.json"
+    @.$http.get url
+      .success callback
+
 
 app.service 'MM_Graph_API', ($http)=>
   return new MM_Graph_API $http

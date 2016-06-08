@@ -4,8 +4,19 @@ block content
     .row
         div(ng-controller='TeamsController')
             div.callout.large.primary
-                div.row.column
+                div.row.column(ng-cloak)
                     h4 Current teams
-                    ul
-                        #routes(ng-repeat="(key, value) in teams.sort()")
-                            a(href='./data-ui.html?team={{value}}') {{value}}
+                    table
+                        thead
+                            th name
+                            th(colspan=3).text-center action
+                        tbody
+                        tr(ng-repeat="(key, value) in teams.sort()")
+                            td
+                                span {{value}}
+                            td
+                                a(href='./table.html?team={{value}}') view
+                            td
+                                a(href='./data-ui.html?team={{value}}') edit
+                            td
+                                a(href='./raw.html?team={{value}}') raw
