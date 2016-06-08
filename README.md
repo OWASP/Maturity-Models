@@ -25,7 +25,7 @@ npm test
 
 ## Docker image
 
-avaialble at https://hub.docker.com/r/diniscruz/bsimm-graphs/
+avaialble at https://hub.docker.com/r/diniscruz/maturity-models/
 
 
 ## BSIMM-Graphs
