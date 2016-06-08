@@ -4,5 +4,5 @@ angular.module('MM_Graph')
 
     if target
       MM_Graph_API.view_Table target, (data)->
-        $scope.team = target
+        $scope.target = target
         $scope.table = data

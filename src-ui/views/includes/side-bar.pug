@@ -1,9 +1,8 @@
-ul.side-nav
-    li
-        a(href='#') Link 1
-    li
-        a(href='#') Link 2
-    li
-        a(href='#') Link 3
-    li
-        a(href='#') Link 4
+dl.sub-nav
+    dt {{target}}
+    dd
+        a(href='/view/table?team={{target}}') view
+    dd
+        a(href='/view/data-ui?team={{target}}') edit
+    dd
+        a(href='/view/raw?team={{target}}') raw
