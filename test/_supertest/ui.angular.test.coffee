@@ -2,7 +2,7 @@ Server  = require '../../src/server/Server'
 request = require 'supertest'
 cheerio = require 'cheerio'
 
-describe.only '_supertest | /view', ->
+describe '_supertest | /view', ->
   server  = null
   app     = null
   html    = null
