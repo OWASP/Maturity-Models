@@ -26,7 +26,7 @@ class MM_Graph_API
         callback data
 
   view_Table: (target,callback)=>
-    url = "/view/#{target}/table.json"
+    url = "/_view/#{target}/table.json"
     @.$http.get url
       .success callback
 
