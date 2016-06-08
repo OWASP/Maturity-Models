@@ -1,7 +1,7 @@
 FROM    node
 
 RUN 	git clone https://github.com/DinisCruz/Maturity-Models.git
-WORKDIR BSIMM-Graphs
+WORKDIR Maturity-Models
 RUN     sed -i 's/git@github.com:/https:\/\/<user>:<token>@github.com\//' .gitmodules
 RUN     git submodule init
 RUN     git submodule update
