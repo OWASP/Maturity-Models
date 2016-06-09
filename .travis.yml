@@ -46,7 +46,9 @@ script:
   - npm test
   - cd ..
 
-after_script:
+
+after_success:
+
   - echo ">>>>> Building DOCKER IMAGE and pushing it go Docker Hub <<<<<"
   - echo 'building docker image'
   - docker images
@@ -55,14 +57,13 @@ after_script:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker push diniscruz/maturity-models
 
-after_success:
+
   - echo ">>>>> Updating Dev fork <<<<<"
   - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/Maturity-Models.git
   - git push -f upstream 
 
 
   - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
-
   - cd ..
   - git clone https://github.com/DinisCruz/Maturity-Models-QA.git
   - cd Maturity-Models-QA
