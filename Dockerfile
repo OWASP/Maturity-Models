@@ -7,10 +7,11 @@ RUN     git submodule init
 RUN     git submodule update
 RUN     git pull origin master
 RUN     npm install
-RUN     npm install -g bower
-RUN     npm install -g gulp
 
 WORKDIR ui
+RUN     npm install
+RUN     npm install -g bower
+RUN     npm install -g gulp
 RUN     bower --allow-root install
 RUN     gulp
 WORKDIR ..
