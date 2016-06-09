@@ -39,24 +39,26 @@ before_script:
 
 
 script:
+  - echo ">>>>> Running core tests<<<<<"
   - npm test
+  - echo ">>>>> Running UI tests<<<<<"
   - cd ui
   - npm test
   - cd ..
+
+  - echo ">>>>> Building DOCKER IMAGE and pushing it go Docker Hub <<<<<"
+  - echo 'building docker image'
+  - docker images
+  - docker build -t diniscruz/maturity-models .
+  - docker images
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push diniscruz/maturity-models
 
 after_success:
   - echo ">>>>> Updating Dev fork <<<<<"
   - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/Maturity-Models.git
   - git push -f upstream 
-  
-  - echo ">>>>> Building DOCKER IMAGE and pushing it go Docker Hub <<<<<"
 
-  - echo 'building docker image'
-  - docker images
-  - docker build --no-cache -t diniscruz/maturity-models ./deploy/docker-images/bsimm-graphs/
-  - docker images
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push diniscruz/maturity-models
 
   - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
 

@@ -1,7 +1,7 @@
 {
-  "name": "bsimm-graphs",
+  "name": "maturity-models",
   "version": "0.0.1",
-  "description": "BSIMM Graphs",
+  "description": "Maturity Models",
   "main": "server.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --recursive -R list",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DinisCruz/BSIMM-Graphs.git"
+    "url": "git+https://github.com/DinisCruz/Maturity-Models.git"
   },
   "author": "Dinis Cruz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DinisCruz/BSIMM-Graphs/issues"
+    "url": "https://github.com/DinisCruz/Maturity-Models/issues"
   },
-  "homepage": "https://github.com/DinisCruz/BSIMM-Graphs#readme",
+  "homepage": "https://github.com/DinisCruz/Maturity-Models#readme",
   "engines": {
     "node": "5.3.0"
   },

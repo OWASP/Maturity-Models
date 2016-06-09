@@ -1,6 +1,0 @@
-engines:
-  coffeelint:
-    enabled: true
-    checks:
-      camel_case_classes:
-        enabled: false
