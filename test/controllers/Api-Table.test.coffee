@@ -1,8 +1,8 @@
-View_File = require '../../src/controllers/View-Table'
+Api_Table = require '../../src/controllers/Api-Table'
 Server     = require '../../src/server/Server'
 
 
-describe 'controllers | View-Table', ->
+describe 'controllers | Api-Table', ->
   app       = null
   req       = null
   view_File = null
@@ -13,30 +13,23 @@ describe 'controllers | View-Table', ->
       params :
         filename: 'team-A'
 
-    using new View_File(app:app), ->
+    using new Api_Table(app:app), ->
       @.add_Routes()
       @.app.use('routes', @.router)
       view_File = @
 
   it 'constructor', ->
-    using new View_File(app: app), ->
-      @           .constructor.name.assert_Is 'View_Table'
+    using new Api_Table(app: app), ->
+      @           .constructor.name.assert_Is 'Api_Table'
       @.data_Files.constructor.name.assert_Is 'Data_Files'
 
   it 'add_Routes', ->
-    using new View_File(app:app), ->
+    using new Api_Table(app:app), ->
       @.add_Routes()
-      @.router.stack.assert_Size_Is 2
-
-  it 'table', ->
-    res =
-      render: (page, data)->
-        page.assert_Is 'tables/bsimm-table'
-        data.table.headers.assert_Is [ 'Governance', 'Intelligence', 'SSDL', 'Deployment' ]
-    view_File.table(req, res)
+      @.router.stack.assert_Size_Is 1
 
   it 'table (bad file)', ->
-    res = send: (data)-> data.assert_Is 'not found'
+    res = send: (data)-> data.assert_Is {}
     req = params: null
     view_File.table(req, res)
 
@@ -52,10 +45,4 @@ describe 'controllers | View-Table', ->
         data.rows[0].size().assert_Is 8
         data.rows[0].assert_Is [ 'SM.1.1', 'Yes', 'AM1.2', 'Maybe',
                                  'AA.1.1','Maybe','PT.1.1','Maybe' ]
-
-    view_File.table_Json(req, res)
-
-  it 'table_Json (bad filename)', ->
-    res = send: (data)-> data.assert_Is {}
-    req = params: null
-    view_File.table_Json(req, res)
+    view_File.table(req, res)

@@ -46,21 +46,20 @@ describe 'server | Server', ->
         data.assert_Is 'pong'
         done()
 
-  it 'add_Bower_Support', (done)->
+  it 'add_Bower_Support', ()->
     using server, ->
-      @.port = 2000 + 5000.random()
       @.setup_Server()
       @.add_Bower_Support()
-      @.start_Server()
-      @.server_Url().add('/lib/jquery/dist/jquery.js').GET (data)=>
-        data.assert_Contains 'jQuery JavaScript Library v2.2.4'
-        done()
+      static_Routes = (route for route in @.app._router.stack when route.name is 'serveStatic')
 
-  it 'add_Controllers', -> 
+      static_Routes[0].regexp.assert_Is /^\/lib\/?(?=\/|$)/i
+      static_Routes[1].regexp.assert_Is /^\/ui\/?(?=\/|$)/i
+
+  it 'add_Controllers', ->
     using server, ->
       @.setup_Server()
       @.add_Controllers()
-      @.routes().assert_Size_Is 14
+      @.routes().assert_Size_Is_Bigger_Than 9
       @
 
   it 'add_Redirects', ->
@@ -91,18 +90,22 @@ describe 'server | Server', ->
       @.add_Redirects()
       @.add_Angular_Route()
       #console.log @.routes()
-      @.routes().assert_Is [ '/ping'
-                             '/api/v1/logs/path'
-                             '/api/v1/logs/list'
-                             '/api/v1/logs/file/:index'
-                             '/api/v1/file/list'                             
-                             '/api/v1/file/get/:filename' , '/api/v1/file/save/:filename'
-                             '/api/v1/routes/list'        , '/api/v1/routes/list-raw'
-                             '/_view/routes/list'         , '/_view/routes/list-raw'
-                             '/_view/file/list'
-                             '/_view/:filename/table'     , '/_view/:filename/table.json'
-                             '/', '/view*']
-      
+      expected_Routes = [ '/ping'
+                          '/api/v1/logs/path'
+                          '/api/v1/logs/list'
+                          '/api/v1/logs/file/:index'
+                          '/api/v1/file/list'
+                          '/api/v1/file/get/:filename' , '/api/v1/file/save/:filename'
+                          '/api/v1/routes/list'        , '/api/v1/routes/list-raw'
+                          '/api/v1/table/:filename'
+                          '/', '/view*']
+      current_Routes = @.routes()
+      for route in expected_Routes                # this makes is easier to find out which one is missing
+        current_Routes.assert_Contains route
+
+      for route in current_Routes
+        expected_Routes.assert_Contains route
+
   it 'run', (done)->
     using server, ->
       @.run(true)

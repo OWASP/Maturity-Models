@@ -26,9 +26,3 @@ describe 'main', ->
       @.server_Url().GET (data)=>
         data.assert_Is 'Found. Redirecting to /view' 
         done()
-
-  it 'check /ui/html', (done)->
-    using server, ->
-      @.server_Url().add('/lib/angular/angular.js').GET (html)->
-        html.assert_Contains 'AngularJS v1.5'
-        done()

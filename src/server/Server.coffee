@@ -7,7 +7,6 @@ load              = require 'express-load'
 bodyParser        = require('body-parser');
 d3                = require 'd3'
 morgan            = require 'morgan'
-#pug               = require 'pug'
 cheerio           = require 'cheerio'
 Routes            = require './Routes'
 Redirects         = require './Redirects'
@@ -27,7 +26,6 @@ class Server
 
     #bodyParser
     @.app.use bodyParser.json()
-    #@.app.use bodyParser.urlencoded extended: true
 
     # test route
     @.app.get '/ping'      , (req, res) => res.end      'pong'
@@ -38,9 +36,8 @@ class Server
     @
 
   add_Bower_Support: ()=>
-    #@.app.use('/lib',  express.static(__dirname + '../bower_components'));
     @.app.use '/lib',  express.static __dirname.path_Combine('../../ui/bower_components')
-    @.app.use '/ui',  express.static __dirname.path_Combine('../../ui/.dist')
+    @.app.use '/ui' ,  express.static __dirname.path_Combine('../../ui/.dist')
     @
 
   add_Controllers: ->
@@ -49,16 +46,12 @@ class Server
     Api_File    = require '../controllers/Api-File'
     Api_Logs    = require '../controllers/Api-Logs'
     Api_Routes  = require '../controllers/Api-Routes'
-    View_Routes = require '../controllers/View-Routes'
-    View_File   = require '../controllers/View-File'
-    View_Table  = require '../controllers/View-Table'
+    Api_Table   = require '../controllers/Api-Table'
 
     @.app.use api_Path , new Api_Logs(   app:@.app).add_Routes().router
     @.app.use api_Path , new Api_File(   app:@.app).add_Routes().router
     @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router
-    @.app.use view_Path, new View_Routes(app:@.app).add_Routes().router
-    @.app.use view_Path, new View_File(  app:@.app).add_Routes().router
-    @.app.use view_Path, new View_Table( app:@.app).add_Routes().router
+    @.app.use api_Path , new Api_Table(  app:@.app).add_Routes().router
     @
     
   add_Redirects: ->
