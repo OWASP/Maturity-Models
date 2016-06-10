@@ -13,6 +13,7 @@ class Api_File
 
   add_Routes: ()=>
     @.router.get  '/file/list', @.list
+    @.router.get  '/file/list/AAAAAA', @.list
     @.router.get  '/file/get/:filename' , @.get
     @.router.post '/file/save/:filename', @.save
     @
