@@ -4,3 +4,6 @@
 [submodule "ui"]
 	path = ui
 	url = git@github.com:DinisCruz/Maturity-Models-UI.git
+[submodule "data/Maturity-Models-AppSec"]
+	path = data/Maturity-Models-AppSec
+	url = git@github.com:DinisCruz/Maturity-Models-AppSec.git

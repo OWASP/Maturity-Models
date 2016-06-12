@@ -21,7 +21,7 @@ describe '_supertest | Api-File', ->
 
   it '/file/get/team-A', ->
     request(app)
-      .get version + '/file/get/team-A'
+      .get version + '/file/get/team-A' 
       .expect 200
       .expect 'Content-Type', /json/
       .expect (res)->
