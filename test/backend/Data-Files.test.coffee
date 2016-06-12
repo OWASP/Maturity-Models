@@ -77,12 +77,6 @@ describe 'controllers | Api-Controller', ->
     using data_Files, ->
       assert_Is_Null data_Files.set_File_Data_Json target_File, bad_Json
 
-  it 'set_File_Data (non json files)', ()->
-    target_File = 'team-A'                           # team-A is an json5 file
-    good_Json    = '{ "is-good" : "json" } '
-    using data_Files, ->
-      assert_Is_Null data_Files.set_File_Data_Json target_File, good_Json
-
   it 'set_File_Data (not able to create new file)', ()->
     filename = 'temp_file.json'
     contents = '{ "aaa" : 123 }'
