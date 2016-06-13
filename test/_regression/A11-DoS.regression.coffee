@@ -21,6 +21,6 @@ describe '_regression | A11 - DoS', ->
       #items = [0..5000 ]   # 5000 takes 1200ms
       async.each items, test_List, ->
         duration = Date.now() - start
-        duration.assert_In_Between(30,120)
+        duration.assert_In_Between(10,120)      # in travis we had execution times of less than 25ms
 
 

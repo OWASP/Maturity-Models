@@ -1,7 +1,21 @@
 class Data_Project
   constructor: ()->
-    @.data_Path   = __dirname.path_Combine('../../data')
-    @.config_File = "maturity-model.json"
+    @.data_Path       = __dirname.path_Combine('../../data')
+    @.config_File     = "maturity-model.json"
+    @.default_Project = 'demo'
+
+  project_Files: (project_Key)=>
+    key = project_Key ||  @.default_Project           # todo: refactor to make it clear
+    return using (@.projects()[key]),->
+      project_Path = @.path
+      if @.path
+        values = []
+        for file in project_Path.files_Recursive()
+          if file.file_Extension() in ['.json', '.json5', '.coffee']
+            if file.not_Contains 'maturity-model'
+              values.push file
+        return values
+      return null
 
   # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
   projects: ()=>
@@ -16,7 +30,7 @@ class Data_Project
             data: data    
     projects
 
-  projects_Keys: ()=>
+  projects_Keys: ()=>             # todo: check if this method is needed
     @.projects()._keys()
       
 

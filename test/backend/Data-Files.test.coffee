@@ -9,31 +9,30 @@ describe 'backend | Data-Files', ->
   it 'constructor',->
     using data_Files, ->
       @.constructor.name.assert_Is 'Data_Files'      
-      @.data_Path.assert_Contains 'data'
-                 .assert_Folder_Exists()
+#      @.data_Path.assert_Contains 'data'
+#                 .assert_Folder_Exists()
 
-  it 'all_Data', ->
-    using data_Files, ->
-      using @.all_Data().assert_Not_Empty(), ->
-        for item in @
-          item.assert_Is_Object()
-        
-  it 'files', ->
-    using data_Files, ->
-      @.files().assert_Not_Empty()
-      @.files().first().assert_File_Not_Exists()
-      @.files().first().assert_File_Not_Exists()
-      @.data_Path.path_Combine(@.files().first()).assert_File_Exists()
+#  it 'all_Data', ->
+#    using data_Files, ->
+#      using @.all_Data().assert_Not_Empty(), ->
+#        for item in @
+#          item.assert_Is_Object()
+#
+#  it 'files', ->
+#    using data_Files, ->
+#      @.files().assert_Not_Empty()
+#      @.files().first().assert_File_Not_Exists()
+#      @.files().first().assert_File_Not_Exists()
+#      @.data_Path.path_Combine(@.files().first()).assert_File_Exists()
 
   it 'files_Names', ->
     using data_Files, ->
       @.files_Names().assert_Not_Empty()
-      @.files_Names().first().assert_Is @.files().first().file_Name_Without_Extension()
+      @.files_Names().first().assert_Is @.files_Paths().first().file_Name_Without_Extension()
 
 
   it 'files_Paths', ->
     using data_Files, ->
-      @.files().size().assert_Is_Not @.files_Paths().size()
       @.files_Paths().assert_Not_Empty()
       @.files_Paths().first().assert_File_Exists()
 

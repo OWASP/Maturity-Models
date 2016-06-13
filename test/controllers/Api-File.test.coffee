@@ -69,13 +69,16 @@ describe 'controllers | Api-File', ->
 
 
     using new Api_File(), ->
-      @.data_Files.data_Path.assert_Folder_Exists()
+      @.data_Files.data_Project.data_Path.assert_Folder_Exists()
       @.list(null,res)
 
   it 'save', ->
-    data_Path = api_File.data_Files
+    data_Path = api_File.data_Files.data_Project
                         .data_Path.assert_Folder_Exists()
 
+    data_Path = data_Path.path_Combine 'BSIMM-Graphs-Data'
+    data_Path.assert_Folder_Exists()
+    
     file_Name    = "tmp-file"
     file_Path    = "#{data_Path}/#{file_Name}.json"
     initial_Data = { initial: 'data' }

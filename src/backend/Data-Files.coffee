@@ -1,14 +1,17 @@
+Data_Project = require './Data-Project'
+
 class Data_Files
   constructor: ()->
-    @.data_Path = __dirname.path_Combine('../../data')
+    #@.data_Path = __dirname.path_Combine('../../data')
+    @.data_Project = new Data_Project();
 
-  all_Data: =>
-    values = []
-    for file in @.files_Paths()
-      value = @.data(file)
-      if value
-        values.add value
-    return values
+#  all_Data: =>
+#    values = []
+#    for file in @.files()
+#      value = @.data(file)
+#      if value
+#        values.add value
+#    return values
 
   data: (file)=>
     if file
@@ -27,15 +30,20 @@ class Data_Files
     return null
     return values
 
- 
 
+#  files: =>
+#    project_Key = null
+#    @.data_Project.project_Files(project_Key)
+    
   files_Names: =>
-    (file.file_Name_Without_Extension() for file in @.files())
+    (file.file_Name_Without_Extension() for file in @.files_Paths())
 
   files_Paths: =>
-    @.data_Path.files_Recursive()
+    project_Key = null
+    @.data_Project.project_Files(project_Key)
+    #@.data_Path.files_Recursive()
 
-  find_File: (filename)=>                                # todo: this method need caching since it will search all files everytime (could also be a minor DoS issue)
+  find_File: (filename)=>                                 # todo: (add DoS ticket) this method need caching since it will search all files everytime (could also be a minor DoS issue)
     if filename
       for file in @.files_Paths()                          # this can be optimized with a cache
         if file.file_Name_Without_Extension() is filename
@@ -45,13 +53,13 @@ class Data_Files
   get_File_Data: (filename) ->
     @.data @.find_File filename
 
-  files: =>
-    values = []
-    for file in @.data_Path.files_Recursive()
-      if file.file_Extension() in ['.json', '.json5', '.coffee']
-        if file.not_Contains 'maturity-model'
-          values.push file.remove(@.data_Path)
-    values
+#  files: =>
+#    values = []
+#    for file in @.data_Path.files_Recursive()
+#      if file.file_Extension() in ['.json', '.json5', '.coffee']
+#        if file.not_Contains 'maturity-model'
+#          values.push file.remove(@.data_Path)
+#    values
 
   # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
   set_File_Data_Json: (filename, json_Data) ->
@@ -67,7 +75,7 @@ class Data_Files
       return null
     
     file_Path = @.find_File filename                    # resolve file path based on file name
-    
+
     if file_Path is null or file_Path.file_Not_Exists() # check if was able to resolve it
       return null
 

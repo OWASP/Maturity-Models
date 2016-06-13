@@ -13,9 +13,10 @@ describe '_regression | A1 - Injection', ->
       folder_Name  = 'outside-data-root'
       file_Name    = 'some-file.txt'
       file_Content = 'some content'
-      target_Folder = @.data_Path.path_Combine('../' + folder_Name)   # Create target folder
-                                 .folder_Create()
-                                 .assert_Folder_Exists()              # Confirm it exists
+      data_Path    = @.data_Project.data_Path
+      target_Folder = data_Path.path_Combine('../' + folder_Name)     # Create target folder
+                               .folder_Create()
+                               .assert_Folder_Exists()                # Confirm it exists
 
       target_Folder.path_Combine(file_Name)                           # Create target File
                    .file_Write(file_Content)
@@ -28,15 +29,15 @@ describe '_regression | A1 - Injection', ->
 
       new_Content = 'new - content'
 
-      @.data_Path.path_Combine(payload)
-                 .file_Contents().assert_Is file_Content              # Confirm original content is there
+      data_Path.path_Combine(payload)
+               .file_Contents().assert_Is file_Content                # Confirm original content is there
 
       assert_Is_Null @.set_File_Data_Json payload  , new_Content      # PAYLOAD: Create file outsite data root (this should not work now)
       assert_Is_Null @.set_File_Data_Json payload_2, new_Content      #          with \ variation
       assert_Is_Null @.set_File_Data_Json payload_3, new_Content      #          with \\ variation
 
-      @.data_Path.path_Combine(payload)
-                 .file_Contents().assert_Is file_Content              # Confirm original content is there (i.e. path outside web root was not modified)
+      data_Path.path_Combine(payload)
+               .file_Contents().assert_Is file_Content                # Confirm original content is there (i.e. path outside web root was not modified)
 
       target_Folder.folder_Delete_Recursive().assert_Is_True()        # Delete temp folder
 
@@ -46,7 +47,7 @@ describe '_regression | A1 - Injection', ->
       create_File = (file_Size, content_Size)=>
         file_Name     = file_Size   .random_String()
         file_Contents = content_Size.random_String()
-        file_Path     = @.data_Path .path_Combine(file_Name)
+        file_Path     = @.data_Project.data_Path .path_Combine(file_Name)
 
         file_Path.assert_File_Not_Exists()                    # confirm file doesn't exist
 
@@ -66,7 +67,7 @@ describe '_regression | A1 - Injection', ->
       create_File = (extension)=>
         file_Name     = 10.random_String() + extension
         file_Contents = 10.random_String()
-        file_Path     = @.data_Path.path_Combine(file_Name)
+        file_Path     = @.data_Project.data_Path.path_Combine(file_Name)
 
         @.set_File_Data_Json file_Name, file_Contents               # PAYLOAD: create file
 
