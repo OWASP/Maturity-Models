@@ -6,12 +6,12 @@ RUN     sed -i 's/git@github.com:/https:\/\/<user>:<token>@github.com\//' .gitmo
 RUN     git submodule init
 RUN     git submodule update
 RUN     git pull origin master
-RUN     npm install
+RUN     npm install -- quiet
 
 WORKDIR ui
-RUN     npm install
-RUN     npm install -g bower
-RUN     npm install -g gulp
+RUN     npm install -- quiet
+RUN     npm install -g bower -- quiet
+RUN     npm install -g gulp -- quiet
 RUN     bower --allow-root install
 RUN     gulp
 WORKDIR ..
