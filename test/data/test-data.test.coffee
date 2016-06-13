@@ -3,7 +3,7 @@ require('coffee-script/register')     # needed for wallaby execution (since it i
 describe 'data | test-data', ->
 
   it 'load data', ->
-    data_File = './data/BSIMM-Graphs-Data/coffee-data.coffee'.real_Path()
+    data_File = './data/BSIMM-Graphs-Data/for-dev/coffee-data.coffee'.real_Path()
     data_File.assert_File_Exists()
     data = require data_File
     data.assert_Is_Object()
