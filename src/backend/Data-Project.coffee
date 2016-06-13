@@ -3,6 +3,7 @@ class Data_Project
     @.data_Path   = __dirname.path_Combine('../../data')
     @.config_File = "maturity-model.json"
 
+  # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
   list: ()=>
     projects = {}
     for folder in @.data_Path.folders_Recursive()

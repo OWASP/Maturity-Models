@@ -11,3 +11,6 @@ String::folders_Recursive     = (extension)->
   return folders
 
 Array::folder_Names = Array::file_Names
+
+Number::random_Chars = ->
+  "".add_Random_Chars(@ + 0)
