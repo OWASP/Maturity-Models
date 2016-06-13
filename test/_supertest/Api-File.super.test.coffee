@@ -16,7 +16,7 @@ describe '_supertest | Api-File', ->
       .expect 200
       .expect 'Content-Type', /json/
       .expect (res)->
-        res.body.assert_Size_Is_Bigger_Than 8
+        res.body.assert_Size_Is_Bigger_Than 5
                 .assert_Contains ['team-A', 'team-B']
 
   it '/file/get/team-A', ->
