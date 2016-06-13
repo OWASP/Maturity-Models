@@ -1,9 +1,6 @@
 Server  = require '../../src/server/Server'
 request = require 'supertest'
 
-Array::duplicates =  ()-> @.filter (x, i, self) ->
-  self.indexOf(x) == i && i != self.lastIndexOf(x)
-
 describe '_regression | api', ->
   server  = null
   app     = null

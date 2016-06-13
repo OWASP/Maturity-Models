@@ -14,4 +14,4 @@ describe 'backend | Data-Project', ->
 
   it 'list', ->
     using data_Project, ->
-      console.log @.list()
+      @.list().keys().assert_Contains('demo', 'appsec')
