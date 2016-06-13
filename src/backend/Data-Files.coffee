@@ -15,15 +15,15 @@ class Data_Files
       switch file.file_Extension()
         when '.json'
           return file.load_Json()
-        when '.coffee'                                # todo: add securty issue that use of coffee-script file this way would allow RCE
+        when '.coffee'                                # Issue 69 - Support for coffee file to create dynamic data set's allow RCE
           try
-            data_Or_Function = require(file)          #       here (which means that we can't really allow these coffee files from being edited
+            data_Or_Function = require(file)
             if data_Or_Function instanceof Function   # check if what was received from the coffee script is an object or an function
               return data_Or_Function()
             else
               return data_Or_Function
           catch err
-            console.log err
+            console.log err                           # need better solution to log these errors
     return null
     return values
 
