@@ -53,8 +53,9 @@ class Data_Files
   files: =>
     values = []
     for file in @.data_Path.files_Recursive()
-      if  file.file_Extension() in ['.json', '.json5', '.coffee']
-        values.push file.remove(@.data_Path)
+      if file.file_Extension() in ['.json', '.json5', '.coffee']
+        if file.not_Contains 'maturity-model'
+          values.push file.remove(@.data_Path)
     values
 
   # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
