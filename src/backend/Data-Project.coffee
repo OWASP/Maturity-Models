@@ -4,7 +4,7 @@ class Data_Project
     @.config_File = "maturity-model.json"
 
   # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
-  list: ()=>
+  projects: ()=>
     projects = {}
     for folder in @.data_Path.folders_Recursive()
       config_File = folder.path_Combine @.config_File
@@ -14,7 +14,10 @@ class Data_Project
           projects[data.key] = 
             path: folder
             data: data    
-    projects    
+    projects
+
+  projects_Keys: ()=>
+    @.projects()._keys()
       
 
 module.exports = Data_Project

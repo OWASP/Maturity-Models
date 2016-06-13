@@ -30,7 +30,7 @@ class Api_Table
 
     map_Activities = (activities)->
       index = 0
-      for key in activities.keys()
+      for key in activities._keys()
         table.rows[index] ?= []
 
         cells = table.rows[index]

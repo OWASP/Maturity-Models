@@ -41,7 +41,7 @@ describe 'controllers | Api-Table', ->
       send: (data)->
         data = data.json_Parse()            # required because the data is json_Pretty
         data.headers.assert_Is ['Governance', 'Intelligence', 'SSDL', 'Deployment']
-        data.rows.keys().size().assert_Is 20
+        data.rows._keys().size().assert_Is 20
         data.rows[0].size().assert_Is 8
         data.rows[0].assert_Is [ 'SM.1.1', 'Yes', 'AM1.2', 'Maybe',
                                  'AA.1.1','Maybe','PT.1.1','Maybe' ]

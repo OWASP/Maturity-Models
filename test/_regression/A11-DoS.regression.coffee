@@ -7,11 +7,11 @@ async        = require 'async'
 describe '_regression | A11 - DoS', ->
 
   # https://github.com/DinisCruz/BSIMM-Graphs/issues/72
-  it.only 'Issue 72 - Project list gets data from File System and could cause DoS', ()->
+  it 'Issue 72 - Project list gets data from File System and could cause DoS', ()->
     using new Data_Project(), ->
       start = Date.now();
       test_List = (index, next)=>
-        @.list().assert_Is_Object()
+        @.projects().assert_Is_Object()
         next()
 
       #items = [0..0     ]   # 1 takes 15ms

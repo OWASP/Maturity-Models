@@ -12,6 +12,10 @@ describe 'backend | Data-Project', ->
       @.data_Path.assert_Contains 'data'
                  .assert_Folder_Exists()
 
-  it 'list', ->
+  it 'projects', ->
     using data_Project, ->
-      @.list().keys().assert_Contains('demo', 'appsec')
+      @.projects()._keys().assert_Contains('demo', 'appsec')
+
+  it 'projects_Keys', ->
+    using data_Project, ->
+      @.projects_Keys().assert_Contains('demo', 'appsec')
