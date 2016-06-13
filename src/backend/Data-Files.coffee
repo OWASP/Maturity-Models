@@ -1,6 +1,3 @@
-json5   = require 'json5'
-
-
 class Data_Files
   constructor: ()->
     @.data_Path = __dirname.path_Combine('../../data')
@@ -18,8 +15,6 @@ class Data_Files
       switch file.file_Extension()
         when '.json'
           return file.load_Json()
-        when '.json5'
-          return json5.parse file.file_Contents()
         when '.coffee'                                # todo: add securty issue that use of coffee-script file this way would allow RCE
           try
             data_Or_Function = require(file)          #       here (which means that we can't really allow these coffee files from being edited

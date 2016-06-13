@@ -31,7 +31,6 @@
     "express-load": "^1.1.15",
     "file-stream-rotator": "0.0.6",
     "fluentnode": "^0.5.5",
-    "json5": "^0.5.0",
     "mocha": "^2.4.5",
     "morgan": "^1.7.0",
     "pug": "2.0.0-beta2",
