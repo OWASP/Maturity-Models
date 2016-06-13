@@ -1,3 +1,4 @@
+require './extra.methods'
 Server = require('./server/Server');
 
 start_Server = (options)->

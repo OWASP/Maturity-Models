@@ -38,8 +38,8 @@ class Data_Files
   files_Names: =>
     (file.file_Name_Without_Extension() for file in @.files_Paths())
 
-  files_Paths: =>
-    project_Key = null
+  files_Paths: (project_Key)=>
+    #project_Key = null
     @.data_Project.project_Files(project_Key)
     #@.data_Path.files_Recursive()
 
