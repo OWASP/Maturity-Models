@@ -5,7 +5,7 @@ module.exports = function () {
             'views/**/*.pug',
             { pattern: 'data/**/*'              , instrument: false, load: false, ignore: false },
         ],
-
+ 
         tests: [
             'test/**/*.coffee'
         ],
