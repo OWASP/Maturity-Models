@@ -1,14 +1,11 @@
 Api_File = require '../../src/controllers/Api-File'
-#Server   = require '../../src/server/Server'
 
 describe 'controllers | Api-File', ->
-  #app      = null
   api_File = null
 
   before ->
     using new Api_File(), ->
       api_File = @
-    #app = new Server().setup_Server().app
 
   it 'constructor', ->
     using api_File, ->
