@@ -11,7 +11,7 @@ class Data_Project
       if @.path
         values = []
         for file in project_Path.files_Recursive()
-          if file.file_Extension() in ['.json', '.json5', '.coffee']
+          if file.file_Extension() in ['.json', '.coffee']
             if file.not_Contains 'maturity-model'
               values.push file
         return values
