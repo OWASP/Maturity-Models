@@ -45,13 +45,16 @@ class Server
     view_Path = '/_view'
     Api_File    = require '../controllers/Api-File'
     Api_Logs    = require '../controllers/Api-Logs'
+    Api_Project = require '../controllers/Api-Project'
     Api_Routes  = require '../controllers/Api-Routes'
     Api_Table   = require '../controllers/Api-Table'
 
-    @.app.use api_Path , new Api_Logs(   app:@.app).add_Routes().router
-    @.app.use api_Path , new Api_File(   app:@.app).add_Routes().router
-    @.app.use api_Path , new Api_Routes( app:@.app).add_Routes().router
-    @.app.use api_Path , new Api_Table(  app:@.app).add_Routes().router
+    @.app.use api_Path , new Api_Logs(   ).add_Routes().router
+    @.app.use api_Path , new Api_File(   ).add_Routes().router
+    @.app.use api_Path , new Api_Table(  ).add_Routes().router
+    @.app.use api_Path , new Api_Project().add_Routes().router
+    
+    @.app.use api_Path , new Api_Routes(app:@.app).add_Routes().router
     @
     
   add_Redirects: ->
