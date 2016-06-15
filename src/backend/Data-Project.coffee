@@ -30,7 +30,7 @@ class Data_Project
             data: data    
     projects
 
-  projects_Keys: ()=>             # todo: check if this method is needed
+  projects_Keys: ()=>            
     @.projects()._keys()
       
 

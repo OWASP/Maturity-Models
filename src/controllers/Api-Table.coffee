@@ -5,7 +5,6 @@ class Api_Table
   constructor: (options)->
     @.options     = options || {}
     @.router      = express.Router()
-    @.app         = @.options.app
     @.data_Files  = new Data_Files()
 
   add_Routes: ()=>

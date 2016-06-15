@@ -14,8 +14,6 @@ describe 'controllers | Api-Table', ->
         filename: 'team-A'
 
     using new Api_Table(app:app), ->
-      @.add_Routes()
-      @.app.use('routes', @.router)
       view_File = @
 
   it 'constructor', ->

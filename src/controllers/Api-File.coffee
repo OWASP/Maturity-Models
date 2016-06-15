@@ -5,10 +5,7 @@ express     = require 'express'
 class Api_File
   constructor: (options)->
     @.options    = options || {}
-    @.router     = express.Router()
-    @.app        = @.options.app
-    @.routes     = new Routes(app:@.app)
-    #@.data       = new Data()
+    @.router     = express.Router()    
     @.data_Files = new Data_Files()
 
   add_Routes: ()=>
