@@ -23,7 +23,6 @@
   "dependencies": {
     "async": "^1.5.2",
     "body-parser": "^1.15.1",
-    "chai": "^3.5.0",
     "cheerio": "^0.20.0",
     "coffee-script": "^1.10.0",
     "d3": "^3.5.16",
