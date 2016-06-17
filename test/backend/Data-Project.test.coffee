@@ -13,10 +13,11 @@ describe 'backend | Data-Project', ->
                  .assert_Folder_Exists()
 
   it 'project_Files', ->
-    using data_Project, ->
-      assert_Is_Null @.project_Files('aa')
-      console.log @.project_Files()
-        
+    using data_Project, ->      
+      @.project_Files().file_Names().assert_Is [ 'coffee-data.coffee', 'json-data.json', 'save-test.json', 'team-A.json',
+                                                 'team-B.json', 'team-C.json', 'team-random.coffee' ]
+      assert_Is_Null @.project_Files('aa')      
+
   it 'projects', ->
     using data_Project, ->
       @.projects()._keys().assert_Contains('demo', 'appsec')
@@ -24,3 +25,6 @@ describe 'backend | Data-Project', ->
   it 'projects_Keys', ->
     using data_Project, ->
       @.projects_Keys().assert_Contains('demo', 'appsec')      
+      
+   
+      

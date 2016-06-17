@@ -4,15 +4,15 @@ class Data_Project
     @.config_File     = "maturity-model.json"
     @.default_Project = 'demo'
 
-  project_Files: (project_Key)=>
-    key = project_Key ||  @.default_Project           # todo: refactor to make it clear
+  project_Files: (project_Key)=>                                        # todo: refactor to make code clear 
+    key = project_Key ||  @.default_Project           
     return using (@.projects()[key]),->
       project_Path = @.path
       if @.path
         values = []
         for file in project_Path.files_Recursive()
           if file.file_Extension() in ['.json', '.coffee']
-            if file.not_Contains 'maturity-model'
+            if file.not_Contains 'maturity-model.json'
               values.push file
         return values
       return null
@@ -33,5 +33,6 @@ class Data_Project
   projects_Keys: ()=>            
     @.projects()._keys()
       
-
 module.exports = Data_Project
+
+ 
