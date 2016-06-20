@@ -15,7 +15,7 @@ class Data_Project
             if file.not_Contains 'maturity-model.json'
               values.push file
         return values
-      return null
+      return []
 
   # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
   projects: ()=>

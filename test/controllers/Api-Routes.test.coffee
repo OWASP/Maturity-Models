@@ -26,7 +26,9 @@ describe 'controllers | Api-Routes', ->
       @.router.stack.assert_Size_Is 2
 
   it 'list', ->
-    res =
+    req = 
+      project: 'demo'
+    res =      
       send: (data)->
         data.assert_Contains [ '/ping', '/routes/list', '/routes/list-raw']
         data.assert_Contains [ '/aaaa/team-C']
@@ -34,8 +36,8 @@ describe 'controllers | Api-Routes', ->
     using new Api_Routes(app:app), ->
       @.add_Routes()
       @.app.use('routes', @.router)
-      @.router.get '/aaaa/:filename'
-      @.list(null, res)
+      @.router.get '/aaaa/:team'
+      @.list(req, res)
 
   it 'list_Raw', ->
     res =

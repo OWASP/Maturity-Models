@@ -16,7 +16,7 @@ class Api_Routes
     @
 
   list: (req, res)=>
-    keyword = ':filename'
+    keyword = ':team'
     list    = @.routes.list()
     values  = list                 # create copy we can use without breaking the for loop
     for item in list

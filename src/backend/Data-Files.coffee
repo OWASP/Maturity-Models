@@ -5,7 +5,7 @@ class Data_Files
     @.data_Project = new Data_Project();
 
   data: (file)=>
-    if file
+    if file and file.file_Exists()
       switch file.file_Extension()
         when '.json'
           return file.load_Json()
@@ -23,21 +23,21 @@ class Data_Files
   files_Names: =>
     (file.file_Name_Without_Extension() for file in @.files_Paths())
 
-  files_Paths: (project_Key)=>
-    @.data_Project.project_Files(project_Key)
+  files_Paths: (project)=>
+    @.data_Project.project_Files(project)
 
-  find_File: (filename)=>                                 # todo: (add DoS ticket) this method need caching since it will search all files everytime (could also be a minor DoS issue)
+  find_File: (project, filename)=>                         # todo: (add DoS ticket) this method need caching since it will search all files everytime (could also be a minor DoS issue)
     if filename
-      for file in @.files_Paths()                          # this can be optimized with a cache
+      for file in @.files_Paths(project)                   # this can be optimized with a cache
         if file.file_Name_Without_Extension() is filename
           return file          
     return null
 
-  get_File_Data: (filename) ->
-    @.data @.find_File filename
+  get_File_Data: (project, filename) ->
+    @.data @.find_File project, filename
 
   # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
-  set_File_Data_Json: (filename, json_Data) ->
+  set_File_Data_Json: (project, filename, json_Data) ->
     if not filename or not json_Data                    # check if both values are set
       return null
 
@@ -49,7 +49,7 @@ class Data_Files
     catch      
       return null
     
-    file_Path = @.find_File filename                    # resolve file path based on file name
+    file_Path = @.find_File project, filename       # resolve file path based on file name
 
     if file_Path is null or file_Path.file_Not_Exists() # check if was able to resolve it
       return null

@@ -94,11 +94,11 @@ describe 'server | Server', ->
                           '/api/v1/logs/path'
                           '/api/v1/logs/list'
                           '/api/v1/logs/file/:index'
-                          '/api/v1/team/list'
-                          '/api/v1/team/get/:team'     , '/api/v1/team/save/:team'
-                          '/api/v1/project/list'       , '/api/v1/project/get/:team'
-                          '/api/v1/routes/list'        , '/api/v1/routes/list-raw'
-                          '/api/v1/table/:filename'
+                          '/api/v1/team/:project/list'
+                          '/api/v1/team/:project/get/:team' , '/api/v1/team/:project/save/:team'
+                          '/api/v1/project/list'            , '/api/v1/project/get/:team'
+                          '/api/v1/routes/list'             , '/api/v1/routes/list-raw'
+                          '/api/v1/table/:project/:team'
                           '/', '/view*']
       current_Routes = @.routes()
       for route in expected_Routes                # this makes is easier to find out which one is missing

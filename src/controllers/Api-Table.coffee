@@ -8,13 +8,14 @@ class Api_Table
     @.data_Files  = new Data_Files()
 
   add_Routes: ()=>
-    @.router.get '/table/:filename'     , @.table
+    @.router.get '/table/:project/:team'     , @.table
     @
 
   table: (req,res)=>     # sends the data in a transformation this is easy to show in a table
-    filename = req.params?.filename
-    if filename
-      data = @.data_Files.get_File_Data filename
+    project = req.params?.project
+    team    = req.params?.team
+    if project and team
+      data = @.data_Files.get_File_Data project, team
       res.setHeader('Content-Type', 'application/json');
 
       return res.send @.transform_Data(data).json_Pretty()

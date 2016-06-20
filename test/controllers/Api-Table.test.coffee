@@ -11,7 +11,8 @@ describe 'controllers | Api-Table', ->
     app = new Server().setup_Server().app
     req =
       params :
-        filename: 'team-A'
+        project:  'demo'
+        team   : 'team-A'
 
     using new Api_Table(app:app), ->
       view_File = @

@@ -13,10 +13,10 @@ describe 'backend | Data-Project', ->
                  .assert_Folder_Exists()
 
   it 'project_Files', ->
-    using data_Project, ->      
+    using data_Project, ->
       @.project_Files().file_Names().assert_Is [ 'coffee-data.coffee', 'json-data.json', 'save-test.json', 'team-A.json',
                                                  'team-B.json', 'team-C.json', 'team-random.coffee' ]
-      assert_Is_Null @.project_Files('aa')      
+      @.project_Files('aa').assert_Is []
 
   it 'projects', ->
     using data_Project, ->

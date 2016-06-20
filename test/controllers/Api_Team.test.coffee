@@ -21,7 +21,8 @@ describe 'controllers | Api-Team', ->
   it 'get', ->
     req =
       params :
-        team: 'json-data'
+        project: 'demo'
+        team:    'json-data'
     res =
       setHeader: (name, value)->
         name.assert_Is 'Content-Type'
@@ -35,7 +36,8 @@ describe 'controllers | Api-Team', ->
   it 'get (pretty)', ->
     req =
       params :
-        team: 'json-data'
+        project: 'demo'
+        team   : 'json-data'
       query:
         pretty : ''
     res =
@@ -59,6 +61,8 @@ describe 'controllers | Api-Team', ->
       @.get(req, res)
 
   it 'list', ->
+    req =
+      params: project: 'demo'
     res =
       send: (data)->
         data.assert_Size_Is_Bigger_Than 3
@@ -67,7 +71,7 @@ describe 'controllers | Api-Team', ->
 
     using api_Team, ->
       @.data_Files.data_Project.data_Path.assert_Folder_Exists()
-      @.list(null,res)
+      @.list(req,res)
 
   it 'save', ->
     data_Path = api_Team.data_Files.data_Project
