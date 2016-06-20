@@ -18,7 +18,37 @@ describe 'controllers | Api-Project', ->
   it 'add_Routes', ()->
     using new Api_Project(), ->
       @.add_Routes()
-      @.router.stack.assert_Size_Is 1
+      @.router.stack.assert_Size_Is 2
+
+  it 'get (null)', ()->
+    req =
+      params : team : null
+
+    res =
+      json: (data)->
+        data.assert_Contains ['coffee-data', 'team-A','team-B']
+
+  it 'get (demo)', ()->
+    req =
+      params : team : 'demo'
+
+    res =
+      json: (data)->
+        data.assert_Contains ['coffee-data', 'team-A','team-B']
+
+    using new Api_Project(), ->
+      @.get(req, res)
+
+  it 'get (appsec)', ()->
+    req =
+      params : team : 'appsec'
+
+    res =
+      json: (data)->
+        data.assert_Contains ['team-D']
+
+    using new Api_Project(), ->
+      @.get(req, res)
 
   it 'list', ()->
     res =
