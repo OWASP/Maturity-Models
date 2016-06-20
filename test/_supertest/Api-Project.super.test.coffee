@@ -17,3 +17,19 @@ describe '_supertest | Api-Project', ->
       .expect 'Content-Type', /json/
       .expect (res)->
         res.body.assert_Contains ['bsimm', 'appsec']
+
+  it '/project/get/bsimm', ->
+    request(app)
+    .get version + '/project/get/bsimm'
+    .expect 200
+    .expect 'Content-Type', /json/
+    .expect (res)->
+      res.body.assert_Contains ['empty', 'team-A']
+
+  it '/project/schema/bsimm', ->
+    request(app)
+    .get version + '/project/schema/bsimm'
+    .expect 200
+    .expect 'Content-Type', /json/
+    .expect (res)->
+      res.body['SM.1.1'].assert_Is { level: '1', description: 'Is there a formal SDL (Software Development Lifecycle) used?' }

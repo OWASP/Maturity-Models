@@ -96,7 +96,7 @@ describe 'server | Server', ->
                           '/api/v1/logs/file/:index'
                           '/api/v1/team/:project/list'
                           '/api/v1/team/:project/get/:team' , '/api/v1/team/:project/save/:team'
-                          '/api/v1/project/list'            , '/api/v1/project/get/:project'
+                          '/api/v1/project/list'            , '/api/v1/project/get/:project', '/api/v1/project/schema/:project'
                           '/api/v1/routes/list'             , '/api/v1/routes/list-raw'
                           '/api/v1/table/:project/:team'
                           '/', '/view*']

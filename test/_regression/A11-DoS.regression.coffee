@@ -7,7 +7,8 @@ async        = require 'async'
 describe '_regression | A11 - DoS', ->
 
   # https://github.com/DinisCruz/BSIMM-Graphs/issues/72
-  it 'Issue 72 - Project list gets data from File System and could cause DoS', ()->
+  #todo: move to QA test-perforance, since it is creating a number of false positives on wallaby
+  xit 'Issue 72 - Project list gets data from File System and could cause DoS', ()->
     using new Data_Project(), ->
       start = Date.now();
       test_List = (index, next)=>

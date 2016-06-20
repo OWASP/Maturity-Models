@@ -9,15 +9,21 @@ class Api_Project
     
 
   add_Routes: ()=>
-    @.router.get '/project/list'         , @.list
-    @.router.get '/project/get/:project' , @.get
+    @.router.get '/project/get/:project'   , @.get
+    @.router.get '/project/list'           , @.list
+    @.router.get '/project/schema/:project', @.schema
     @
-
-  list: (req,res)=>
-    res.json @.data_Project.ids()
 
   get: (req,res)=>
     project = req.params?.project
     res.json @.data_Project.project_Files(project).file_Names_Without_Extension()
+
+  list: (req,res)=>
+    res.json @.data_Project.ids()
+
+
+  schema: (req,res)=>
+    project = req.params?.project
+    res.json @.data_Project.project_Schema(project)
 
 module.exports = Api_Project
