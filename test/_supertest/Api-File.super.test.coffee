@@ -12,7 +12,7 @@ describe '_supertest | Api-File', ->
 
   it '/file/list', ->
     request(app)
-      .get version + '/file/list'
+      .get version + '/team/list'
       .expect 200
       .expect 'Content-Type', /json/
       .expect (res)->
@@ -21,15 +21,15 @@ describe '_supertest | Api-File', ->
 
   it '/file/get/team-A', ->
     request(app)
-      .get version + '/file/get/team-A' 
+      .get version + '/team/get/team-A'
       .expect 200
       .expect 'Content-Type', /json/
       .expect (res)->
         res.body.metadata.team.assert_Is 'Team A'
 
   # Issue 27 - Find better solution for chained super test requests
-  it '/file/save/save-test 1', ()->
-    url_Save = version + '/file/save/save-test'
+  it '/team/save/save-test 1', ()->
+    url_Save = version + '/team/save/save-test'
     data     = { "save" : "test" }
     request(app)
       .post url_Save
@@ -38,8 +38,8 @@ describe '_supertest | Api-File', ->
       .expect (res)->        
         res.body.assert_Is status: 'file saved ok'
         
-  it '/file/save/save-test 2', ()->
-    url_Save = version + '/file/save/save-test'
+  it '/team/save/save-test 2', ()->
+    url_Save = version + '/team/save/save-test'
     data     = { "will-be" : "changed by tests" }
     request(app)
       .post url_Save

@@ -1,27 +1,27 @@
-Api_File = require '../../src/controllers/Api-File'
+Api_Team = require '../../src/controllers/Api-Team'
 
-describe 'controllers | Api-File', ->
-  api_File = null
+describe 'controllers | Api-Team', ->
+  api_Team = null
 
   before ->
-    using new Api_File(), ->
-      api_File = @
+    using new Api_Team(), ->
+      api_Team = @
 
   it 'constructor', ->
-    using api_File, ->
-      @.constructor.name.assert_Is 'Api_File' 
+    using api_Team, ->
+      @.constructor.name.assert_Is 'Api_Team'
       @.router.assert_Is_Function()
       @.data_Files.constructor.name.assert_Is 'Data_Files'
 
   it 'add_Routes', ->
-    using api_File, ->
+    using api_Team, ->
       @.add_Routes()
       @.router.stack.assert_Size_Is 3   
 
   it 'get', ->
     req =
-      params : 
-        filename: 'json-data' 
+      params :
+        team: 'json-data'
     res =
       setHeader: (name, value)->
         name.assert_Is 'Content-Type'
@@ -29,13 +29,13 @@ describe 'controllers | Api-File', ->
       send: (data)->          
         data.user.name.assert_Is 'Joe'
 
-    using new Api_File(), ->
+    using api_Team, ->
       @.get(req, res)
 
   it 'get (pretty)', ->
     req =
       params :
-        filename: 'json-data'
+        team: 'json-data'
       query:
         pretty : ''
     res =
@@ -47,7 +47,7 @@ describe 'controllers | Api-File', ->
         data = data_pretty.json_Parse()
         data.user.name.assert_Is 'Joe'
 
-    using new Api_File(), ->
+    using api_Team, ->
       @.get(req, res)
 
   it 'get (bad data)', ->
@@ -55,7 +55,7 @@ describe 'controllers | Api-File', ->
     res =
       send: (data)->
         data.assert_Is {error: 'not found' }
-    using new Api_File(), ->
+    using api_Team, ->
       @.get(req, res)
 
   it 'list', ->
@@ -65,12 +65,12 @@ describe 'controllers | Api-File', ->
         data.assert_Contains [ 'coffee-data', 'json-data' ]
 
 
-    using new Api_File(), ->
+    using api_Team, ->
       @.data_Files.data_Project.data_Path.assert_Folder_Exists()
       @.list(null,res)
 
   it 'save', ->
-    data_Path = api_File.data_Files.data_Project
+    data_Path = api_Team.data_Files.data_Project
                         .data_Path.assert_Folder_Exists()
 
     data_Path = data_Path.path_Combine 'BSIMM-Graphs-Data'
@@ -84,7 +84,7 @@ describe 'controllers | Api-File', ->
     file_Path.file_Write initial_Data.json_Str()
 
     req =
-      params: filename: file_Name
+      params: team: file_Name
       body  : changed_Data.json_Str()
 
     res =
@@ -93,7 +93,7 @@ describe 'controllers | Api-File', ->
         data.assert_Is { status: 'file saved ok'}
         file_Path.assert_File_Deleted()
 
-    using new Api_File(), ->
+    using api_Team, ->
       @.save req, res
 
   it 'save (bad file)', ->
@@ -104,5 +104,5 @@ describe 'controllers | Api-File', ->
       send: (data)->
         data.assert_Is { error: 'save failed'}
 
-    using new Api_File(), ->
+    using api_Team, ->
       @.save req, res

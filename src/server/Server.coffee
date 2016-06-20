@@ -42,15 +42,15 @@ class Server
 
   add_Controllers: ->
     api_Path  = '/api/v1'
-    view_Path = '/_view'
-    Api_File    = require '../controllers/Api-File'
+
+    Api_Team    = require '../controllers/Api-Team'
     Api_Logs    = require '../controllers/Api-Logs'
     Api_Project = require '../controllers/Api-Project'
     Api_Routes  = require '../controllers/Api-Routes'
     Api_Table   = require '../controllers/Api-Table'
 
     @.app.use api_Path , new Api_Logs(   ).add_Routes().router
-    @.app.use api_Path , new Api_File(   ).add_Routes().router
+    @.app.use api_Path , new Api_Team(   ).add_Routes().router
     @.app.use api_Path , new Api_Table(  ).add_Routes().router
     @.app.use api_Path , new Api_Project().add_Routes().router
     
