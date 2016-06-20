@@ -20,8 +20,8 @@ class Data_Files
             console.log err                           # need better solution to log these errors
     return null
     
-  files_Names: =>
-    (file.file_Name_Without_Extension() for file in @.files_Paths())
+  files_Names: (project)=>
+    (file.file_Name_Without_Extension() for file in @.files_Paths(project))
 
   files_Paths: (project)=>
     @.data_Project.project_Files(project)

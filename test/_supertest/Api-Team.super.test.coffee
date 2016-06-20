@@ -12,16 +12,16 @@ describe '_supertest | Api-Team', ->
 
   it '/team/list', ->
     request(app)
-      .get version + '/team/demo/list'
+      .get version + '/team/bsimm/list'
       .expect 200
       .expect 'Content-Type', /json/
-      .expect (res)->
+      .expect (res)->        
         res.body.assert_Size_Is_Bigger_Than 5
                 .assert_Contains ['team-A', 'team-B']
 
   it '/team/demo/get/team-A', ->
     request(app)
-      .get version + '/team/demo/get/team-A'
+      .get version + '/team/bsimm/get/team-A'
       .expect 200
       .expect 'Content-Type', /json/
       .expect (res)->
@@ -29,7 +29,7 @@ describe '_supertest | Api-Team', ->
 
   # Issue 27 - Find better solution for chained super test requests
   it '/team/demo/save/save-test 1', ()->
-    url_Save = version + '/team/demo/save/save-test'
+    url_Save = version + '/team/bsimm/save/save-test'
     data     = { "save" : "test" }
     request(app)
       .post url_Save
@@ -39,7 +39,7 @@ describe '_supertest | Api-Team', ->
         res.body.assert_Is status: 'file saved ok'
         
   it '/team/demo/save/save-test 2', ()->
-    url_Save = version + '/team/demo/save/save-test'
+    url_Save = version + '/team/bsimm/save/save-test'
     data     = { "will-be" : "changed by tests" }
     request(app)
       .post url_Save

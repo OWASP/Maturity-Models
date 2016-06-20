@@ -11,7 +11,7 @@ describe '_security | A1 - Injection', ->
   it 'Issue 26 - Data_Files.set_File_Data - DoS via file_Contents', ->
 
     using new Data_Files(), ->
-      project = 'demo'
+      project = 'bsimm'
       file_Name = "save-test"
       file_Path = @.find_File(project,file_Name)
       create_File = (size)=>

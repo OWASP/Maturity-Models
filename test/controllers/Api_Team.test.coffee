@@ -21,7 +21,7 @@ describe 'controllers | Api-Team', ->
   it 'get', ->
     req =
       params :
-        project: 'demo'
+        project: 'bsimm'
         team:    'json-data'
     res =
       setHeader: (name, value)->
@@ -36,7 +36,7 @@ describe 'controllers | Api-Team', ->
   it 'get (pretty)', ->
     req =
       params :
-        project: 'demo'
+        project: 'bsimm'
         team   : 'json-data'
       query:
         pretty : ''
@@ -62,7 +62,7 @@ describe 'controllers | Api-Team', ->
 
   it 'list', ->
     req =
-      params: project: 'demo'
+      params: project: 'bsimm'
     res =
       send: (data)->
         data.assert_Size_Is_Bigger_Than 3
@@ -81,15 +81,18 @@ describe 'controllers | Api-Team', ->
     data_Path.assert_Folder_Exists()
     
     file_Name    = "tmp-file"
-    file_Path    = "#{data_Path}/#{file_Name}.json"
+    file_Path    = "#{data_Path}/teams/#{file_Name}.json"
+
     initial_Data = { initial: 'data' }
     changed_Data = { other  : 'data' }
 
     file_Path.file_Write initial_Data.json_Str()
 
     req =
-      params: team: file_Name
-      body  : changed_Data.json_Str()
+      params:
+        project: 'bsimm'
+        team   : file_Name
+      body     : changed_Data.json_Str()
 
     res =
       send: (data)->

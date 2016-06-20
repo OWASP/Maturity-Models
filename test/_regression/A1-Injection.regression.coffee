@@ -86,7 +86,7 @@ describe '_regression | A1 - Injection', ->
   it 'Issue 24 - Data_Files.set_File_Data - allows editing of coffee-script files (RCE)', ->
     using new Data_Files(), ->
       new_File_Contents = 'module.exports = ()-> 40+2'
-      project           = 'demo'
+      project           = 'bsimm'
       file_Name         = 'coffee-data'
       file_Path         = @.find_File project, file_Name
       file_Contents = file_Path.file_Contents()

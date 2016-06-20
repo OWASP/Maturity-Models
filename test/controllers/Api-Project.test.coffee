@@ -1,8 +1,6 @@
 Api_Project = require '../../src/controllers/Api-Project'
-#Server   = require '../../src/server/Server'
 
 describe 'controllers | Api-Project', ->
-  #app      = null
   api_Project = null
 
   before ->
@@ -28,9 +26,9 @@ describe 'controllers | Api-Project', ->
       json: (data)->
         data.assert_Contains ['coffee-data', 'team-A','team-B']
 
-  it 'get (demo)', ()->
+  it 'get (bsimm)', ()->
     req =
-      params : team : 'demo'
+      params : project : 'bsimm'
 
     res =
       json: (data)->
@@ -41,7 +39,7 @@ describe 'controllers | Api-Project', ->
 
   it 'get (appsec)', ()->
     req =
-      params : team : 'appsec'
+      params : project : 'appsec'
 
     res =
       json: (data)->
@@ -53,7 +51,7 @@ describe 'controllers | Api-Project', ->
   it 'list', ()->
     res =
       json: (data)->
-        data.assert_Contains ['demo', 'appsec']
+        data.assert_Contains ['bsimm', 'appsec'] 
 
     using new Api_Project(), ->
       @.list(null, res)

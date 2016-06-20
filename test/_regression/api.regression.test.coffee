@@ -13,7 +13,7 @@ describe '_regression | api', ->
   #https://github.com/DinisCruz/Maturity-Models/issues/63
   it 'Issue 63 - Angular "Duplicates in a repeater are not allowed" error', ->
     request(app)
-      .get version + '/team/demo/list'
+      .get version + '/team/bsimm/list'
       .expect (res)->
         list        = res.body
         list.duplicates().assert_Is []              # check there are no duplicates
