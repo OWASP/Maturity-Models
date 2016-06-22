@@ -28,7 +28,7 @@ describe '_supertest | Api-Logs', ->
 
   it '/logs/path', ()->
     check_Path '/logs/path', (data)->
-      data.assert_File_Exists()
+      data.assert_Contains '/logs'
 
   it '/logs/list', ()->
     check_Path_Json '/logs/list', (data)->
