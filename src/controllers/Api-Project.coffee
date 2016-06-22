@@ -1,17 +1,16 @@
+Api_Base   = require './Api-Base'
 Data_Project  = require '../backend/Data-Project'
-express       = require 'express'
 
-class Api_Project
+class Api_Project extends Api_Base
   constructor: (options)->
     @.options      = options || {}
-    @.router       = express.Router()
     @.data_Project = new Data_Project()
-    
+    super()
 
   add_Routes: ()=>
-    @.router.get '/project/get/:project'   , @.get
-    @.router.get '/project/list'           , @.list
-    @.router.get '/project/schema/:project', @.schema
+    @.add_Route 'get', '/project/get/:project'  , @.get
+    @.add_Route 'get', '/project/list'           , @.list
+    @.add_Route 'get', '/project/schema/:project', @.schema
     @
 
   get: (req,res)=>

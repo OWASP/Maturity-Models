@@ -1,18 +1,17 @@
-express = require 'express'
+Api_Base = require './Api-Base'
 
-class Api_Logs
+class Api_Logs extends Api_Base
   constructor: (options)->
     @.options     = options || {}
-    @.router      = express.Router()
     @.logs_Folder = __dirname.path_Combine('../../logs')      # todo: use this has the global location of this value
+    super()
 
   add_Routes: ()=>
-    @.router.get '/logs/path'          , @.path
-    @.router.get '/logs/list'          , @.list
-    @.router.get '/logs/file/:index'   , @.file
+    @.add_Route 'get', '/logs/path'       , @.path
+    @.add_Route 'get', '/logs/list'       , @.list
+    @.add_Route 'get', '/logs/file/:index', @.file
     @
 
-  
   list: (req, res)=>
     res.send @.logs_Folder.files().file_Names()
 

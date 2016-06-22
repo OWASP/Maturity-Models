@@ -1,14 +1,14 @@
+Api_Base   = require './Api-Base'
 Data_Files = require '../backend/Data-Files'
-express    = require 'express'
 
-class Api_Table
+class Api_Table extends Api_Base
   constructor: (options)->
     @.options     = options || {}
-    @.router      = express.Router()
-    @.data_Files  = new Data_Files()
+    @.data_Files  = new Data_Files()    
+    super(@.options)
 
   add_Routes: ()=>
-    @.router.get '/table/:project/:team'     , @.table
+    @.add_Route 'get', '/table/:project/:team', @.table
     @
 
   table: (req,res)=>     # sends the data in a transformation this is easy to show in a table
@@ -17,10 +17,9 @@ class Api_Table
     if project and team
       data = @.data_Files.get_File_Data project, team
       res.setHeader('Content-Type', 'application/json');
-
-      return res.send @.transform_Data(data).json_Pretty()
-
-    return res.send {} 
+      res.send @.transform_Data(data).json_Pretty()
+    else
+      res.send {}
 
   transform_Data: (data)=>
     table =

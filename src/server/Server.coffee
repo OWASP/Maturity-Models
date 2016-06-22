@@ -71,7 +71,7 @@ class Server
     @.logs_Options =
       date_format: 'YYYY_MM_DD-hh_mm',
       filename   : @.logs_Folder + '/logs-%DATE%.log',
-      frequency  : '30m', 
+      frequency  : '12h',
       verbose    : false
 
     @.logs_Stream = FileStreamRotator.getStream @.logs_Options

@@ -16,13 +16,13 @@ describe 'backend | Data-Project', ->
   it 'project_Files', ->
     using data_Project, ->      
       @.project_Files(project).file_Names().assert_Contains [ 'empty.json','coffee-data.coffee', 'json-data.json', 'save-test.json','team-A.json',
-                                                 'team-B.json', 'team-C.json', 'team-random.coffee' ]
+                                                              'team-B.json', 'team-C.json', 'team-random.coffee' ]
       @.project_Files('aa').assert_Is []
       
   it 'project_Schema', ->
     using data_Project, ->
       schema = @.project_Schema project
-      schema['SM.1.1'].assert_Is { level: '1', description: 'Is there a formal SDL (Software Development Lifecycle) used?' }
+      schema['SM.1.1'].assert_Is { level: '1', activity: 'Is there a formal SDL (Software Development Lifecycle) used?' }
 
       @.project_Schema(null ).assert_Is {}
       @.project_Schema('aaa').assert_Is {}

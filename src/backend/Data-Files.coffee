@@ -4,22 +4,7 @@ class Data_Files
   constructor: ()->
     @.data_Project = new Data_Project();
 
-  data: (file)=>
-    if file and file.file_Exists()
-      switch file.file_Extension()
-        when '.json'
-          return file.load_Json()
-        when '.coffee'                                # Issue 69 - Support for coffee file to create dynamic data set's allow RCE
-          try
-            data_Or_Function = require(file)
-            if data_Or_Function instanceof Function   # check if what was received from the coffee script is an object or an function
-              return data_Or_Function()
-            else
-              return data_Or_Function
-          catch err
-            console.log err                           # need better solution to log these errors
-    return null
-    
+    return null    
   files_Names: (project)=>
     (file.file_Name_Without_Extension() for file in @.files_Paths(project))
 
@@ -34,7 +19,22 @@ class Data_Files
     return null
 
   get_File_Data: (project, filename) ->
-    @.data @.find_File project, filename
+    file = @.find_File project, filename
+    if file and file.file_Exists()
+      switch file.file_Extension()
+        when '.json'
+          return file.load_Json()
+        when '.coffee'                                # Issue 69 - Support for coffee file to create dynamic data set's allow RCE
+          try
+            data_Or_Function = require(file)
+            if data_Or_Function instanceof Function   # check if what was received from the coffee script is an object or an function
+              return data_Or_Function()
+            else
+              return data_Or_Function
+          catch err
+            console.log err                           # need better solution to log these errors
+    return null  
+
 
   # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
   set_File_Data_Json: (project, filename, json_Data) ->

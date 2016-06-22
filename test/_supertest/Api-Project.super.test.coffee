@@ -32,4 +32,4 @@ describe '_supertest | Api-Project', ->
     .expect 200
     .expect 'Content-Type', /json/
     .expect (res)->
-      res.body['SM.1.1'].assert_Is { level: '1', description: 'Is there a formal SDL (Software Development Lifecycle) used?' }
+      res.body['SM.1.1'].assert_Is { level: '1', activity: 'Is there a formal SDL (Software Development Lifecycle) used?' }

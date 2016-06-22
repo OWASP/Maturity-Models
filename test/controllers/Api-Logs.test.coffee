@@ -20,6 +20,10 @@ describe 'controllers | Api-Logs', ->
   after ->
     tmp_Log_Folder.folder_Delete_Recursive().assert_Is_True()
 
+  it 'add_Routes', ->
+    using new Api_Logs(), ->
+      @.add_Routes()
+      
   it 'constructor', ->
     using new Api_Logs(), ->
       @.constructor.name.assert_Is 'Api_Logs'

@@ -1,17 +1,19 @@
+Api_Base   = require './Api-Base'
 Data_Files  = require '../backend/Data-Files'
 Routes      = require '../server/Routes'
-express     = require 'express'
+#express     = require 'express'
 
-class Api_Team
+class Api_Team extends Api_Base
   constructor: (options)->
     @.options    = options || {}
-    @.router     = express.Router()    
+    #@.router     = express.Router()
     @.data_Files = new Data_Files()
+    super()
 
   add_Routes: ()=>
-    @.router.get  '/team/:project/list', @.list
-    @.router.get  '/team/:project/get/:team' , @.get
-    @.router.post '/team/:project/save/:team', @.save
+    @.add_Route 'get' , '/team/:project/list'      , @.list
+    @.add_Route 'get' , '/team/:project/get/:team' , @.get
+    @.add_Route 'post', '/team/:project/save/:team', @.save
     @
 
   get: (req, res)=>
