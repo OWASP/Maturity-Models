@@ -2,19 +2,18 @@ class Data_Radar
 
   constructor: (options)->    
     @.options      = options || {}
-    @.data         = @.options.data  || {}    # todo support multiple data sets
     @.score_Initial = 0.2
     @.score_Yes     = 0.4
     @.score_Maybe   = 0.1
     @.key_Yes       = 'Yes'
     @.key_Maybe     = 'NA'          # this is a bug since it should be 'Maybe' instead of 'NA'
 
-  get_Radar_Data: ()=>
+  get_Radar_Data: (file_Data)=>
     data = []
     data.push @.get_Radar_Fields()
     #data.push @.get_Default_Data()           #todo this needs to be implemented as supporting multiple data sets
     #data.push map_Team_Data(level_1_Data)
-    data.push @.get_Team_Data @.mapData()
+    data.push @.get_Team_Data @.mapData(file_Data)
     data
       
   get_Radar_Fields: ()->
@@ -51,11 +50,11 @@ class Data_Radar
       ]
     }  
 
-  mapData: ()=>
-    result = @.data
+  mapData: (file_Data)=>
+    result = file_Data
     calculate = (activity, prefix)=>
       score  = @.score_Initial
-      for key,value of result.activities?[activity] when key.contains(prefix)
+      for key,value of result?.activities?[activity] when key.contains(prefix)
         if value is @.key_Yes
           score = (score + @.score_Yes).to_Decimal()                          # due to JS Decimal addition bug
         if value is @.key_Maybe

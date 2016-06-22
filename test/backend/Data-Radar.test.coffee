@@ -15,13 +15,11 @@ describe 'backend | Data-Project', ->
         SSDL        : { 'AA.1.1': 'Yes'  , 'AA.1.4': 'NA'   , 'CR.1.1': 'Yes'  , 'CR.1.2'  : 'Yes'   }
         Deployment  : { 'PT.1.1': 'Maybe', 'PT.1.2': 'Maybe', 'SE.2.2': 'Yes'  , 'CMVM.2.3': 'Yes'   }
 
-    data_Radar = new Data_Radar( data: test_Data)
+    data_Radar = new Data_Radar()
 
   it 'constructor',->
     using data_Radar, ->
-      @.constructor.name.assert_Is 'Data_Radar'
-      @.data.assert_Is test_Data
-      #@.data_Files  .constructor.name.assert_Is 'Data_Files'
+      @.constructor.name.assert_Is 'Data_Radar'            
 
 
   it 'get_Radar_Fields', ->
@@ -49,10 +47,9 @@ describe 'backend | Data-Project', ->
   it 'Issue xyz - JS Decimal bug is causing Radar calculations to be wrong', ->
     using data_Radar, ->
 
-      result =  @.mapData()
+      result =  @.mapData(test_Data)
 
-      wrong_Value   = 0.6000000000000001
-      
+      wrong_Value   = 0.6000000000000001      
       result['CMVM'].assert_Is_Not wrong_Value
       result['SE'  ].assert_Is_Not wrong_Value
 

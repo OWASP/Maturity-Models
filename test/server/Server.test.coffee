@@ -89,22 +89,28 @@ describe 'server | Server', ->
       @.add_Controllers()
       @.add_Redirects()
       @.add_Angular_Route()
-      #console.log @.routes()
-      expected_Routes = [ '/ping'
-                          '/api/v1/logs/path'
-                          '/api/v1/logs/list'
-                          '/api/v1/logs/file/:index'
-                          '/api/v1/team/:project/list'
-                          '/api/v1/team/:project/get/:team' , '/api/v1/team/:project/save/:team'
-                          '/api/v1/project/list'            , '/api/v1/project/get/:project', '/api/v1/project/schema/:project'
-                          '/api/v1/routes/list'             , '/api/v1/routes/list-raw'
-                          '/api/v1/table/:project/:team'
-                          '/', '/view*']
+      version = '/api/v1'
+      expected_Routes = [ '/', '/ping',  '/view*'
+                          "#{version}/data/:project/:team/radar"
+                          "#{version}/logs/path"
+                          "#{version}/logs/list"
+                          "#{version}/logs/file/:index"
+                          "#{version}/team/:project/list"
+                          "#{version}/team/:project/get/:team"
+                          "#{version}/team/:project/save/:team"
+                          "#{version}/project/list"
+                          "#{version}/project/get/:project"
+                          "#{version}/project/schema/:project"
+                          "#{version}/routes/list"
+                          "#{version}/routes/list-raw"
+                          "#{version}/table/:project/:team"]
       current_Routes = @.routes()
-      for route in expected_Routes                # this makes is easier to find out which one is missing
+      
+      for route in expected_Routes
         current_Routes.assert_Contains route
 
       for route in current_Routes
+        #console.log route
         expected_Routes.assert_Contains route
 
   it 'run', (done)->
