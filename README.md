@@ -2,8 +2,10 @@ Node application to help managing Maturity Models like the ones created by BSIMM
 
 Build status: [![Build Status](https://travis-ci.org/DinisCruz/Maturity-Models.svg?branch=master)](https://travis-ci.org/DinisCruz/Maturity-Models)
 
+### UI
+![image](https://cloud.githubusercontent.com/assets/656739/16320406/67632dc0-398f-11e6-8aee-8a1f9bd97364.png)
 
-## Run from source
+### Run from source
 
 ```
 git clone git@github.com:DinisCruz/Maturity-Models.git
@@ -23,24 +25,24 @@ npm start
 npm test
 ```
 
-## Docker image
+### Docker image
 
 Available at https://hub.docker.com/r/diniscruz/maturity-models/
 
 
-## BSIMM-Graphs
+### BSIMM-Graphs
 The first version of this tool is designed to work with BSIMM mappings, but there is work under way to also add OpenSAMM mappings
 
 
 
 The data is stored in the repo https://github.com/DinisCruz/BSIMM-Graphs-Data which should be forked to hold private/custom data
 
-## Related posts:
+### Related posts:
  - [BSIMM Questions for Teams v0.7 (with all consolidated team questions and maybe column)](http://blog.diniscruz.com/2016/04/bsimm-questions-for-teams-v07-with-all.html)
  - [Updated version of BSIMM Questions for Teams (now will all activities mapped)](http://blog.diniscruz.com/2016/04/updated-version-of-bsimm-questions-for.html)
  - [First pass at BSIMM questions for teams](http://blog.diniscruz.com/2016/04/first-pass-at-bsimm-questions-for-teams.html)
 
-## Research
+### Research
 
  - "D3.js - Radar Chart or Spider Chart - Adjusted from radar-chart-d3" - http://bl.ocks.org/nbremer/6506614
  - "Making the D3 Radar Chart look a bit better" http://www.visualcinnamon.com/2013/09/making-d3-radar-chart-look-bit-better.html
