@@ -31,9 +31,8 @@ describe 'backend | Data-Project', ->
   it 'mapData (calculates radar values)', ->
     using data_Radar, ->
 
-
-      expected_Result = { "SM": 1.1, "CMVM": 0.6, "SE" : 0.6, "PE": 0.6, "ST": 0.2, "CR": 1, "AA": 0.7, "SR"  : 0.2, "SFD": 0.2, "AM": 0.2, "T" : 0.2, "CP": 0.2 }
-
+      expected_Result = { "SM": 1.0, "CMVM": 0.6, "SE" : 0.6, "PE": 0.6, "ST": 0.2, "CR": 1, "AA": 0.6, "SR"  : 0.2, "SFD": 0.2, "AM": 0.2, "T" : 0.2, "CP": 0.3 }
+      
       @.mapData(test_Data).assert_Is expected_Result
 
 
