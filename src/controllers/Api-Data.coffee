@@ -9,7 +9,7 @@ class Api_Data extends Api_Base
     super()
     
   add_Routes: ->
-    @.add_Route 'get' , '/data/:project/:team/radar' , @.radar
+    @.add_Route 'get' , '/data/:project/:team/radar' , @.radar    
     @
     
   radar: (req, res)=>
@@ -19,7 +19,7 @@ class Api_Data extends Api_Base
     if project and team
       file_Data  = @.data_Files.get_File_Data project, team
       radar_Data = @.data_Radar.get_Radar_Data file_Data
-      res.json radar_Data
+      res.json radar_Data            
 
     
 module.exports = Api_Data
