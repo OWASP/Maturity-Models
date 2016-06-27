@@ -6,7 +6,7 @@ class Data_Radar
     @.score_Yes     = 0.4
     @.score_Maybe   = 0.1
     @.key_Yes       = 'Yes'
-    @.key_Maybe     = 'NA'          # this is a bug since it should be 'Maybe' instead of 'NA'
+    @.key_Maybe     = 'Maybe'
 
   get_Radar_Data: (file_Data)=>
     data = []
@@ -35,18 +35,18 @@ class Data_Radar
   get_Team_Data: (data)->
     {
       axes: [
-        {value: data.SM  },  # Strategy & Metrics
-        {value: data.CMVM},  # Configuration & Vulnerability Management
-        {value: data.SE  },  # Software Environment
-        {value: data.PE  },  # Penetration Testing
-        {value: data.ST  },  # Security Testing
-        {value: data.CR  },  # Code Review
-        {value: data.AA  },  # Architecture Analysis
-        {value: data.SR  },  # Standards & Requirements
-        {value: data.SFD },  # Security Features & Design
-        {value: data.AM  },  # Attack Models
-        {value: data.T   },  # Training
-        {value: data.CP  },  # Compliance and Policy
+        {value: data.SM   },  # Strategy & Metrics
+        {value: data.CMVM },  # Configuration & Vulnerability Management
+        {value: data.SE   },  # Software Environment
+        {value: data.PE   },  # Penetration Testing
+        {value: data.ST   },  # Security Testing
+        {value: data.CR   },  # Code Review
+        {value: data.AA   },  # Architecture Analysis
+        {value: data.SR   },  # Standards & Requirements
+        {value: data.SFD  },  # Security Features & Design
+        {value: data.AM   },  # Attack Models
+        {value: data.T    },  # Training
+        {value: data.CP   },  # Compliance and Policy
       ]
     }  
 
