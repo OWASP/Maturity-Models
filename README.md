@@ -10,11 +10,14 @@ Build status: [![Build Status](https://travis-ci.org/DinisCruz/Maturity-Models.s
 ```
 git clone git@github.com:DinisCruz/Maturity-Models.git
 cd Maturity-Models
-npm install
-bower install
 git submodule init
 git submodule update
+npm install --quiet
 cd ui
+npm install --quiet
+npm install --quiet -g bower
+npm install --quiet -g gulp
+bower --allow-root install
 gulp
 cd ..
 npm start
