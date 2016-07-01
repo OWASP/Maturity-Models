@@ -5,7 +5,7 @@ Server     = require '../../src/server/Server'
 describe 'controllers | Api-Table', ->
   app       = null
   req       = null
-  view_File = null
+  api_Table = null
 
   beforeEach ->
     app = new Server().setup_Server().app
@@ -15,7 +15,7 @@ describe 'controllers | Api-Table', ->
         team   : 'team-A'
 
     using new Api_Table(app:app), ->
-      view_File = @
+      api_Table = @
 
   it 'constructor', ->
     using new Api_Table(app: app), ->
@@ -30,7 +30,7 @@ describe 'controllers | Api-Table', ->
   it 'table (bad file)', ->
     res = send: (data)-> data.assert_Is {}
     req = params: null
-    view_File.table(req, res)
+    api_Table.table(req, res)
 
   it 'table_Json', ->
     res =
@@ -44,4 +44,9 @@ describe 'controllers | Api-Table', ->
         data.rows[0].size().assert_Is 8
         data.rows[0].assert_Is [ 'SM.1.1', 'Yes', 'AM1.2', 'Maybe',
                                  'AA.1.1','Maybe','PT.1.1','Maybe' ]
-    view_File.table(req, res)
+    api_Table.table(req, res)
+
+  it 'transform_Data (bad data)', ->
+    data =
+      activities: Governance: null
+    api_Table.transform_Data(data).assert_Is { headers: [ 'Governance', 'Intelligence', 'SSDL', 'Deployment' ], rows: {} }

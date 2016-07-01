@@ -28,6 +28,7 @@ class Api_Table extends Api_Base
 
 
     map_Activities = (activities)->
+      return if not activities
       index = 0
       for key in activities._keys()
         table.rows[index] ?= []
