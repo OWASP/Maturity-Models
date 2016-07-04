@@ -22,7 +22,7 @@ describe 'backend | Data-Project', ->
   it 'project_Schema', ->
     using data_Project, ->
       schema = @.project_Schema project
-      schema['SM.1.1'].assert_Is { level: '1', activity: 'Is there a formal SDL (Software Development Lifecycle) used?' }
+      schema['SM.1.1'].assert_Is { domain: 'Governance', practice: 'Strategy & Metrics', level: '1', activity: 'Publish process (roles, responsibilities, plan), evolve as necessary' }
 
       @.project_Schema(null ).assert_Is {}
       @.project_Schema('aaa').assert_Is {}
