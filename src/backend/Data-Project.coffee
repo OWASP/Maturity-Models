@@ -18,11 +18,12 @@ class Data_Project
     return using (@.projects()[id]),->
       if @.path_Schema?.file_Exists()
           return @.path_Schema.load_Json()
-      return {}
-  # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
+      return {}  
+    
+  # returns a list of current projects (which are defined by a folder containing an maturity-model.json )  
   projects: ()=>
     projects = {}
-    for folder in @.data_Path.folders_Recursive()
+    for folder in @.data_Path?.folders_Recursive()
       config_File = folder.path_Combine @.config_File
       if config_File.file_Exists()
         data = config_File.load_Json()

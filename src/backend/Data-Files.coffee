@@ -4,8 +4,9 @@ class Data_Files
   constructor: ()->
     @.data_Project = new Data_Project();
 
-    return null    
-  files_Names: (project)=>
+    return null
+    
+  files_Names: (project)=>                  
     (file.file_Name_Without_Extension() for file in @.files_Paths(project))
 
   files_Paths: (project)=>

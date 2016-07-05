@@ -54,7 +54,7 @@ describe 'controllers | Api-Team', ->
 
   it 'get (bad data)', ->
     req = params : null
-    res =
+    res = 
       send: (data)->
         data.assert_Is {error: 'not found' }
     using api_Team, ->

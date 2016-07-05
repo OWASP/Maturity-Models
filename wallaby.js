@@ -1,3 +1,5 @@
+require('fluentnode')
+
 module.exports = function () {
     return {
         files: [
