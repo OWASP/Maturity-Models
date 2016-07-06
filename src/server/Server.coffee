@@ -42,17 +42,15 @@ class Server
 
   add_Controllers: ->
     api_Path  = '/api/v1'
-    Api_Data    = require '../controllers/Api-Data'             #todo: improve this so that all classes inside the controller folder are automatically added
+    Api_Data    = require '../controllers/Api-Data'             # Refactor how controllers are loaded #96
     Api_Team    = require '../controllers/Api-Team'
     Api_Logs    = require '../controllers/Api-Logs'
     Api_Project = require '../controllers/Api-Project'
     Api_Routes  = require '../controllers/Api-Routes'
-    Api_Table   = require '../controllers/Api-Table'
 
     @.app.use api_Path , new Api_Data(   ).add_Routes().router
     @.app.use api_Path , new Api_Logs(   ).add_Routes().router
     @.app.use api_Path , new Api_Team(   ).add_Routes().router
-    @.app.use api_Path , new Api_Table(  ).add_Routes().router
     @.app.use api_Path , new Api_Project().add_Routes().router
     
     @.app.use api_Path , new Api_Routes(app:@.app).add_Routes().router
@@ -65,9 +63,10 @@ class Server
   setup_Logging: =>
     fs = require 'fs'
     @.logs_Folder  = __dirname.path_Combine('../../logs')
-    console.log 'LOGS Folder: ' + @.logs_Folder
-    if @.logs_Folder.folder_Not_Exists()      # note: docker was having a problem with the creation of this folder
-      @.logs_Folder.folder_Create()           #       which is why this is now done on the Docker file (need to find root cause)
+    #console.log 'LOGS Folder: ' + @.logs_Folder
+    if @.logs_Folder.folder_Not_Exists()               # note: docker was having a problem with the creation of this folder
+      @.logs_Folder.folder_Create()                    #       which is why this is now done on the Docker file (need to find root cause)
+                                                       # Issue: Find root cause of logs folder not created in docker #97
 
     @.logs_Options =
       date_format: 'YYYY_MM_DD-hh_mm',

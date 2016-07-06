@@ -104,8 +104,7 @@ describe 'server | Server', ->
                           "#{version}/project/get/:project"
                           "#{version}/project/schema/:project"
                           "#{version}/routes/list"
-                          "#{version}/routes/list-raw"
-                          "#{version}/table/:project/:team"]
+                          "#{version}/routes/list-raw"]
       current_Routes = @.routes()
       
       for route in expected_Routes
