@@ -15,6 +15,6 @@ Array::folder_Names = Array::file_Names
 Number::random_Chars = ->
   "".add_Random_Chars(@ + 0)
 
-
+ 
 #see https://twitter.com/DinisCruz/status/745283929142398976
 Number::to_Decimal = -> Number.parseFloat(@.toFixed(4))

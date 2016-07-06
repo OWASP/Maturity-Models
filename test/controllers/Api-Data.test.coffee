@@ -25,7 +25,7 @@ describe 'controllers | Api-Data', ->
       @.routes_Added.size().assert_Is 3
 
   it 'projects_Scores', ->
-    req =
+    req = 
       params:
         project: project
         team   : team
@@ -54,7 +54,7 @@ describe 'controllers | Api-Data', ->
         team   : team
     res =
       json: (data)->
-        data.level_1.value.assert_Is 13.6
+        data.level_1.value.assert_Is 10.6
 
     using api_Data, ->
       @.team_Score(req,res)

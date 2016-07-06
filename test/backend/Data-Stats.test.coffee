@@ -20,21 +20,18 @@ describe 'backend | Data-Stats', ->
   it 'team_Score', -> 
     using data_Stats, ->
       using @.team_Score(project, team),->
-        @['level_1'].matches = @['level_1'].matches.size()    # hack to make the check below ,ore table
-        @['level_2'].matches = @['level_2'].matches.size()
-        @['level_3'].matches = @['level_3'].matches.size()
         @.assert_Is  { 'level_1':
-                          value: 13.6,
-                          percentage: '49%',
-                          matches: 28
+                          value     : 10.6,
+                          percentage: '38%',
+                          activities: 28
                         'level_2':
-                          value: 11.8
-                          percentage: '51%'
-                          matches:23
+                          value     : 8.8
+                          percentage: '38%'
+                          activities :23
                         'level_3':
-                          value: 5
-                          percentage: '56%'
-                          matches:9 }
+                          value: 3
+                          percentage: '33%'
+                          activities:9 }
 
   it 'team_Score (no project or team)', ->
     using data_Stats, ->
@@ -44,4 +41,4 @@ describe 'backend | Data-Stats', ->
   it 'teams_Scores', ->
     using data_Stats, ->
       using @.teams_Scores(project),->
-        @[team].level_1.value.assert_Is 13.6 
+        @[team].level_1.value.assert_Is 10.6

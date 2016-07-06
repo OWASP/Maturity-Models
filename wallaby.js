@@ -15,6 +15,14 @@ module.exports = function () {
 
         env: {
             type: 'node'
+        },
+        setup: function (wallaby)
+            {
+
+            },
+        workers: {
+            initial: 1,         // without these sometimes the fluentnode apis
+            regular: 1          // are not detected
         }
     };
 };
