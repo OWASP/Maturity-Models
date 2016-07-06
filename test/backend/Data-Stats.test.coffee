@@ -20,17 +20,18 @@ describe 'backend | Data-Stats', ->
   it 'team_Score', -> 
     using data_Stats, ->
       using @.team_Score(project, team),->
+        console.log @.level_3
         @.assert_Is  { 'level_1':
-                          value     : 10.6,
-                          percentage: '38%',
+                          value     : 18.2,
+                          percentage: '65%',
                           activities: 28
                         'level_2':
-                          value     : 8.8
-                          percentage: '38%'
+                          value     : 13.2
+                          percentage: '57%'
                           activities :23
                         'level_3':
-                          value: 3
-                          percentage: '33%'
+                          value     : 3.8
+                          percentage: '42%'
                           activities:9 }
 
   it 'team_Score (no project or team)', ->
@@ -41,4 +42,4 @@ describe 'backend | Data-Stats', ->
   it 'teams_Scores', ->
     using data_Stats, ->
       using @.teams_Scores(project),->
-        @[team].level_1.value.assert_Is 10.6
+        @[team].level_1.value.assert_Is 18.2

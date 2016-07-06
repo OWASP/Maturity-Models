@@ -31,7 +31,7 @@ describe 'controllers | Api-Data', ->
         team   : team
     res =
       json: (data)->
-        data[team].level_1.value.assert_Is 10.6
+        data[team].level_1.value.assert_Is 18.2
     using api_Data, ->
       @.teams_Scores(req,res)
       
@@ -54,7 +54,7 @@ describe 'controllers | Api-Data', ->
         team   : team
     res =
       json: (data)->
-        data.level_1.value.assert_Is 10.6
+        data.level_1.value.assert_Is 18.2
 
     using api_Data, ->
       @.team_Score(req,res)
