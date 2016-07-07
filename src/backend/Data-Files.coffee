@@ -9,10 +9,11 @@ class Data_Files
   files_Names: (project)=>                  
     (file.file_Name_Without_Extension() for file in @.files_Paths(project))
 
+  # Issue: DoS on Data-Project technique to map projects and project's teams #108
   files_Paths: (project)=>
     @.data_Project.project_Files(project)
 
-  find_File: (project, filename)=>                         # todo: (add DoS ticket) this method need caching since it will search all files everytime (could also be a minor DoS issue)
+  find_File: (project, filename)=>
     if filename
       for file in @.files_Paths(project)                   # this can be optimized with a cache
         if file.file_Name_Without_Extension() is filename

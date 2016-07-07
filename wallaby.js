@@ -5,7 +5,8 @@ module.exports = function () {
         files: [
             'src/**/*.coffee',
             'views/**/*.pug', 
-            { pattern: 'data/**/*', instrument: false, load: false, ignore: false },
+            { pattern: 'data/**/*'        , instrument: false, load: false, ignore: false },
+            { pattern: 'ui/src/services/*', instrument: false, load: false, ignore: false },
         ],
 
         tests: [

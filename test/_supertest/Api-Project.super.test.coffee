@@ -32,4 +32,6 @@ describe '_supertest | Api-Project', ->
     .expect 200
     .expect 'Content-Type', /json/ 
     .expect (res)->
-      res.body['SM.1.1'].assert_Is { domain: 'Governance', practice: 'Strategy & Metrics', level: '1', activity: 'Publish process (roles, responsibilities, plan), evolve as necessary' }
+      schema = res.body
+      schema.domains._keys().assert_Is [ 'Governance', 'Intelligence', 'SSDL Touchpoints', 'Deployment' ]
+      schema.activities['SM.1.1'].assert_Is level: '1', name: 'Publish process (roles, responsibilities, plan), evolve as necessary'

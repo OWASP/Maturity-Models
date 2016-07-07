@@ -16,12 +16,13 @@ class Data_Stats
     if project and team
       schema = @.data_Project.project_Schema(project)
       data   = @.data_Files.get_File_Data(project, team)
+      #console.log schema.activities
       if schema and data
-        #console.log schema
         for domain, activity of data?.activities
           for key,value of activity
-            if schema[key]
-              score_Key = "level_#{schema[key].level}"              
+            #console.log key
+            if schema?.activities[key] 
+              score_Key = "level_#{schema.activities[key].level}"              
               scores[score_Key] ?= { value: 0, percentage:'', activities: 0}
               score = scores[score_Key]
               switch value

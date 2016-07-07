@@ -10,7 +10,6 @@ class Data_Project
       if @?.path_Teams          
           for file in @.path_Teams.files_Recursive()
             if file.file_Extension() in ['.json', '.coffee']
-              #if file.not_Contains 'maturity-model.json'
                 values.push file
       return values
 
@@ -20,11 +19,11 @@ class Data_Project
           return @.path_Schema.load_Json()
       return {}  
     
-  # returns a list of current projects (which are defined by a folder containing an maturity-model.json )  
+  # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
   projects: ()=>
     projects = {}
-    for folder in @.data_Path?.folders_Recursive()
-      config_File = folder.path_Combine @.config_File
+    for folder in @.data_Path?.folders()
+      config_File = folder.path_Combine @.config_File   # Issue: DoS on Data-Project technique to map projects and project's teams #108
       if config_File.file_Exists()
         data = config_File.load_Json()
         if data and data.key
