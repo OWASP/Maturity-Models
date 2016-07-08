@@ -30,8 +30,10 @@ describe '_ui_data | create api , create angular service' ,->
         save_Data_Into_Data_Folder path, res.body
 
   #bsimm
-  it '/project/schema/bsimm' , -> make_Request_And_Save "#{version}/project/schema/bsimm"
-  it '/team/bsimm/get/team-A', -> make_Request_And_Save "#{version}/team/bsimm/get/team-A"
-    
+  it '/project/schema/bsimm'   , -> make_Request_And_Save "#{version}/project/schema/bsimm"
+  it '/team/bsimm/get/team-A'  , -> make_Request_And_Save "#{version}/team/bsimm/get/team-A"
+  it '/data/bsimm/team-A/score', -> make_Request_And_Save "#{version}/data/bsimm/team-A/score"  # todo - add test here and in ui
+
   #samm
   it '/project/schema/samm'  , -> make_Request_And_Save "#{version}/project/schema/samm"
+  it '/team/bsimm/get/team-E', -> make_Request_And_Save "#{version}/team/samm/get/team-E"
