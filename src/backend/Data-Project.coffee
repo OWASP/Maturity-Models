@@ -22,7 +22,11 @@ class Data_Project
   # returns a list of current projects (which are defined by a folder containing an maturity-model.json )
   projects: ()=>
     projects = {}
-    for folder in @.data_Path?.folders()
+    public_Projects  = @.data_Path?.folders()                           || []
+    private_Projects = @.data_Path?.path_Combine('private').folders()   || []
+    target_Folders = public_Projects.concat private_Projects
+
+    for folder in target_Folders
       config_File = folder.path_Combine @.config_File   # Issue: DoS on Data-Project technique to map projects and project's teams #108
       if config_File.file_Exists()
         data = config_File.load_Json()
