@@ -17,29 +17,28 @@ describe 'backend | Data-Stats', ->
       @.data_Files  .constructor.name.assert_Is 'Data_Files'
       @.data_Project.constructor.name.assert_Is 'Data_Project'
       
-  it 'team_Score', -> 
+  it 'team_Score', ->
     using data_Stats, ->
       using @.team_Score(project, team),->
-        console.log @.level_2
         @.assert_Is  { 'level_1':
-                          value     : 17.2,
-                          percentage: '64%',
-                          activities: 27
+                          value     : 18.4,
+                          percentage: '48%',
+                          activities: 38
                         'level_2':
-                          value     : 14
-                          percentage: '61%'
-                          activities :23
+                          value     : 14.4
+                          percentage: '35%'
+                          activities: 41
                         'level_3':
                           value     : 3.8
-                          percentage: '42%'
-                          activities:9 }
+                          percentage: '12%'
+                          activities: 33 }
 
   it 'team_Score (no project or team)', ->
     using data_Stats, ->
       using @.team_Score(),->
-        @.assert_Is {}
+        @.assert_Is {} 
   
   it 'teams_Scores', ->
     using data_Stats, ->
       using @.teams_Scores(project),->
-        @[team].level_1.value.assert_Is 17.2
+        @[team].level_1.value.assert_Is_Bigger_Than 17.2
