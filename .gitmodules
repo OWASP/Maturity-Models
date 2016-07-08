@@ -4,9 +4,6 @@
 [submodule "ui"]
 	path = ui
 	url = git@github.com:DinisCruz/Maturity-Models-UI.git
-[submodule "data/Maturity-Models-AppSec"]
-	path = data/Maturity-Models-AppSec
-	url = git@github.com:DinisCruz/Maturity-Models-AppSec.git
 [submodule "data/OpenSAMM-Graphs-Data"]
 	path = data/OpenSAMM-Graphs-Data
 	url = git@github.com:streichsbaer/OpenSAMM-Graphs-Data.git
