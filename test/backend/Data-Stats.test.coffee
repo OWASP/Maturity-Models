@@ -29,8 +29,8 @@ describe 'backend | Data-Stats', ->
                           percentage: '35%'
                           activities: 41
                         'level_3':
-                          value     : 3.8
-                          percentage: '12%'
+                          value     : 4.8
+                          percentage: '15%'
                           activities: 33 }
 
   it 'team_Score (no project or team)', ->
