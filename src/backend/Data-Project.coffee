@@ -8,7 +8,7 @@ class Data_Project
     return using (@.projects()[id]),->
       values = []
       if @?.path_Teams          
-          for file in @.path_Teams.files_Recursive()
+          for file in @.path_Teams.files_Recursive()          
             if file.file_Extension() in ['.json', '.coffee']
                 values.push file
       return values

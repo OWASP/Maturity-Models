@@ -85,16 +85,21 @@ describe '_regression | A1 - Injection', ->
   require('coffee-script/register');          # in case wallably has not registered it
   it 'Issue 24 - Data_Files.set_File_Data - allows editing of coffee-script files (RCE)', ->
     using new Data_Files(), ->
-      new_File_Contents = 'module.exports = ()-> 40+2'
-      project           = 'bsimm'
-      file_Name         = 'coffee-data'
-      file_Path         = @.find_File project, file_Name
-      file_Contents = file_Path.file_Contents()
+      original_File_Contents = 'module.exports = ()-> user: 42'
+      new_File_Contents      = 'module.exports = ()-> 40+2'
+      project                = 'bsimm'
+      file_Name              = 'test-coffee-data'
+      target_Folder          = @.find_File(project, 'team-A').parent_Folder()
 
-      @.get_File_Data(project, file_Name).user.assert_Is 'in coffee'        # confirm original data
+      file_Path              = target_Folder.path_Combine file_Name + '.coffee'
+
+      original_File_Contents.save_As file_Path
+
+      @.get_File_Data(project, file_Name).user.assert_Is 42                 # confirm original data
 
       result = @.set_File_Data_Json project, file_Name, new_File_Contents   # try to make change
       assert_Is_Null result                                                 # confirm save fail
 
       file_Path.file_Contents().assert_Is_Not new_File_Contents             # confirm data was NOT changed
-      .assert_Is     file_Contents
+                               .assert_Is     original_File_Contents
+      file_Path.assert_File_Deleted()

@@ -22,13 +22,13 @@ describe 'controllers | Api-Team', ->
     req =
       params :
         project: 'bsimm'
-        team:    'json-data'
+        team:    'team-A'
     res =
       setHeader: (name, value)->
         name.assert_Is 'Content-Type'
         value.assert_Is 'application/json'
-      send: (data)->          
-        data.user.name.assert_Is 'Joe'
+      send: (data)->
+        data.metadata.team.assert_Is 'Team A'
 
     using api_Team, ->
       @.get(req, res)
@@ -37,7 +37,7 @@ describe 'controllers | Api-Team', ->
     req =
       params :
         project: 'bsimm'
-        team   : 'json-data'
+        team   : 'team-A'
       query:
         pretty : ''
     res =
@@ -45,9 +45,10 @@ describe 'controllers | Api-Team', ->
         name.assert_Is 'Content-Type'
         value.assert_Is 'application/json'
       send: (data_pretty)->
-        assert_Is_Undefined data_pretty.user
+        data_pretty.assert_Contains '"team": "Team A"'
+        assert_Is_Undefined data_pretty.metadata
         data = data_pretty.json_Parse()
-        data.user.name.assert_Is 'Joe'
+        data.metadata.team.assert_Is 'Team A'
 
     using api_Team, ->
       @.get(req, res)
@@ -66,7 +67,7 @@ describe 'controllers | Api-Team', ->
     res =
       send: (data)->
         data.assert_Size_Is_Bigger_Than 3
-        data.assert_Contains [ 'coffee-data', 'json-data' ]
+        data.assert_Contains [ 'team-A', 'team-B' ]
 
 
     using api_Team, ->

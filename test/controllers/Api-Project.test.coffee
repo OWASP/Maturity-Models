@@ -19,12 +19,9 @@ describe 'controllers | Api-Project', ->
       @.router.stack.assert_Size_Is 3
 
   it 'get (null)', ()->
-    req =
-      params : team : null
-
-    res =
-      json: (data)->
-        data.assert_Contains ['coffee-data', 'team-A','team-B']
+    req = params : team : null
+    res = json: (data)-> data.assert_Is []
+    new Api_Project().get(req, res)
 
   it 'get (bsimm)', ()->
     req =
@@ -32,7 +29,7 @@ describe 'controllers | Api-Project', ->
 
     res =
       json: (data)->
-        data.assert_Contains ['coffee-data', 'team-A','team-B']
+        data.assert_Contains [ 'team-A','team-B']
 
     using new Api_Project(), ->
       @.get(req, res)

@@ -15,7 +15,7 @@ describe 'backend | Data-Project', ->
 
   it 'project_Files', ->
     using data_Project, ->      
-      @.project_Files(project).file_Names().assert_Contains [ 'empty.json','coffee-data.coffee', 'json-data.json', 'save-test.json','team-A.json',
+      @.project_Files(project).file_Names().assert_Contains [ 'empty.json', 'save-test.json','team-A.json',
                                                               'team-B.json', 'team-C.json', 'team-random.coffee' ]
       @.project_Files('aa').assert_Is []
       

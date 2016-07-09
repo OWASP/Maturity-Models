@@ -27,7 +27,7 @@ describe 'backend | Data-Files', ->
     using data_Files, ->
       team_A = @.find_File project, 'team-A'
       team_A.assert_File_Exists()
-      
+
       assert_Is_Null @.find_File 'demo', 'Team-A'  # search is case sensitive
       assert_Is_Null @.find_File 'demo', 'aaaaaa'
       assert_Is_Null @.find_File 'demo', null
@@ -36,10 +36,10 @@ describe 'backend | Data-Files', ->
 
   it 'get_File_Data', ()->
     project  = 'bsimm'
-    filename = 'json-data'
+    filename = 'team-A'
     using data_Files, ->
       @.get_File_Data project, filename
-          .user.name.assert_Is 'Joe'
+          .metadata.team.assert_Is 'Team A'
 
   it 'set_File_Data', ->
     project     = 'bsimm'
