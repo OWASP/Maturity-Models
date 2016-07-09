@@ -27,10 +27,7 @@ describe 'backend | Data-Files', ->
     using data_Files, ->
       team_A = @.find_File project, 'team-A'
       team_A.assert_File_Exists()
-
-      team_D = @.find_File 'appsec', 'team-D'
-      team_D.assert_File_Exists()
-
+      
       assert_Is_Null @.find_File 'demo', 'Team-A'  # search is case sensitive
       assert_Is_Null @.find_File 'demo', 'aaaaaa'
       assert_Is_Null @.find_File 'demo', null

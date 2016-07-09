@@ -37,13 +37,13 @@ describe 'controllers | Api-Project', ->
     using new Api_Project(), ->
       @.get(req, res)
 
-  it 'get (appsec)', ()->
+  it 'get (samm)', ()->
     req =
-      params : project : 'appsec'
+      params : project : 'samm'
 
     res =
       json: (data)->
-        data.assert_Contains ['team-D']
+        data.assert_Contains ['team-F']
 
     using new Api_Project(), ->
       @.get(req, res)
@@ -51,7 +51,7 @@ describe 'controllers | Api-Project', ->
   it 'list', ()->
     res =
       json: (data)->
-        data.assert_Contains ['bsimm', 'appsec']
+        data.assert_Contains ['bsimm', 'samm']
 
     using new Api_Project(), ->
       @.list(null, res)
