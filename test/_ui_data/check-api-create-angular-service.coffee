@@ -16,7 +16,7 @@ describe '_ui_data | create api , create angular service' ,->
     app    = server.app
 
   save_Data_Into_Data_Folder = (path, data)->
-    file_Path = "#{path_UI_Code}#{path}.coffee"
+    file_Path = "#{path_UI_Code}/#{path.to_Safe_String()}.coffee"
     file_Path.parent_Folder().folder_Create()
     file_Data = "angular.module('MM_Graph').run ($httpBackend)-> $httpBackend.whenGET('#{path}').respond #{data.json_Str()}"
     file_Data.save_As file_Path
@@ -32,7 +32,7 @@ describe '_ui_data | create api , create angular service' ,->
   #bsimm
   it '/project/schema/bsimm'   , -> make_Request_And_Save "#{version}/project/schema/bsimm"
   it '/team/bsimm/get/team-A'  , -> make_Request_And_Save "#{version}/team/bsimm/get/team-A"
-  it '/data/bsimm/team-A/score', -> make_Request_And_Save "#{version}/data/bsimm/team-A/score"  # todo - add test here and in ui
+  it '/data/bsimm/team-A/score', -> make_Request_And_Save "#{version}/data/bsimm/team-A/score"
 
   #samm
   it '/project/schema/samm'  , -> make_Request_And_Save "#{version}/project/schema/samm"
