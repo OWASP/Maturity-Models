@@ -39,6 +39,7 @@ class Data_Files
 
 
   # Issue 26 - Data_Files.set_File_Data - DoS via file_Contents
+  # Issue 121 - Race condition on set_File_Data_Json method
   set_File_Data_Json: (project, filename, json_Data) ->
     if not filename or not json_Data                    # check if both values are set
       return null
