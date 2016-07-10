@@ -71,9 +71,9 @@ describe '_regression | A1 - Injection', ->
 
         @.set_File_Data_Json file_Name, file_Contents               # PAYLOAD: create file
 
-        file_Path.assert_File_Not_Exists()                     # confirm file doesn't exists
+        file_Path.assert_File_Not_Exists()                          # confirm file doesn't exists
 
-      create_File '.json'                                      # confirm that none work now
+      create_File '.json'                                           # confirm that none work now
       create_File '.json5'
       create_File '.coffee'
       create_File '.js'
@@ -82,7 +82,7 @@ describe '_regression | A1 - Injection', ->
       create_File '.css'
       create_File '...'
 
-  require('coffee-script/register');          # in case wallably has not registered it
+  #require('coffee-script/register');          # in case wallably has not registered it
   it 'Issue 24 - Data_Files.set_File_Data - allows editing of coffee-script files (RCE)', ->
     using new Data_Files(), ->
       original_File_Contents = 'module.exports = ()-> user: 42'
