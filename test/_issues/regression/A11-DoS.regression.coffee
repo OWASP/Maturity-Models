@@ -1,5 +1,5 @@
-require '../../src/extra.methods'
-Data_Project = require '../../src/backend/Data-Project'
+require '../../../src/extra.methods'
+Data_Project = require '../../../src/backend/Data-Project'
 async        = require 'async'
 
 # These tests represent regression tests for DoS attacks

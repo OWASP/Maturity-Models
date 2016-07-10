@@ -1,4 +1,4 @@
-Server  = require '../../src/server/Server'
+Server  = require '../../../src/server/Server'
 request = require 'supertest'
 
 
