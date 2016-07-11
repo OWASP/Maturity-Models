@@ -28,11 +28,9 @@ before_install:
 
 before_script:
 
-  #- npm install -g bower
-  #- bower install
-  #- npm install -g gulp
-  #- cd ui; gulp; cd ..
-  - cd ui
+  - cd code/api
+  - npm install
+  - cd ../ui
   - npm install
   - npm install -g bower
   - npm install -g gulp
@@ -64,16 +62,16 @@ after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker push diniscruz/maturity-models
 
-  - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
-  - cd ..
-  - git clone https://github.com/DinisCruz/Maturity-Models-QA.git
-  - cd Maturity-Models-QA
-  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/Maturity-Models-QA.git
-
-  - git config --global user.email "bot@travis.com"
-  - git config --global user.name "Travis Bot"
-
-  - git log -n5 --pretty=oneline > travis-git-log.txt
-  - git add .
-  - git commit -m "Comming files for $(git rev-parse HEAD)"
-  - git push --quiet -f upstream master
+#  - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
+#  - cd ..
+#  - git clone https://github.com/DinisCruz/Maturity-Models-QA.git
+#  - cd Maturity-Models-QA
+#  - git remote add upstream https://DinisCruz-Dev:$git_pwd@github.com/DinisCruz-Dev/Maturity-Models-QA.git
+#
+#  - git config --global user.email "bot@travis.com"
+#  - git config --global user.name "Travis Bot"
+#
+#  - git log -n5 --pretty=oneline > travis-git-log.txt
+#  - git add .
+#  - git commit -m "Comming files for $(git rev-parse HEAD)"
+#  - git push --quiet -f upstream master

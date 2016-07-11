@@ -4,7 +4,7 @@
   "description": "Maturity Models",
   "main": "server.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --recursive -R list",
+    "test": "node ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --recursive -R list code/api/test",
     "dev" : "cd ui; gulp watch",
     "start": "node server.js "
   },
