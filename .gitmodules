@@ -7,3 +7,9 @@
 [submodule "code/api"]
 	path = code/api
 	url = git@github.com:OWASP/Maturity-Models-API.git
+[submodule "code/ui"]
+	path = code/ui
+	url = git@github.com:OWASP/Maturity-Models-UI.git
+[submodule "code/qa"]
+	path = code/qa
+	url = git@github.com:OWASP/Maturity-Models-QA.git
