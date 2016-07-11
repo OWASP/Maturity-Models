@@ -3,15 +3,15 @@ require('fluentnode')
 module.exports = function () {
     return {
         files: [
-            'src/**/*.coffee',
-            'views/**/*.pug', 
+            'code/api/src/**/*.coffee',
+            'code/api/views/**/*.pug',
             { pattern: 'data/**/*'        , instrument: false, load: false, ignore: false },
-            { pattern: 'ui/src/services/*', instrument: false, load: false, ignore: false },
+            { pattern: 'code/ui/src/services/*', instrument: false, load: false, ignore: false },
         ],
 
         tests: [
-            'test/**/*.coffee',
-            'test/*.coffee'
+            'code/api/test/**/*.coffee',
+            'code/api/test/*.coffee'
         ],
 
         env: {
