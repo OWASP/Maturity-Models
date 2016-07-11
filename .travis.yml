@@ -62,6 +62,11 @@ after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker push diniscruz/maturity-models
 
+  - echo ">>>>> Running core tests (on deployed Docker server)<<<<<"
+  - cd code/qa
+  - npm install --quiet
+  - npm test
+
 #  - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
 #  - cd ..
 #  - git clone https://github.com/DinisCruz/Maturity-Models-QA.git
