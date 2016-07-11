@@ -36,16 +36,16 @@ before_script:
   - npm install -g gulp
   - bower install
   - gulp
-  - cd ..
+  - cd ../..
 
 
 script:
   - echo ">>>>> Running core tests<<<<<"
   - npm test
   - echo ">>>>> Running UI tests<<<<<"
-  - cd ui
+  - cd code/ui
   - npm test
-  - cd ..
+  - cd ../..
 
 
 after_success:
