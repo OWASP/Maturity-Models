@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --recursive -R list code/api/test",
-    "dev" : "cd ui; gulp watch",
+    "dev" : "cd code/ui; gulp watch",
     "start": "node server.js "
   },
   "repository": {
