@@ -1,9 +1,6 @@
 [submodule "data/BSIMM-Graphs-Data"]
 	path = data/BSIMM-Graphs-Data
 	url = git@github.com:DinisCruz/BSIMM-Graphs-Data.git
-[submodule "data/OpenSAMM-Graphs-Data"]
-	path = data/OpenSAMM-Graphs-Data
-	url = git@github.com:streichsbaer/OpenSAMM-Graphs-Data.git
 [submodule "code/api"]
 	path = code/api
 	url = git@github.com:OWASP/Maturity-Models-API.git
