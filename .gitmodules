@@ -10,3 +10,6 @@
 [submodule "code/qa"]
 	path = code/qa
 	url = git@github.com:OWASP/Maturity-Models-QA.git
+[submodule "data/OwaspSAMM"]
+	path = data/OwaspSAMM
+	url = git@github.com:OWASP/Maturity-Models-OwaspSAMM.git
