@@ -1,6 +1,6 @@
 Node application to help managing Maturity Models like the ones created by BSIMM and OpenSAMM
 
-Build status: [![Build Status](https://travis-ci.org/DinisCruz/Maturity-Models.svg?branch=master)](https://travis-ci.org/DinisCruz/Maturity-Models)
+Build status: [![Build Status](https://travis-ci.org/OWASP/Maturity-Models.svg?branch=master)](https://travis-ci.org/OWASP/Maturity-Models)
 
 ### UI
 ![image](https://cloud.githubusercontent.com/assets/656739/16320406/67632dc0-398f-11e6-8aee-8a1f9bd97364.png)
