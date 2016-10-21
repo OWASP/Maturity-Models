@@ -28,6 +28,12 @@ npm start
 npm test
 ```
 
+## Updating code
+
+When doing a ```git pull origin master``` to get the latest version you might need to also do a ```git submodule update``` or ```git submodule sync``` to keep the submodules updated. 
+
+You can check if all is good by doing an ```git status``` on the root folder of this repo (which should return 'no changes') 
+
 ### Docker image
 
 Available at https://hub.docker.com/r/diniscruz/maturity-models/
