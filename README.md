@@ -23,12 +23,12 @@ cd ..
 npm start
 ```
 
-## Run tests
+### Run tests
 ```
 npm test
 ```
 
-## Updating code
+### Updating code
 
 When doing a ```git pull origin master``` to get the latest version you might need to also do a ```git submodule update``` or ```git submodule sync``` to keep the submodules updated. 
 
