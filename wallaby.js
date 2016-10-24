@@ -19,7 +19,8 @@ module.exports = function (wallaby) {
         },
         setup: function (wallaby)
             {
-                console.log(wallaby)
+                console.log('running tests')
+                //console.log(wallaby)
             },
         workers: {
             initial: 1,         // without these sometimes the fluentnode apis
