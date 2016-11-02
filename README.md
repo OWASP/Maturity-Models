@@ -2,6 +2,8 @@ Node application to help managing Maturity Models like the ones created by BSIMM
 
 Build status: [![Build Status](https://travis-ci.org/OWASP/Maturity-Models.svg?branch=master)](https://travis-ci.org/OWASP/Maturity-Models)
 
+Current QA server: http://138.68.145.52
+
 ### UI
 ![image](https://cloud.githubusercontent.com/assets/656739/16320406/67632dc0-398f-11e6-8aee-8a1f9bd97364.png)
 
@@ -13,15 +15,17 @@ cd Maturity-Models
 git submodule init
 git submodule update
 npm install --quiet
-cd ui
+cd code/ui
 npm install --quiet
 npm install --quiet -g bower
 npm install --quiet -g gulp
 bower --allow-root install
 gulp
 cd ..
-npm start
+npm run dev
 ```
+
+note ```npm start``` will also work, but for now use ```npm run dev```
 
 ### Run tests
 ```
