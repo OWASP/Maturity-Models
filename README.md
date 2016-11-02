@@ -15,7 +15,7 @@ cd Maturity-Models
 git submodule init
 git submodule update
 npm install --quiet
-cd ui
+cd code/ui
 npm install --quiet
 npm install --quiet -g bower
 npm install --quiet -g gulp
