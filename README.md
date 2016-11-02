@@ -22,8 +22,10 @@ npm install --quiet -g gulp
 bower --allow-root install
 gulp
 cd ..
-npm start
+npm run dev
 ```
+
+note ```npm start``` will also work, but for now use ```npm run dev```
 
 ### Run tests
 ```
