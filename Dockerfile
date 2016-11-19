@@ -19,10 +19,6 @@ RUN     bower --allow-root install
 RUN     gulp
 WORKDIR ../..
 
-RUN     pwd
-RUN     mkdir logs              # node app was failing to create this folder
-RUN     ls -la
-
 CMD     npm start
 
 
