@@ -11,3 +11,4 @@ coverage
 angular/.dist
 ui/.dist
 data/private
+set-log.sh
