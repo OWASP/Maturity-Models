@@ -42,8 +42,11 @@ You can check if all is good by doing an ```git status``` on the root folder of 
 
 Available at https://hub.docker.com/r/diniscruz/maturity-models/
 
-run with (port 80): docker run -it -p 80:3000 diniscruz/maturity-models 
-or with (as demon on port 3333): docker run -it -d -p 3333:3000 diniscruz/maturity-models 
+run with (port 80): 
+docker run -it -p 80:3000 diniscruz/maturity-models 
+
+or with (as demon on port 3333): 
+docker run -it -d -p 3333:3000 diniscruz/maturity-models 
 
 
 ### BSIMM-Graphs
