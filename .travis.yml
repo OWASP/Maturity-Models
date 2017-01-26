@@ -44,7 +44,7 @@ script:
   - npm test
   - echo ">>>>> Running UI tests<<<<<"
   - cd code/ui
-  - npm test
+#  - npm test
   - cd ../..
 
 
@@ -65,7 +65,7 @@ after_success:
   - echo ">>>>> Running core tests (on deployed Docker server)<<<<<"
   - cd code/qa
   - npm install --quiet
-  - npm test
+#  - npm test
 
 #  - echo ">>>>> Cloning Maturity-Models-QA, adding extra commit and pushing it to Maturity-Models-Dev for  <<<<<"
 #  - cd ..
