@@ -13,3 +13,6 @@
 [submodule "data/OwaspSAMM"]
 	path = data/OwaspSAMM
 	url = git@github.com:OWASP/Maturity-Models-OwaspSAMM.git
+[submodule "data/OwaspASVS"]
+	path = data/OwaspASVS
+	url = git@github.com:OWASP/Maturity-Models-OWASP-ASVS.git
